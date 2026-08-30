@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>牛大作手 · 投资者日历</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===== 设计 token ===== */
+:root{
+  --bg:#0E1218;
+  --bg-2:#111722;
+  --surface:#161D27;
+  --surface-2:#1C2531;
+  --line:#25303E;
+  --line-2:#31405A;
+  --ink:#EAE7E0;
+  --ink-dim:#9AA3AF;
+  --ink-faint:#5F6875;
+  --amber:#E8A33D;
+  --amber-deep:#B97E2C;
+  --red:#E5484D;      /* 国内 / 政策 */
+  --blue:#5AA9E6;     /* 海外宏观 */
+  --orange:#E8863D;   /* AI / 科技 */
+  --teal:#35B29A;     /* 新能源 / 电池 */
+  --serif:"Noto Serif SC",serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:var(--sans);
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(232,163,61,0.05), transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer;}
+button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:6px;}
+a{color:inherit;}
+
+/* ===== 顶栏 ===== */
+.app-header{
+  position:sticky;top:0;z-index:20;
+  background:linear-gradient(180deg, rgba(14,18,24,0.96), rgba(14,18,24,0.86));
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;
+  padding:14px 18px 12px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;}
+.brand h1{
+  font-family:var(--serif);font-weight:900;letter-spacing:1px;white-space:nowrap;
+  display:flex;align-items:baseline;gap:1px;
+}
+.brand .brand-strong{font-size:24px;color:var(--red);letter-spacing:1px;}
+.brand .brand-small{font-size:13px;color:var(--ink-dim);font-weight:500;margin:0 2px;}
+.brand .sub{
+  font-size:12px;color:var(--ink-dim);line-height:1.6;letter-spacing:.3px;
+  padding-left:14px;border-left:1px solid var(--line);
+  max-width:420px;
+}
+.header-actions{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.seg{
+  display:flex;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:4px;gap:3px;
+}
+.seg button{
+  font-size:13.5px;font-weight:600;padding:8px 22px;border-radius:8px;color:var(--ink-dim);
+  min-height:40px;transition:background .15s,color .15s;letter-spacing:.5px;
+}
+.seg button.active{background:var(--amber);color:#171207;box-shadow:0 2px 10px rgba(232,163,61,0.25);}
+.today-btn{
+  font-size:13px;color:var(--ink-dim);border:1px solid var(--line);border-radius:9px;
+  padding:9px 16px;min-height:40px;transition:border-color .15s,color .15s,background .15s;
+  font-weight:500;letter-spacing:.5px;
+}
+.today-btn:hover{color:var(--amber);border-color:var(--amber-deep);background:rgba(232,163,61,0.06);}
+
+/* ===== 主区 ===== */
+.app-main{max-width:1200px;margin:0 auto;padding:18px 18px 64px;}
+
+/* 视图切换过渡 */
+.view{animation:fadeIn .28s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+/* 核心提示条 */
+.hook{
+  display:flex;gap:14px;align-items:center;
+  background:linear-gradient(135deg, rgba(232,163,61,0.10), rgba(232,163,61,0.03));
+  border:1px solid rgba(232,163,61,0.28);
+  border-radius:12px;padding:12px 16px;margin-bottom:18px;flex-wrap:wrap;
+}
+.hook .hook-label{
+  font-family:var(--serif);font-weight:700;font-size:13px;color:var(--amber);white-space:nowrap;
+}
+.hook .hook-items{display:flex;gap:8px;flex-wrap:wrap;}
+.hook-item{
+  font-size:12.5px;color:var(--ink);background:rgba(232,163,61,0.07);
+  border:1px solid rgba(232,163,61,0.20);padding:6px 12px;border-radius:999px;white-space:nowrap;
+}
+.hook-item b{color:var(--amber);font-weight:700;}
+
+/* 周导航 */
+.period-nav{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;
+}
+.period-nav .period-title{
+  font-family:var(--serif);font-weight:700;font-size:17px;text-align:center;flex:1;
+}
+.nav-arrow{
+  width:40px;height:40px;border-radius:10px;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--ink-dim);
+  transition:border-color .15s,color .15s;
+}
+.nav-arrow:hover{color:var(--amber);border-color:var(--amber-deep);}
+.nav-arrow:disabled{opacity:.3;cursor:not-allowed;}
+.nav-arrow svg{width:18px;height:18px;}
+
+/* ===== 周视图 ===== */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;}
+.week-day{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  display:flex;flex-direction:column;min-height:150px;overflow:hidden;
+  transition:border-color .15s,box-shadow .15s;
+}
+.week-day:hover{border-color:var(--line-2);box-shadow:0 4px 16px rgba(0,0,0,0.15);}
+.week-day.weekend{background:var(--bg-2);}
+.week-day .day-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:6px;
+  padding:11px 13px 9px;border-bottom:1px solid var(--line);
+}
+.week-day .day-head .dnum{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.5px;}
+.week-day .day-head .dweek{font-size:11.5px;color:var(--ink-dim);letter-spacing:.5px;}
+.week-day.sel{border-color:var(--amber);box-shadow:0 0 0 1px rgba(232,163,61,0.2);}
+.week-day.sel .day-head{background:rgba(232,163,61,0.10);}
+.week-day.sel .day-head .dnum{color:var(--amber);}
+.week-day .day-events{display:flex;flex-direction:column;gap:9px;padding:10px;}
+.ev-card{
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-left:4px solid;
+  border-radius:10px;
+  padding:10px 11px;
+  text-align:left;
+  min-height:44px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  transition:transform .15s,background .15s,border-color .15s,box-shadow .15s;
+}
+.ev-card:hover{
+  transform:translateY(-1px);
+  background:#222C3A;
+  box-shadow:0 4px 14px rgba(0,0,0,0.22);
+}
+.ev-card.c-cn{border-left-color:var(--red);background:rgba(229,72,77,0.06);}
+.ev-card.c-gl{border-left-color:var(--blue);background:rgba(90,169,230,0.06);}
+.ev-card.c-ai{border-left-color:var(--orange);background:rgba(232,134,61,0.06);}
+.ev-card.c-ne{border-left-color:var(--teal);background:rgba(53,178,154,0.06);}
+.ev-card.key{
+  border-left-color:var(--amber);
+  border-color:rgba(232,163,61,0.38);
+  background:rgba(232,163,61,0.08);
+}
+.ev-card.key:hover{background:rgba(232,163,61,0.13);}
+.ev-card .ev-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.ev-card .ev-time{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-dim);
+  background:rgba(255,255,255,0.06);
+  padding:2px 7px;
+  border-radius:5px;
+  white-space:nowrap;
+  letter-spacing:.3px;
+}
+.ev-card .ev-badge{
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.5px;
+  padding:2px 8px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.ev-card.key .ev-badge{background:rgba(232,163,61,0.18);color:var(--amber);}
+.ev-card.c-cn .ev-badge{background:rgba(229,72,77,0.15);color:#F0838A;}
+.ev-card.c-gl .ev-badge{background:rgba(90,169,230,0.15);color:#8CC0EE;}
+.ev-card.c-ai .ev-badge{background:rgba(232,134,61,0.15);color:#F2A96E;}
+.ev-card.c-ne .ev-badge{background:rgba(53,178,154,0.15);color:#6FCBBB;}
+.ev-card .ev-title{
+  font-size:13.5px;
+  font-weight:600;
+  line-height:1.5;
+  color:var(--ink);
+  letter-spacing:.2px;
+}
+.week-day .empty{color:var(--ink-faint);font-size:11.5px;padding:8px 4px;}
+
+/* ===== 月视图 ===== */
+.month-weekdays{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:8px;
+}
+.month-weekdays span{text-align:center;font-size:11.5px;color:var(--ink-faint);letter-spacing:.5px;padding:6px 0;}
+.month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+.m-cell{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  min-height:88px;padding:8px 9px;text-align:left;display:flex;flex-direction:column;gap:6px;
+  transition:border-color .15s,background .15s,transform .15s;
+}
+.m-cell:hover{border-color:var(--line-2);background:var(--surface-2);transform:translateY(-1px);}
+.m-cell.other{opacity:.35;}
+.m-cell.sel{border-color:var(--amber);background:rgba(232,163,61,0.08);}
+.m-cell .m-num{font-family:var(--serif);font-weight:700;font-size:14.5px;letter-spacing:.3px;}
+.m-cell.today .m-num{color:var(--amber);}
+.m-cell .m-num .dot-today{
+  display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);
+  margin-left:2px;vertical-align:2px;
+}
+.m-cell .m-dots{display:flex;gap:4px;flex-wrap:wrap;margin-top:auto;}
+.m-dot{width:7px;height:7px;border-radius:50%;}
+.m-dot.cn{background:var(--red);}
+.m-dot.gl{background:var(--blue);}
+.m-dot.ai{background:var(--orange);}
+.m-dot.ne{background:var(--teal);}
+.m-cell .m-sum{font-size:10px;color:var(--ink-faint);}
+.day-list{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+.day-list .dl-head{font-family:var(--serif);font-weight:700;font-size:15px;margin-bottom:10px;color:var(--amber);}
+.day-list .dl-head .dl-date{color:var(--ink);}
+.day-list .dl-empty{font-size:12.5px;color:var(--ink-faint);line-height:1.6;}
+
+/* ===== 详情抽屉 ===== */
+.scrim{
+  position:fixed;inset:0;background:rgba(5,8,12,0.55);opacity:0;pointer-events:none;
+  transition:opacity .25s;z-index:40;
+}
+.scrim.show{opacity:1;pointer-events:auto;}
+.drawer{
+  position:fixed;top:0;right:0;height:100%;width:100%;max-width:430px;z-index:50;
+  background:var(--bg-2);border-left:1px solid var(--line);
+  transform:translateX(102%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.drawer.show{transform:translateX(0);}
+.drawer-head{
+  display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line);
+}
+.drawer-head .dh-title{font-family:var(--serif);font-weight:700;font-size:16px;flex:1;line-height:1.3;}
+.drawer-close{width:38px;height:38px;border-radius:9px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-dim);}
+.drawer-close:hover{color:var(--ink);border-color:var(--line-2);}
+.drawer-close svg{width:16px;height:16px;}
+.drawer-body{padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;}
+.d-item{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-left:4px solid;
+  border-radius:10px;
+  padding:14px 16px;
+}
+.d-item.key{border-left-color:var(--amber);border-color:rgba(232,163,61,0.35);background:rgba(232,163,61,0.06);}
+.d-item.c-cn{border-left-color:var(--red);}
+.d-item.c-gl{border-left-color:var(--blue);}
+.d-item.c-ai{border-left-color:var(--orange);}
+.d-item.c-ne{border-left-color:var(--teal);}
+.d-item .d-title{font-size:15.5px;font-weight:700;line-height:1.5;margin-bottom:8px;letter-spacing:.2px;}
+.d-item .d-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;}
+.d-chip{font-size:11.5px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-dim);}
+.d-item.key .d-chip.k{background:rgba(232,163,61,0.16);color:var(--amber);border-color:rgba(232,163,61,0.3);}
+.d-item .d-desc{font-size:13px;color:var(--ink-dim);line-height:1.8;}
+
+/* ===== 关注引导 ===== */
+.brand-cta{
+  border-top:1px solid var(--line);
+  background:
+    radial-gradient(900px 300px at 50% -40%, rgba(232,163,61,0.10), transparent 60%),
+    linear-gradient(180deg, var(--bg-2), var(--bg));
+  padding:34px 18px 30px;
+}
+.cta-inner{max-width:1200px;margin:0 auto;text-align:center;}
+.cta-slogan{font-size:15px;color:var(--ink-dim);line-height:1.8;letter-spacing:.3px;}
+.cta-slogan b{color:var(--ink);font-weight:600;}
+.cta-actions{display:flex;align-items:center;justify-content:center;}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber);color:#171207;font-weight:700;font-size:15px;
+  padding:13px 34px;border-radius:999px;text-decoration:none;
+  transition:transform .15s,box-shadow .15s,background .15s;
+}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(232,163,61,0.28);background:#F0B04F;}
+.cta-btn svg{width:17px;height:17px;}
+.cta-disclaimer{font-size:11.5px;color:var(--ink-faint);margin-top:22px;line-height:1.7;letter-spacing:.3px;}
+
+/* ===== 响应式 ===== */
+@media (max-width: 900px){
+  .week-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width: 768px){
+  .header-inner{gap:10px;padding:12px 14px;}
+  .brand .sub{display:none;}
+  .brand h1{font-size:17px;}
+  .app-main{padding:14px 14px 56px;}
+  .week-grid{grid-template-columns:1fr;}
+  .week-day{min-height:0;}
+  .month-grid{gap:5px;}
+  .m-cell{min-height:58px;padding:5px 6px;}
+  .m-cell .m-num{font-size:12.5px;}
+  .m-dot{width:6px;height:6px;}
+  .month-weekdays{gap:5px;}
+  .month-weekdays span{padding:4px 0;font-size:10.5px;}
+  .hook{gap:10px;padding:10px 12px;}
+  .drawer{max-width:100%;}
+  .period-nav .period-title{font-size:15px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand">
+      <h1><span class="brand-strong">投资</span><span class="brand-strong">日历</span></h1>
+      <span class="sub">每天更新重要市场事件，让每一位关注的朋友 心中有数、操盘不慌。</span>
+    </div>
+    <div class="header-actions">
+      <button class="today-btn" id="todayBtn" title="回到本周">回到本周</button>
+      <div class="seg" role="tablist" aria-label="视图切换">
+        <button id="segWeek" role="tab" data-view="week" class="active">周视图</button>
+        <button id="segMonth" role="tab" data-view="month">月视图</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="app-main">
+
+  <!-- ===== 周视图 ===== -->
+  <section id="view-week" class="view" data-route="week">
+    <div class="period-nav">
+      <button class="nav-arrow" id="prevWeek" aria-label="上一周">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="period-title" id="weekTitle"></div>
+      <button class="nav-arrow" id="nextWeek" aria-label="下一周">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="hook">
+      <span class="hook-label">关键节点</span>
+      <div class="hook-items">
+        <span class="hook-item">周一 <b>PMI</b> 定国内情绪</span>
+        <span class="hook-item">周三 <b>博通财报</b> 定AI信仰</span>
+        <span class="hook-item">周五 <b>非农</b> 定全球流动性</span>
+        <span class="hook-item">9/7 <b>美股劳动节休市</b></span>
+        <span class="hook-item">9/17 <b>美联储议息</b>+点阵图</span>
+        <span class="hook-item">9/25 <b>中秋A股休市</b>+A50交割</span>
+      </div>
+    </div>
+    <div class="week-grid" id="weekGrid"></div>
+  </section>
+
+  <!-- ===== 月视图 ===== -->
+  <section id="view-month" class="view" data-route="month" hidden>
+    <div class="period-nav">
+      <button class="nav-arrow" id="prevMonth" aria-label="上一月">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="period-title" id="monthTitle"></div>
+      <button class="nav-arrow" id="nextMonth" aria-label="下一月">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="month-weekdays">
+      <span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span><span>周六</span><span>周日</span>
+    </div>
+    <div class="month-grid" id="monthGrid"></div>
+    <div class="day-list" id="dayList"></div>
+  </section>
+
+</main>
+
+<!-- ===== 关注引导 ===== -->
+<footer class="brand-cta">
+  <div class="cta-inner">
+    <div class="cta-actions">
+      <a class="cta-btn" href="https://v.douyin.com/V9SsKnybiw8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        关注 牛大作手（抖音号：20598433025）
+      </a>
+    </div>
+    <p class="cta-disclaimer">本日历仅作公开信息整理与展示，不构成任何投资建议；市场有风险，投资需谨慎。</p>
+  </div>
+</footer>
+
+<!-- ===== 详情抽屉 ===== -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="事件详情" aria-hidden="true">
+  <div class="drawer-head">
+    <div class="dh-title" id="drawerTitle">事件详情</div>
+    <button class="drawer-close" id="drawerClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+/* ================= 事件数据 =================
+   全部为北京时间；time 为 null 表示全天事件。
+   覆盖范围：2026-08-24 — 2026-09-25（含交割日）
+   cat: cn=国内/政策  gl=海外宏观  ai=AI/科技  ne=新能源/电池
+   key: true 为重点事件 */
+var CATS = { cn:'国内/政策', gl:'海外宏观', ai:'AI/科技', ne:'新能源/电池' };
+var EVENTS = {
+  /* ---- 第1周 8/24-8/30（本周） ---- */
+  '2026-08-25': [
+    { time:null, title:'美联储官员密集发声：通胀仍然过高', cat:'gl', key:false,
+      desc:'本周多位美联储官员就通胀与政策发表讲话（柯林斯等），普遍认为通胀仍过高，市场对9月加息的预期持续升温。' }
+  ],
+  '2026-08-26': [
+    { time:'20:30', title:'美国7月PCE物价指数', cat:'gl', key:true,
+      desc:'7月PCE同比3.7%略超预期，核心PCE同比3.3%仍远高于2%目标。数据公布后市场预计9月加息概率从36%升至42%，美债收益率走高。' }
+  ],
+  '2026-08-27': [
+    { time:'04:00', title:'英伟达发布Q2财报（美股盘后）', cat:'ai', key:true,
+      desc:'英伟达公布最新季度业绩，AI算力风向标。市场聚焦AI需求持续性、新芯片出货与数据中心业务指引，直接影响全球AI/算力板块。' },
+    { time:null, title:'杰克逊霍尔全球央行年会开幕（8/27-29）', cat:'gl', key:false,
+      desc:'年度全球央行会议在美国怀俄明州举行，主题“金融创新：对支付与政策的影响”，各国央行官员齐聚讨论经济与政策前景。' }
+  ],
+  '2026-08-28': [
+    { time:'22:00', title:'美联储主席沃什杰克逊霍尔主旨演讲', cat:'gl', key:true,
+      desc:'沃什上任后首场年会演讲，释放鹰派信号：若无法确信基础通胀正明确回落到2%目标，加息仍在考虑范围内。演讲后黄金大跌3%，市场9月加息概率上调。' },
+    { time:null, title:'美国非农就业基准修订公布', cat:'gl', key:false,
+      desc:'截至2026年3月的一年，美国非农就业初步基准修订下调7.9万人，私营部门就业下调17.8万人。' }
+  ],
+  '2026-08-30': [
+    { time:null, title:'G20财长与央行行长会议开幕（8/30-9/1）', cat:'gl', key:false,
+      desc:'G20财长与央行行长会议拉开帷幕（持续至9月1日），全球财经巨头聚首，为国际货币政策协调与宏观展望定调。' }
+  ],
+
+  /* ---- 第2周 8/31-9/6（下周） ---- */
+  '2026-08-31': [
+    { time:null, title:'中国8月官方制造业PMI发布', cat:'cn', key:true,
+      desc:'国家统计局发布最新一期PMI数据，国内经济最新体温计，直接关系大宗商品与亚太资产走向。' },
+    { time:null, title:'A股半年报披露截止 · MSCI调整生效', cat:'cn', key:false,
+      desc:'A股2026年半年报法定披露截止日，最后一轮业绩排雷；MSCI季度指数调整当日收盘后正式生效，尾盘注意异动。' },
+    { time:null, title:'北交所新股申购：百迈科', cat:'cn', key:false,
+      desc:'发行价17.10元/股，从事外科手术医疗器械及多肽制药设备研发、生产与销售。' }
+  ],
+  '2026-09-01': [
+    { time:null, title:'多项新规实施：电池消费税 · 新版基药目录 · 人民币新规', cat:'cn', key:false,
+      desc:'锂电池等自9月1日起按2%征收消费税（2027年9月起升至4%），锂电十余年免税历史终结，关注锂电/钠电分化；《国家基本药物目录（2026年版）》施行，共794种药品；禁止非法买卖流通中人民币。' },
+    { time:'09:45', title:'中国8月财新制造业PMI', cat:'cn', key:false,
+      desc:'财新/标普制造业PMI，观察中小企业景气度。' },
+    { time:null, title:'G20财长与央行行长会议收官 · 上合峰会', cat:'gl', key:false,
+      desc:'G20财长会（8/30-9/1）收官；上合组织元首理事会会议举行，全球货币政策协调与地缘经贸看点。' },
+    { time:'22:00', title:'美国8月ISM制造业PMI · 7月JOLTs职位空缺', cat:'gl', key:false,
+      desc:'ISM制造业PMI + JOLTs职位空缺，衡量企业招聘意愿与制造业景气，美联储就业监控的关键窗口。' }
+  ],
+  '2026-09-02': [
+    { time:null, title:'燧原科技申购 · 焦炭期权上市', cat:'cn', key:false,
+      desc:'科创板新股燧原科技（国产GPU四小龙之一，AI云端芯片）开放申购；大商所焦炭期权上市交易，当晚开展夜盘。' },
+    { time:'20:15', title:'美国8月ADP小非农', cat:'gl', key:false,
+      desc:'美国8月ADP就业人数变动（私人部门就业），非农前哨。' },
+    { time:'22:00', title:'加拿大央行利率决议 · 美国7月工厂订单', cat:'gl', key:false,
+      desc:'加拿大央行公布利率决议（市场预期维持隔夜利率2.25%不变）；美国7月工厂订单月率同步公布。' }
+  ],
+  '2026-09-03': [
+    { time:'02:00', title:'美联储经济状况褐皮书', cat:'gl', key:false,
+      desc:'美联储发布最新一期经济状况褐皮书，揭示各辖区通胀下降与就业放缓背景下的真实运行状况。' },
+    { time:'04:05', title:'博通Q3财报（美股盘后）', cat:'ai', key:true,
+      desc:'博通AVGO公布2026财年Q3业绩，市场关注AI营收（指引约160亿美元）与AI资本开支韧性，能否接棒英伟达，直接牵动AI/算力、CPO、光纤等板块情绪。' },
+    { time:null, title:'特斯拉Cybercab发布会', cat:'ai', key:false,
+      desc:'特斯拉在奥斯汀举行Cybercab发布会，无方向盘无人驾驶出租车正式上线。' },
+    { time:null, title:'2026世界动力电池大会（宜宾）', cat:'ne', key:false,
+      desc:'特斯拉、宁德时代、比亚迪等120余家中外龙头企业携前沿产品亮相。' },
+    { time:null, title:'科创板新股申购：信诺维（创新药）', cat:'cn', key:false,
+      desc:'信诺维是创新药企业，重点布局肿瘤精准治疗、多重耐药菌感染等领域。' },
+    { time:'20:30', title:'初请失业金 · 挑战者裁员 · 沃勒讲话', cat:'gl', key:false,
+      desc:'8/29当周初请失业金、8月挑战者企业裁员；美联储理事沃勒就通胀前景发言（转鹰表态值得关注）。' },
+    { time:'22:00', title:'美国8月ISM非制造业PMI · 7月贸易帐', cat:'gl', key:false,
+      desc:'ISM非制造业PMI、7月贸易帐，检验服务业景气与外部平衡。' }
+  ],
+  '2026-09-04': [
+    { time:'03:00', title:'FOMC票委哈玛克讲话', cat:'gl', key:false,
+      desc:'2026年FOMC票委、克利夫兰联储主席哈玛克在“联储社区”活动致开幕词，阐述政策立场，9月议息前重要信号。' },
+    { time:'17:00', title:'欧元区7月零售销售', cat:'gl', key:false,
+      desc:'欧元区7月零售销售月率，观察欧元区消费动能。' },
+    { time:'20:30', title:'【重磅】美国8月非农 + 失业率', cat:'gl', key:true,
+      desc:'全周核心！北京时间20:30公布美国8月季调后非农就业人口、失业率及平均时薪。这是9月17日凌晨美联储议息前最后一份非农。上月7月非农意外转负（-2.3万，预期+8万），若再度爆冷或触发萨姆规则，9月加息预期将被改写，全球资产剧烈波动。' }
+  ],
+
+  /* ---- 第3周 9/7-9/13 ---- */
+  '2026-09-07': [
+    { time:null, title:'【休市】美股劳动节休市（NYSE/纳斯达克）', cat:'gl', key:true,
+      desc:'美国劳动节（Labor Day，每年9月第一个周一），纽约证券交易所、纳斯达克全天休市，9月8日（周二）恢复正常交易。美股休市期间中概股、美股期权及期货均暂停交易，关注节后开盘跳空与流动性变化。' },
+    { time:null, title:'中国8月进出口贸易数据', cat:'cn', key:false,
+      desc:'海关总署惯例本月上旬发布8月外贸数据（预计9/7-9/9），观察出口韧性与贸易顺差变化，具体时点以官方为准。' }
+  ],
+  '2026-09-09': [
+    { time:'09:30', title:'中国8月CPI · PPI', cat:'cn', key:true,
+      desc:'国家统计局公布8月居民消费价格指数与工业生产者价格指数，国内通胀最新读数，PPI走势关系工业企业盈利与周期板块。' }
+  ],
+  '2026-09-10': [
+    { time:'01:00', title:'苹果2026秋季发布会', cat:'ai', key:true,
+      desc:'北京时间9月10日凌晨1点，苹果在Apple Park举行秋季发布会，为继任CEO首场硬件发布会，预计发布iPhone 18 Pro系列及折叠屏机型，产业链催化值得关注。' },
+    { time:'20:15', title:'欧洲央行利率决议', cat:'gl', key:true,
+      desc:'欧洲央行公布9月利率决议，市场普遍预期按兵不动，聚焦决策者对通胀路径的最新评估与政策信号。' },
+    { time:'20:30', title:'美国8月PPI', cat:'gl', key:false,
+      desc:'美国8月生产者价格指数，前瞻核心PCE走势，为美联储9月议息提供通胀参考。' }
+  ],
+  '2026-09-11': [
+    { time:'20:30', title:'美国8月CPI', cat:'gl', key:true,
+      desc:'美联储9月议息前最后一份CPI数据。若通胀再度反弹，9月加息预期将显著升温，直接影响全球风险资产定价。' }
+  ],
+  '2026-09-12': [
+    { time:null, title:'中国8月社融 · 新增信贷', cat:'cn', key:false,
+      desc:'央行公布8月社会融资规模与新增人民币贷款（本月预计9/12前后），观察宽信用力度与实体融资需求。' }
+  ],
+
+  /* ---- 第4周 9/14-9/20 ---- */
+  '2026-09-14': [
+    { time:'09:30', title:'中国流通领域重要生产资料价格', cat:'cn', key:false,
+      desc:'国家统计局公布流通领域重要生产资料市场价格变动情况，观察大宗商品与中游价格。' }
+  ],
+  '2026-09-15': [
+    { time:null, title:'中国1-8月经济数据发布', cat:'cn', key:true,
+      desc:'国新办发布会公布8月规模以上工业增加值、社会消费品零售、固定资产投资、房地产等1-8月累计经济数据，国内经济成色总检阅。' },
+    { time:'09:30', title:'中国70城房价月度报告', cat:'cn', key:false,
+      desc:'国家统计局公布商品住宅销售价格指数月度报告，观察地产价格与销售端变化。' }
+  ],
+  '2026-09-17': [
+    { time:'02:00', title:'【全年最重磅】美联储9月利率决议+点阵图', cat:'gl', key:true,
+      desc:'北京时间凌晨02:00，美联储公布9月利率决议、最新点阵图与经济预测（SEP），随后主席沃什举行新闻发布会。这是年度季度会议，市场9月加息与否在此定案，全球资产迎来超级波动窗口。' },
+    { time:'19:00', title:'英国央行利率决议', cat:'gl', key:false,
+      desc:'英国央行公布利率决议与会议纪要，观察英央行对通胀与降息路径的最新立场。' }
+  ],
+  '2026-09-18': [
+    { time:null, title:'【交割日】中金所股指期货 · 股指期权交割', cat:'cn', key:true,
+      desc:'每月第三个星期五，沪深300/上证50/中证500/中证1000股指期货（IF/IH/IC/IM）与股指期权（IO/HO/MO）同步交割。当日权重股尾盘易现异动，注意交割日效应与短线波动。' },
+    { time:null, title:'日本央行利率决议', cat:'gl', key:false,
+      desc:'日本央行公布利率决议（会议9/17-18），市场普遍预期维持利率不变，聚焦对日元与加息路径的表态。' }
+  ],
+  '2026-09-23': [
+    { time:null, title:'【交割日】ETF期权交割（50/300/500/科创/创业板）', cat:'cn', key:true,
+      desc:'每月第四个星期三，上交所/深交所ETF期权（50ETF、300ETF、500ETF、科创50、创业板ETF等）统一到期交割。持有相关ETF及成分股留意到期日波动。' }
+  ],
+  '2026-09-25': [
+    { time:null, title:'【休市】A股中秋节休市 · 港股通关闭', cat:'cn', key:true,
+      desc:'中秋节法定假期（9月25日周五至27日周日），沪深北交易所全天休市，9月28日（周一）起照常开市；港股通同步关闭（9月25-27日不提供服务）。注意：港股本日正常交易。节前最后一个交易日，注意流动性收缩与持仓过节风险。' },
+    { time:null, title:'【交割日】富时中国A50股指期货交割', cat:'cn', key:true,
+      desc:'新交所富时中国A50指数期货月度交割（每月倒数第二个工作日，2026年9月为9/25，以官方公告为准）。A50追踪A股权重龙头，交割日往往扰动A股开盘情绪，叠加中秋假期，短线注意权重股波动。' }
+  ],
+  '2026-09-26': [
+    { time:null, title:'【休市】港股中秋节翌日公众假期', cat:'gl', key:false,
+      desc:'香港中秋节翌日（农历八月十六）为公众假期，港股休市。因本日为周六，与正常周末休市重叠；下周一（9月28日）港股正常开市。A股中秋假期持续至9月27日，9月28日同步开市。' }
+  ]
+};
+
+/* ================= 状态 ================= */
+var WEEK_BASE = new Date(2026, 7, 31);   // 8月31日（周一）
+var state = {
+  view: 'week',
+  weekOffset: 0,
+  month: { y: 2026, m: 9 },
+  selDate: '2026-08-31',
+  monthSel: '2026-09-04'
+};
+
+/* ================= 工具函数 ================= */
+function pad(n){ return (n<10?'0':'')+n; }
+function iso(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+function parseISO(s){ var p=s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+function addDays(d,n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()+n); }
+function addWeeks(d,n){ return addDays(d, n*7); }
+function weekdayCN(d){ return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()]; }
+function fmtMD(d){ return (d.getMonth()+1)+'月'+d.getDate()+'日'; }
+function fmtYMD(d){ return d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日'; }
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ================= 路由 ================= */
+function route(){
+  var h = location.hash || '#/week';
+  var view = h.indexOf('month')>=0 ? 'month' : 'week';
+  if(view !== state.view){
+    state.view = view;
+    document.getElementById('view-week').hidden = (view!=='week');
+    document.getElementById('view-month').hidden = (view!=='month');
+    document.getElementById('segWeek').classList.toggle('active', view==='week');
+    document.getElementById('segMonth').classList.toggle('active', view==='month');
+    render();
+  }
+}
+window.addEventListener('hashchange', route);
+
+/* ================= 渲染：周视图 ================= */
+function evCardHTML(ev, dateISO){
+  var badge = ev.key ? '重点' : CATS[ev.cat];
+  return '<button class="ev-card key c-'+ev.cat+'" data-date="'+dateISO+'" data-i="'+ev._i+'">'+
+    '<span class="ev-top"><span class="ev-time">'+(ev.time||'全天')+'</span><span class="ev-badge">'+esc(badge)+'</span></span>'+
+    '<span class="ev-title">'+esc(ev.title)+'</span>'+
+  '</button>';
+}
+
+function renderWeek(){
+  var base = addWeeks(WEEK_BASE, state.weekOffset);
+  var monday = base;
+  var sunday = addDays(monday, 6);
+  document.getElementById('weekTitle').textContent = fmtMD(monday)+' — '+fmtMD(sunday);
+  document.getElementById('prevWeek').disabled = (state.weekOffset <= -1);
+  document.getElementById('nextWeek').disabled = false;
+
+  var grid = document.getElementById('weekGrid');
+  var html = '';
+  for(var i=0;i<7;i++){
+    var d = addDays(monday, i);
+    var diso = iso(d);
+    var evs = EVENTS[diso] || [];
+    var isWeekend = (d.getDay()===0 || d.getDay()===6);
+    var sel = (diso===state.selDate) ? ' sel' : '';
+    var evHtml = '';
+    if(evs.length){
+      evs.forEach(function(ev,k){ ev._i = k; evHtml += evCardHTML(ev, diso); });
+    } else {
+      evHtml = '<span class="empty">'+(state.weekOffset===0?'—':'暂无事件数据')+'</span>';
+    }
+    html += '<div class="week-day'+(isWeekend?' weekend':'')+sel+'" data-date="'+diso+'">'+
+      '<div class="day-head"><span class="dnum">'+(d.getMonth()+1)+'/'+d.getDate()+'</span><span class="dweek">'+weekdayCN(d)+'</span></div>'+
+      '<div class="day-events">'+evHtml+'</div>'+
+    '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+/* ================= 渲染：月视图 ================= */
+function renderMonth(){
+  var y = state.month.y, m = state.month.m;
+  document.getElementById('monthTitle').textContent = y+'年'+m+'月';
+  document.getElementById('prevMonth').disabled = false;
+  document.getElementById('nextMonth').disabled = false;
+
+  var first = new Date(y, m-1, 1);
+  var offset = (first.getDay()+6)%7;   // 周一开头
+  var daysInMonth = new Date(y, m, 0).getDate();
+  var today = new Date();
+  var todayISO = iso(today);
+
+  var grid = document.getElementById('monthGrid');
+  var html = '';
+  var i;
+  for(i=0;i<offset;i++){ html += '<div class="m-cell other"></div>'; }
+  for(i=1;i<=daysInMonth;i++){
+    var d = new Date(y, m-1, i);
+    var diso = iso(d);
+    var evs = EVENTS[diso] || [];
+    var isToday = (diso===todayISO);
+    var sel = (diso===state.monthSel) ? ' sel' : '';
+    var dots = '';
+    var catsSeen = {};
+    evs.forEach(function(ev){ if(!catsSeen[ev.cat]){ catsSeen[ev.cat]=true; dots += '<span class="m-dot '+ev.cat+'"></span>'; } });
+    var sum = evs.length ? '<span class="m-sum">'+evs.length+' 项</span>' : '';
+    html += '<button class="m-cell'+sel+'" data-date="'+diso+'">'+
+      '<span class="m-num">'+i+(isToday?'<span class="dot-today"></span>':'')+'</span>'+
+      '<span class="m-dots">'+dots+'</span>'+sum+
+    '</button>';
+  }
+  grid.innerHTML = html;
+  renderDayList();
+}
+
+function renderDayList(){
+  var d = parseISO(state.monthSel);
+  var evs = EVENTS[state.monthSel] || [];
+  var box = document.getElementById('dayList');
+  if(!evs.length){
+    box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+'</div><div class="dl-empty">当天暂无重点事件。已收录的事件数据覆盖 8/24 — 9/25，可切换到其他日期查看。</div>';
+    return;
+  }
+  var items = evs.map(function(ev,k){
+    return '<div class="d-item key c-'+ev.cat+'">'+
+      '<div class="d-title">'+esc(ev.title)+'</div>'+
+      '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+CATS[ev.cat]+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
+      '<div class="d-desc">'+esc(ev.desc)+'</div>'+
+    '</div>';
+  }).join('');
+  box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+' · 共'+evs.length+'项</div>'+items;
+}
+
+/* ================= 详情抽屉 ================= */
+function openDrawer(dateISO, evIndex){
+  var ev = EVENTS[dateISO][evIndex];
+  var d = parseISO(dateISO);
+  document.getElementById('drawerTitle').textContent = fmtYMD(d)+' · '+weekdayCN(d);
+  document.getElementById('drawerBody').innerHTML =
+    '<div class="d-item key c-'+ev.cat+'">'+
+      '<div class="d-title">'+esc(ev.title)+'</div>'+
+      '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+CATS[ev.cat]+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
+      '<div class="d-desc">'+esc(ev.desc)+'</div>'+
+    '</div>';
+  showDrawer(true);
+}
+function showDrawer(show){
+  document.getElementById('drawer').classList.toggle('show', show);
+  document.getElementById('scrim').classList.toggle('show', show);
+  document.getElementById('drawer').setAttribute('aria-hidden', show?'false':'true');
+}
+
+/* ================= 主渲染 ================= */
+function render(){
+  if(state.view==='week'){ renderWeek(); }
+  else{ renderMonth(); }
+}
+
+/* ================= 事件绑定 ================= */
+document.addEventListener('click', function(e){
+  var card = e.target.closest('.ev-card');
+  if(card){ openDrawer(card.dataset.date, +card.dataset.i); return; }
+
+  var cell = e.target.closest('.m-cell[data-date]');
+  if(cell){ state.monthSel = cell.dataset.date; renderMonth(); return; }
+
+  var wd = e.target.closest('.week-day[data-date]');
+  if(wd){ state.selDate = wd.dataset.date; renderWeek(); return; }
+});
+
+document.getElementById('prevWeek').addEventListener('click', function(){ state.weekOffset--; renderWeek(); });
+document.getElementById('nextWeek').addEventListener('click', function(){ state.weekOffset++; renderWeek(); });
+document.getElementById('prevMonth').addEventListener('click', function(){ changeMonth(-1); });
+document.getElementById('nextMonth').addEventListener('click', function(){ changeMonth(1); });
+function changeMonth(delta){
+  var m = state.month.m + delta;
+  var y = state.month.y;
+  if(m<1){ m=12; y--; } if(m>12){ m=1; y++; }
+  state.month = { y:y, m:m };
+  renderMonth();
+}
+
+document.getElementById('todayBtn').addEventListener('click', function(){
+  // 切换到周视图并回到本周
+  if(state.view !== 'week'){
+    state.view = 'week';
+    document.getElementById('view-week').hidden = false;
+    document.getElementById('view-month').hidden = true;
+    document.getElementById('segWeek').classList.add('active');
+    document.getElementById('segMonth').classList.remove('active');
+    if(location.hash.indexOf('month') >= 0){ location.hash = '#/week'; }
+  }
+  state.weekOffset = 0;
+  renderWeek();
+});
+
+document.getElementById('segWeek').addEventListener('click', function(){ if(location.hash.indexOf('month')>=0){ location.hash='#/week'; } else { render(); } });
+document.getElementById('segMonth').addEventListener('click', function(){ if(location.hash.indexOf('month')<0){ location.hash='#/month'; } else { render(); } });
+
+document.getElementById('drawerClose').addEventListener('click', function(){ showDrawer(false); });
+document.getElementById('scrim').addEventListener('click', function(){ showDrawer(false); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ showDrawer(false); } });
+
+/* 启动 */
+route();
+render();
+</script>
+</body>
+</html>
