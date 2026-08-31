@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>牛大作手 · 投资者日历</title>
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
 /* ===== 设计 token ===== */
 :root{
@@ -81,6 +82,14 @@ a{color:inherit;}
   font-weight:500;letter-spacing:.5px;
 }
 .today-btn:hover{color:var(--amber);border-color:var(--amber-deep);background:rgba(232,163,61,0.06);}
+.export-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;color:var(--ink-dim);border:1px solid var(--line);border-radius:9px;
+  padding:9px 16px;min-height:40px;cursor:pointer;transition:border-color .15s,color .15s,background .15s;
+  background:var(--surface);font-weight:500;letter-spacing:.5px;
+}
+.export-btn:hover{color:var(--amber);border-color:var(--amber-deep);background:rgba(232,163,61,0.06);}
+.export-btn svg{width:16px;height:16px;}
 
 /* ===== 主区 ===== */
 .app-main{max-width:1200px;margin:0 auto;padding:18px 18px 64px;}
@@ -295,6 +304,73 @@ a{color:inherit;}
 .cta-btn svg{width:17px;height:17px;}
 .cta-disclaimer{font-size:11.5px;color:var(--ink-faint);margin-top:22px;line-height:1.7;letter-spacing:.3px;}
 
+/* ===== 导出长图预览 ===== */
+.export-scrim{
+  position:fixed;inset:0;z-index:60;display:none;
+  background:rgba(5,8,12,0.82);backdrop-filter:blur(6px);
+  align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 12px 40px;
+}
+.export-scrim.show{display:flex;}
+.export-panel{
+  background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  max-width:760px;width:100%;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.export-panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px;}
+.export-panel-head .t{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:.5px;}
+.export-close{
+  background:none;border:none;color:var(--ink-dim);font-size:22px;line-height:1;cursor:pointer;padding:4px;
+}
+.export-close:hover{color:var(--ink);}
+.export-img-wrap{
+  border-radius:12px;overflow:hidden;background:#000;display:flex;justify-content:center;
+  max-height:62vh;overflow-y:auto;
+}
+.export-img-wrap img{display:block;max-width:100%;height:auto;}
+.export-panel-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.export-save{
+  flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--amber);color:#171207;font-weight:700;font-size:14px;
+  padding:13px 20px;border-radius:12px;border:none;cursor:pointer;
+  transition:transform .15s,box-shadow .15s,background .15s;
+}
+.export-save:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(232,163,61,0.28);background:#F0B04F;}
+.export-hint{flex-basis:100%;font-size:11.5px;color:var(--ink-faint);text-align:center;line-height:1.6;}
+
+/* 分享长图容器（渲染用，视觉隐藏） */
+.share-stage{
+  position:fixed;left:-9999px;top:0;width:720px;
+  background:#0E1218;color:#EAE7E0;font-family:'Noto Sans SC',sans-serif;
+  padding:0;z-index:-1;opacity:0;pointer-events:none;
+}
+.share-card{background:#0E1218;padding:34px 32px 30px;}
+.share-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.share-brand{font-size:34px;font-weight:900;color:#E5484D;letter-spacing:2px;font-family:'Noto Serif SC',serif;}
+.share-brand small{font-size:17px;color:#9AA3AF;font-weight:500;letter-spacing:1px;margin-left:6px;}
+.share-daily{font-size:12.5px;color:#5F6875;letter-spacing:1px;}
+.share-title{
+  font-size:20px;font-weight:700;color:#EAE7E0;margin:14px 0 20px;
+  padding-bottom:14px;border-bottom:1px solid #25303E;letter-spacing:.5px;
+}
+.share-day{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #1C2531;}
+.share-day:last-child{border-bottom:none;}
+.share-date{flex:0 0 96px;}
+.share-date .md{font-size:20px;font-weight:800;color:#E8A33D;letter-spacing:.5px;}
+.share-date .wd{font-size:12px;color:#5F6875;margin-top:3px;letter-spacing:1px;}
+.share-events{flex:1;display:flex;flex-direction:column;gap:10px;}
+.share-ev{display:flex;align-items:flex-start;gap:10px;}
+.share-ev .t{font-size:14.5px;font-weight:600;color:#EAE7E0;line-height:1.5;flex:1;}
+.share-ev .k{font-size:11px;flex:0 0 auto;margin-top:1px;padding:2px 8px;border-radius:999px;font-weight:600;}
+.share-ev .k.cn{background:rgba(229,72,77,0.14);color:#E5484D;border:1px solid rgba(229,72,77,0.35);}
+.share-ev .k.gl{background:rgba(90,169,230,0.14);color:#5AA9E6;border:1px solid rgba(90,169,230,0.35);}
+.share-ev .k.ai{background:rgba(232,134,61,0.14);color:#E8863D;border:1px solid rgba(232,134,61,0.35);}
+.share-ev .k.ne{background:rgba(53,178,154,0.14);color:#35B29A;border:1px solid rgba(53,178,154,0.35);}
+.share-ev .k.ky{background:rgba(232,163,61,0.16);color:#E8A33D;border:1px solid rgba(232,163,61,0.4);}
+.share-ev .tm{font-size:11.5px;color:#5F6875;flex:0 0 44px;margin-top:2px;}
+.share-foot{margin-top:22px;padding-top:16px;border-top:1px solid #25303E;text-align:center;}
+.share-foot .ct{font-size:15px;color:#EAE7E0;font-weight:700;letter-spacing:.5px;}
+.share-foot .ct b{color:#E8A33D;}
+.share-foot .dis{font-size:10.5px;color:#5F6875;margin-top:8px;line-height:1.6;letter-spacing:.3px;}
+
 /* ===== 响应式 ===== */
 @media (max-width: 900px){
   .week-grid{grid-template-columns:repeat(2,1fr);}
@@ -335,6 +411,10 @@ a{color:inherit;}
         <button id="segWeek" role="tab" data-view="week" class="active">周视图</button>
         <button id="segMonth" role="tab" data-view="month">月视图</button>
       </div>
+      <button class="export-btn" id="exportBtn" title="导出当前视图为长图">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        导出长图
+      </button>
     </div>
   </div>
 </header>
@@ -398,6 +478,29 @@ a{color:inherit;}
     <p class="cta-disclaimer">本日历仅作公开信息整理与展示，不构成任何投资建议；市场有风险，投资需谨慎。</p>
   </div>
 </footer>
+
+<!-- ===== 分享长图渲染容器 ===== -->
+<div class="share-stage" id="shareStage" aria-hidden="true">
+  <div class="share-card" id="shareCard"></div>
+</div>
+
+<!-- ===== 导出长图预览弹层 ===== -->
+<div class="export-scrim" id="exportScrim" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="export-panel">
+    <div class="export-panel-head">
+      <span class="t">长图已生成</span>
+      <button class="export-close" id="exportClose" aria-label="关闭">×</button>
+    </div>
+    <div class="export-img-wrap" id="exportImgWrap"></div>
+    <div class="export-panel-actions">
+      <button class="export-save" id="exportSave">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        保存图片
+      </button>
+    </div>
+    <p class="export-hint">手机端可长按图片保存，也可点击"保存图片"下载</p>
+  </div>
+</div>
 
 <!-- ===== 详情抽屉 ===== -->
 <div class="scrim" id="scrim"></div>
@@ -752,6 +855,115 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ showDraw
 /* 启动 */
 route();
 render();
+
+/* ================= 导出长图 ================= */
+function buildShareCard(){
+  var card = document.getElementById('shareCard');
+  var view = state.view;
+  var rangeStart, rangeEnd, titleTxt;
+  if(view==='week'){
+    rangeStart = addWeeks(WEEK_BASE, state.weekOffset);
+    rangeEnd = addDays(rangeStart, 6);
+    titleTxt = '本周事件 · ' + fmtMD(rangeStart) + ' — ' + fmtMD(rangeEnd);
+  } else {
+    rangeStart = new Date(state.month.y, state.month.m-1, 1);
+    rangeEnd = new Date(state.month.y, state.month.m, 0);
+    titleTxt = state.month.y + '年' + state.month.m + '月 · 全月事件';
+  }
+
+  var html = '';
+  html += '<div class="share-head">'+
+    '<span class="share-brand">投资日历<small>INVESTOR CALENDAR</small></span>'+
+    '<span class="share-daily">每日更新</span>'+
+  '</div>';
+  html += '<div class="share-title">'+titleTxt+'</div>';
+
+  var cur = rangeStart;
+  var guard = 0;
+  while(cur <= rangeEnd && guard < 70){
+    guard++;
+    var diso = iso(cur);
+    var evs = EVENTS[diso] || [];
+    if(evs.length){
+      var isWeekend = (cur.getDay()===0 || cur.getDay()===6);
+      html += '<div class="share-day">'+
+        '<div class="share-date"><div class="md">'+(cur.getMonth()+1)+'/'+cur.getDate()+'</div>'+
+        '<div class="wd">'+weekdayCN(cur)+(isWeekend?' · 休市':'')+'</div></div>'+
+        '<div class="share-events">';
+      evs.forEach(function(ev){
+        var badge = ev.key ? '<span class="k ky">重点</span>' : '<span class="k '+ev.cat+'">'+CATS[ev.cat]+'</span>';
+        html += '<div class="share-ev">'+
+          '<span class="tm">'+(ev.time||'全天')+'</span>'+
+          '<span class="t">'+esc(ev.title)+'</span>'+badge+
+        '</div>';
+      });
+      html += '</div></div>';
+    }
+    cur = addDays(cur, 1);
+  }
+  if(html.indexOf('share-day') < 0){
+    html += '<div style="text-align:center;color:#5F6875;padding:40px 0;">当前范围内暂无事件数据</div>';
+  }
+
+  html += '<div class="share-foot">'+
+    '<div class="ct">关注 <b>牛大作手</b>（抖音号：20598433025）</div>'+
+    '<div class="dis">本日历仅作公开信息整理与展示，不构成任何投资建议；市场有风险，投资需谨慎。</div>'+
+  '</div>';
+  card.innerHTML = html;
+}
+
+function exportLongImage(){
+  buildShareCard();
+  var stage = document.getElementById('shareStage');
+  var scrim = document.getElementById('exportScrim');
+  var wrap = document.getElementById('exportImgWrap');
+  wrap.innerHTML = '<div style="padding:30px;color:#9AA3AF;font-size:14px;">正在生成图片…</div>';
+  scrim.classList.add('show');
+  scrim.setAttribute('aria-hidden','false');
+
+  // 延迟以确保样式渲染
+  setTimeout(function(){
+    html2canvas(document.getElementById('shareCard'), {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#0E1218',
+      logging: false,
+      windowWidth: 720
+    }).then(function(canvas){
+      var img = document.createElement('img');
+      img.src = canvas.toDataURL('image/png');
+      img.alt = '投资者日历长图';
+      img.style.width = '100%';
+      wrap.innerHTML = '';
+      wrap.appendChild(img);
+    }).catch(function(err){
+      wrap.innerHTML = '<div style="padding:30px;color:#E5484D;font-size:14px;">生成失败，请重试或更换浏览器。</div>';
+      console.error('export error', err);
+    });
+  }, 120);
+}
+
+document.getElementById('exportBtn').addEventListener('click', exportLongImage);
+document.getElementById('exportClose').addEventListener('click', function(){
+  document.getElementById('exportScrim').classList.remove('show');
+  document.getElementById('exportScrim').setAttribute('aria-hidden','true');
+});
+document.getElementById('exportScrim').addEventListener('click', function(e){
+  if(e.target === this){
+    this.classList.remove('show');
+    this.setAttribute('aria-hidden','true');
+  }
+});
+document.getElementById('exportSave').addEventListener('click', function(){
+  var img = document.querySelector('#exportImgWrap img');
+  if(!img){ return; }
+  var a = document.createElement('a');
+  a.href = img.src;
+  a.download = '投资者日历_'+iso(new Date())+'.png';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+});
 </script>
 </body>
 </html>
