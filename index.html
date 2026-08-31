@@ -55,13 +55,9 @@ a{color:inherit;}
   padding:14px 18px 12px;
   display:flex;align-items:center;gap:16px;flex-wrap:wrap;
 }
-.brand{display:flex;align-items:center;gap:12px;min-width:0;}
-.brand h1{
-  font-family:var(--serif);font-weight:900;letter-spacing:1px;white-space:nowrap;
-  display:flex;align-items:baseline;gap:1px;
-}
-.brand .brand-strong{font-size:24px;color:var(--red);letter-spacing:1px;}
-.brand .brand-small{font-size:13px;color:var(--ink-dim);font-weight:500;margin:0 2px;}
+.brand{display:flex;align-items:center;gap:14px;min-width:0;}
+.brand-logo{display:flex;align-items:center;flex-shrink:0;text-decoration:none;}
+.brand-logo img{display:block;height:44px;width:auto;border-radius:6px;}
 .brand .sub{
   font-size:12px;color:var(--ink-dim);line-height:1.6;letter-spacing:.3px;
   padding-left:14px;border-left:1px solid var(--line);
@@ -378,7 +374,7 @@ a{color:inherit;}
 @media (max-width: 768px){
   .header-inner{gap:10px;padding:12px 14px;}
   .brand .sub{display:none;}
-  .brand h1{font-size:17px;}
+  .brand-logo img{height:36px;}
   .app-main{padding:14px 14px 56px;}
   .week-grid{grid-template-columns:1fr;}
   .week-day{min-height:0;}
@@ -402,7 +398,9 @@ a{color:inherit;}
 <header class="app-header">
   <div class="header-inner">
     <div class="brand">
-      <h1><span class="brand-strong">投资</span><span class="brand-strong">日历</span></h1>
+      <a href="#/week" class="brand-logo" aria-label="投资日历" title="投资日历">
+        <img src="logo.png" alt="投资日历" />
+      </a>
       <span class="sub">市场重大事件每日更新，投资者的必备日历</span>
     </div>
     <div class="header-actions">
