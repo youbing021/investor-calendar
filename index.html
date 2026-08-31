@@ -704,13 +704,24 @@ var EVENTS = {
 
 /* ================= 状态 ================= */
 var WEEK_BASE = new Date(2026, 7, 31);   // 8月31日（周一）
-var state = {
-  view: 'week',
-  weekOffset: 0,
-  month: { y: 2026, m: 9 },
-  selDate: '2026-08-31',
-  monthSel: '2026-09-04'
-};
+
+/* 打开页面时：默认定位到“今天”所在周、选中当天，便于第一时间看当日节点 */
+var state = (function(){
+  var now = new Date();
+  var todayISO = iso(now);
+  // 今天所在周相对基准周的偏移（若早于基准周则归0）
+  var diff = Math.round((now - WEEK_BASE) / 86400000);
+  var off = Math.floor(diff / 7);
+  if(off < 0) off = 0;
+  var mo = now.getFullYear(), mm = now.getMonth()+1;
+  return {
+    view: 'week',
+    weekOffset: off,
+    month: { y: mo, m: mm },
+    selDate: todayISO,
+    monthSel: todayISO
+  };
+})();
 
 /* ================= 工具函数 ================= */
 function pad(n){ return (n<10?'0':'')+n; }
