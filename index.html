@@ -372,9 +372,38 @@ a{color:inherit;}
   .week-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width: 768px){
-  .header-inner{gap:10px;padding:12px 14px;}
+  .header-inner{gap:10px;padding:12px 14px;flex-wrap:wrap;}
   .brand .sub{display:none;}
   .brand-logo img{height:42px;}
+  .header-actions{
+    width:100%;
+    margin-left:0;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:8px;
+    align-items:stretch;
+  }
+  .header-actions .today-btn{
+    justify-self:stretch;
+  }
+  .header-actions .seg{
+    min-width:0;
+  }
+  .header-actions .seg button{
+    font-size:13px;padding:7px 10px;min-height:38px;
+  }
+  .today-btn{
+    font-size:12.5px;padding:7px 12px;min-height:38px;
+    white-space:nowrap;
+  }
+  .export-btn{
+    font-size:12.5px;padding:7px 12px;min-height:38px;
+    white-space:nowrap;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#C9D1DC;
+  }
+  .export-btn .export-label{display:none;}
+  .export-btn svg{width:16px;height:16px;color:#C9D1DC;}
   .app-main{padding:14px 14px 56px;}
   .week-grid{grid-template-columns:1fr;}
   .week-day{min-height:0;}
@@ -411,7 +440,7 @@ a{color:inherit;}
       </div>
       <button class="export-btn" id="exportBtn" title="导出当前视图为长图">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        导出长图
+        <span class="export-label">导出长图</span>
       </button>
     </div>
   </div>
