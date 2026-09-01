@@ -365,6 +365,14 @@ a{color:inherit;}
 .sub-steps li b{color:var(--ink);font-weight:600;}
 .sub-note{font-size:11.5px;color:var(--ink-faint);line-height:1.7;margin:10px 0 0;}
 
+/* ===== 添加到主屏幕引导 ===== */
+.install-steps{display:flex;flex-direction:column;gap:10px;margin:6px 0 4px;}
+.install-step{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface);border:1px solid var(--line);border-radius:9px;}
+.install-step .is-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--amber);color:#171207;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+.install-step .is-txt{font-size:13.5px;color:var(--ink);line-height:1.5;display:inline-flex;align-items:center;gap:6px;}
+.install-step .is-txt b{color:var(--amber);font-weight:700;}
+.install-step .is-txt .is-ico{width:14px;height:14px;color:var(--ink-dim);}
+
 /* 分享长图容器（渲染用，视觉隐藏） */
 .share-stage{
   position:fixed;left:-9999px;top:0;width:720px;
@@ -494,6 +502,10 @@ a{color:inherit;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <span class="export-label">订阅日历</span>
       </button>
+      <button class="export-btn install-btn" id="installBtn" title="添加到主屏幕，像App一样使用">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="export-label">添加到主屏</span>
+      </button>
     </div>
   </div>
 </header>
@@ -609,6 +621,32 @@ a{color:inherit;}
       </button>
       <p class="sub-note">华为/安卓：下载后打开「文件管理」找到 .ics 文件，用「日历」打开即可导入；iPhone 存入「文件」App 后同样可导入。</p>
     </div>
+  </div>
+</div>
+
+<!-- ===== 添加到主屏幕（iOS 引导弹层） ===== -->
+<div class="export-scrim" id="installScrim" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="export-panel sub-panel install-panel">
+    <div class="export-panel-head">
+      <span class="t">添加到主屏幕</span>
+      <button class="export-close" id="installClose" aria-label="关闭">×</button>
+    </div>
+    <p class="sub-lead">把「投资日历」添加到主屏幕，即可像 App 一样全屏使用，每天自动更新。</p>
+    <div class="install-steps">
+      <div class="install-step">
+        <span class="is-num">1</span>
+        <span class="is-txt">点击浏览器底部 <b>「分享」</b> 按钮 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="is-ico"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></span>
+      </div>
+      <div class="install-step">
+        <span class="is-num">2</span>
+        <span class="is-txt">在弹出菜单中找到 <b>「添加到主屏幕」</b></span>
+      </div>
+      <div class="install-step">
+        <span class="is-num">3</span>
+        <span class="is-txt">点击 <b>「添加」</b>，完成！</span>
+      </div>
+    </div>
+    <p class="sub-note">安卓手机请点击页面按钮直接安装；本页为 iPhone / iPad 操作指引。</p>
   </div>
 </div>
 
@@ -1130,6 +1168,47 @@ document.getElementById('subClose').addEventListener('click', function(){
   document.getElementById('subScrim').setAttribute('aria-hidden','true');
 });
 document.getElementById('subScrim').addEventListener('click', function(e){
+  if(e.target === this){
+    this.classList.remove('show');
+    this.setAttribute('aria-hidden','true');
+  }
+});
+
+/* ===== 添加到主屏幕 ===== */
+var deferredInstallPrompt = null;
+// 安卓 Chrome：拦截浏览器的安装提示事件，点击按钮时再触发（真·一键）
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  var btn = document.getElementById('installBtn');
+  if(btn) btn.style.display = 'inline-flex';
+});
+// 判断 iOS
+function isIOS(){
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+document.getElementById('installBtn').addEventListener('click', function(){
+  if(deferredInstallPrompt){
+    // 安卓：触发系统安装提示
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then(function(choiceResult){
+      if(choiceResult.outcome === 'accepted'){ deferredInstallPrompt = null; }
+    });
+  } else if(isIOS()){
+    // iOS：弹出操作指引
+    document.getElementById('installScrim').classList.add('show');
+    document.getElementById('installScrim').setAttribute('aria-hidden','false');
+  } else {
+    // 其他情况：同样弹引导
+    document.getElementById('installScrim').classList.add('show');
+    document.getElementById('installScrim').setAttribute('aria-hidden','false');
+  }
+});
+document.getElementById('installClose').addEventListener('click', function(){
+  document.getElementById('installScrim').classList.remove('show');
+  document.getElementById('installScrim').setAttribute('aria-hidden','true');
+});
+document.getElementById('installScrim').addEventListener('click', function(e){
   if(e.target === this){
     this.classList.remove('show');
     this.setAttribute('aria-hidden','true');
