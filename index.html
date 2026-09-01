@@ -624,7 +624,7 @@ a{color:inherit;}
   </div>
 </div>
 
-<!-- ===== 添加到主屏幕（iOS 引导弹层） ===== -->
+<!-- ===== 添加到桌面（引导弹层） ===== -->
 <div class="export-scrim" id="installScrim" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="export-panel sub-panel install-panel">
     <div class="export-panel-head">
@@ -632,7 +632,8 @@ a{color:inherit;}
       <button class="export-close" id="installClose" aria-label="关闭">×</button>
     </div>
     <p class="sub-lead">把「投资日历」添加到桌面，即可像 App 一样全屏使用，每天自动更新。</p>
-    <div class="install-steps">
+    <!-- 移动端引导 -->
+    <div class="install-steps" id="installStepsMobile">
       <div class="install-step">
         <span class="is-num">1</span>
         <span class="is-txt">微信内打开请先点右上角 <b>「...」</b> → <b>「在浏览器打开」</b></span>
@@ -649,8 +650,24 @@ a{color:inherit;}
         <span class="is-num">4</span>
         <span class="is-txt">点击 <b>「添加」</b>，完成！</span>
       </div>
+      <p class="sub-note">安卓手机请点击页面按钮直接安装；微信内无法安装，请先按第 1 步用系统浏览器打开本页。</p>
     </div>
-    <p class="sub-note">安卓手机请点击页面按钮直接安装；微信内无法安装，请先按第 1 步用系统浏览器打开本页。</p>
+    <!-- 桌面端引导（Windows / Mac Chrome / Edge） -->
+    <div class="install-steps" id="installStepsDesktop" style="display:none;">
+      <div class="install-step">
+        <span class="is-num">1</span>
+        <span class="is-txt">点击浏览器地址栏<b>右侧的「安装」图标</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="is-ico"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+      </div>
+      <div class="install-step">
+        <span class="is-num">2</span>
+        <span class="is-txt">点击 <b>「安装」</b>，即可添加到桌面</span>
+      </div>
+      <div class="install-step">
+        <span class="is-num">3</span>
+        <span class="is-txt">安装完成后，桌面出现「投资日历」图标，双击即可使用</span>
+      </div>
+      <p class="sub-note">若地址栏未出现安装图标，可点击地址栏右侧「⋮」→「投射、保存和分享」→「将页面安装为应用」。</p>
+    </div>
   </div>
 </div>
 
@@ -1191,21 +1208,30 @@ window.addEventListener('beforeinstallprompt', function(e){
 function isIOS(){
   return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 }
+// 打开安装引导弹层，并按平台切换移动端/桌面端引导内容
+function openInstallGuide(){
+  var mobile = document.getElementById('installStepsMobile');
+  var desktop = document.getElementById('installStepsDesktop');
+  if(isIOS() || /Android|Mobile/.test(navigator.userAgent)){
+    if(mobile) mobile.style.display = '';
+    if(desktop) desktop.style.display = 'none';
+  } else {
+    if(mobile) mobile.style.display = 'none';
+    if(desktop) desktop.style.display = '';
+  }
+  document.getElementById('installScrim').classList.add('show');
+  document.getElementById('installScrim').setAttribute('aria-hidden','false');
+}
 document.getElementById('installBtn').addEventListener('click', function(){
   if(deferredInstallPrompt){
-    // 安卓：触发系统安装提示
+    // 安卓 / 桌面 Chrome 已拿到安装事件：触发系统安装提示（真·一键）
     deferredInstallPrompt.prompt();
     deferredInstallPrompt.userChoice.then(function(choiceResult){
       if(choiceResult.outcome === 'accepted'){ deferredInstallPrompt = null; }
     });
-  } else if(isIOS()){
-    // iOS：弹出操作指引
-    document.getElementById('installScrim').classList.add('show');
-    document.getElementById('installScrim').setAttribute('aria-hidden','false');
   } else {
-    // 其他情况：同样弹引导
-    document.getElementById('installScrim').classList.add('show');
-    document.getElementById('installScrim').setAttribute('aria-hidden','false');
+    // 未拿到安装事件（iOS / 已装过 / 浏览器限制）：弹平台引导
+    openInstallGuide();
   }
 });
 document.getElementById('installClose').addEventListener('click', function(){
