@@ -332,6 +332,27 @@ a{color:inherit;}
 .export-save:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(232,163,61,0.28);background:#F0B04F;}
 .export-hint{flex-basis:100%;font-size:11.5px;color:var(--ink-faint);text-align:center;line-height:1.6;}
 
+/* ===== 订阅日历弹层 ===== */
+.sub-panel{max-width:640px;}
+.sub-lead{font-size:13px;line-height:1.75;color:var(--ink-dim);margin:0 0 14px;}
+.sub-block{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;background:var(--surface);}
+.sub-block-t{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:.3px;}
+.sub-url-row{display:flex;gap:8px;margin-bottom:10px;}
+.sub-url{
+  flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:9px;
+  color:var(--ink);font-size:13px;padding:11px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+.sub-copy{
+  flex-shrink:0;background:var(--amber);color:#171207;font-weight:700;font-size:13px;
+  padding:0 18px;border-radius:9px;border:none;cursor:pointer;transition:background .15s,transform .15s;
+}
+.sub-copy:hover{background:#F0B04F;transform:translateY(-1px);}
+.sub-steps{margin:0;padding-left:0;list-style:none;}
+.sub-steps li{font-size:12.5px;color:var(--ink-dim);line-height:1.9;padding-left:14px;position:relative;}
+.sub-steps li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--amber);}
+.sub-steps li b{color:var(--ink);font-weight:600;}
+.sub-note{font-size:11.5px;color:var(--ink-faint);line-height:1.7;margin:10px 0 0;}
+
 /* 分享长图容器（渲染用，视觉隐藏） */
 .share-stage{
   position:fixed;left:-9999px;top:0;width:720px;
@@ -393,7 +414,8 @@ a{color:inherit;}
     width:100%;
     margin-left:0;
     display:grid;
-    grid-template-columns:auto 1fr auto;
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows:auto;
     gap:8px;
     align-items:stretch;
   }
@@ -455,6 +477,10 @@ a{color:inherit;}
       <button class="export-btn" id="exportBtn" title="导出当前视图为长图">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span class="export-label">导出长图</span>
+      </button>
+      <button class="export-btn sub-btn" id="subBtn" title="一键订阅到手机/电脑日历">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span class="export-label">订阅日历</span>
       </button>
     </div>
   </div>
@@ -540,6 +566,38 @@ a{color:inherit;}
       </button>
     </div>
     <p class="export-hint">手机端可长按图片保存，也可点击"保存图片"下载</p>
+  </div>
+</div>
+
+<!-- ===== 订阅日历弹层 ===== -->
+<div class="export-scrim" id="subScrim" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="export-panel sub-panel">
+    <div class="export-panel-head">
+      <span class="t">一键订阅到系统日历</span>
+      <button class="export-close" id="subClose" aria-label="关闭">×</button>
+    </div>
+    <p class="sub-lead">把投资日历直接同步到你的 iPhone / Mac / Windows 日历，每日事件自动更新，无需重复导入。</p>
+    <div class="sub-block">
+      <div class="sub-block-t">方式一 · 订阅链接（推荐，自动同步）</div>
+      <div class="sub-url-row">
+        <input class="sub-url" id="subUrl" readonly value="https://touzirili.com/calendar.ics" />
+        <button class="sub-copy" id="subCopy">复制</button>
+      </div>
+      <ul class="sub-steps">
+        <li><b>iPhone / iPad：</b>设置 → 日历 → 账户 → 添加已订阅的日历，粘贴上方链接</li>
+        <li><b>Mac：</b>日历 → 文件 → 新建日历订阅，粘贴链接</li>
+        <li><b>Windows：</b>日历应用 → 添加日历 → 从 Internet 订阅，粘贴链接</li>
+        <li><b>Outlook：</b>日历 → 打开日历 → 从 Internet 订阅，粘贴链接</li>
+      </ul>
+    </div>
+    <div class="sub-block">
+      <div class="sub-block-t">方式二 · 下载文件导入（一次性）</div>
+      <button class="export-save" id="subDl">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        下载 .ics 日历文件
+      </button>
+      <p class="sub-note">手机端若无法直接下载，可用浏览器打开链接后将文件存入「文件」App，再导入日历。</p>
+    </div>
   </div>
 </div>
 
@@ -1013,6 +1071,50 @@ document.getElementById('exportScrim').addEventListener('click', function(e){
     this.classList.remove('show');
     this.setAttribute('aria-hidden','true');
   }
+});
+
+/* ===== 订阅日历 ===== */
+var SUB_URL = 'https://touzirili.com/calendar.ics';
+document.getElementById('subBtn').addEventListener('click', function(){
+  document.getElementById('subScrim').classList.add('show');
+  document.getElementById('subScrim').setAttribute('aria-hidden','false');
+});
+document.getElementById('subClose').addEventListener('click', function(){
+  document.getElementById('subScrim').classList.remove('show');
+  document.getElementById('subScrim').setAttribute('aria-hidden','true');
+});
+document.getElementById('subScrim').addEventListener('click', function(e){
+  if(e.target === this){
+    this.classList.remove('show');
+    this.setAttribute('aria-hidden','true');
+  }
+});
+document.getElementById('subCopy').addEventListener('click', function(){
+  var input = document.getElementById('subUrl');
+  input.select();
+  input.setSelectionRange(0, 9999);
+  var ok = false;
+  try{ ok = document.execCommand('copy'); }catch(err){ ok = false; }
+  if(!ok && navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(input.value).then(function(){
+      var btn = document.getElementById('subCopy');
+      btn.textContent = '已复制 ✓';
+      setTimeout(function(){ btn.textContent = '复制'; }, 1800);
+    });
+    return;
+  }
+  var btn = document.getElementById('subCopy');
+  btn.textContent = ok ? '已复制 ✓' : '请手动复制';
+  setTimeout(function(){ btn.textContent = '复制'; }, 1800);
+});
+document.getElementById('subDl').addEventListener('click', function(){
+  var a = document.createElement('a');
+  a.href = SUB_URL;
+  a.download = '投资者日历_'+iso(new Date())+'.ics';
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 });
 document.getElementById('exportSave').addEventListener('click', function(){
   var img = document.querySelector('#exportImgWrap img');
