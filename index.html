@@ -13,8 +13,8 @@
 <meta name="apple-mobile-web-app-title" content="投资日历">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;500&display=swap">
 <style>
 /* ===== 设计 token ===== */
 :root{
@@ -503,7 +503,10 @@ a{color:inherit;}
   <div class="header-inner">
     <div class="brand">
       <a href="#/week" class="brand-logo" aria-label="投资日历" title="投资日历">
-        <img src="logo.png" alt="投资日历" />
+        <picture>
+  <source srcset="logo.webp" type="image/webp">
+  <img src="logo.png" alt="投资日历" />
+</picture>
       </a>
       <span class="sub">市场重大事件每日更新，投资者的必备日历</span>
     </div>
@@ -1153,7 +1156,7 @@ function buildShareCard(){
   card.innerHTML = html;
 }
 
-function exportLongImage(){
+async function exportLongImage(){
   buildShareCard();
   var stage = document.getElementById('shareStage');
   var scrim = document.getElementById('exportScrim');
@@ -1163,7 +1166,16 @@ function exportLongImage(){
   scrim.setAttribute('aria-hidden','false');
 
   // 延迟以确保样式渲染
-  setTimeout(function(){
+  setTimeout(async function(){
+    if(!window.html2canvas){
+      // 动态加载 html2canvas（仅导出长图时）
+      await new Promise(function(res, rej){
+        var sc = document.createElement('script');
+        sc.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+        sc.onload = res; sc.onerror = function(){ rej(new Error('html2canvas 加载失败')); };
+        document.head.appendChild(sc);
+      });
+    }
     html2canvas(document.getElementById('shareCard'), {
       scale: 2,
       useCORS: true,

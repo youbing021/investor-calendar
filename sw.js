@@ -4,7 +4,7 @@
  *       网络优先（保证每日更新的内容始终最新），离线时回退缓存。
  * 每次 index.html 更新时，通过版本号触发新 SW 并刷新缓存。
  * ============================================ */
-var CACHE_VERSION = 'investor-calendar-v2';
+var CACHE_VERSION = 'investor-calendar-v3';
 var CACHE_NAME = CACHE_VERSION;
 
 var PRECACHE_URLS = [
@@ -12,6 +12,7 @@ var PRECACHE_URLS = [
   './index.html',
   './manifest.json',
   './logo.png',
+  './logo.webp',
   './icon-192.png',
   './icon-512.png',
   './icon-maskable-512.png',
