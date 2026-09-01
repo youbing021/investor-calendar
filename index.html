@@ -474,6 +474,13 @@ a{color:inherit;}
   .drawer{max-width:100%;}
   .period-nav .period-title{font-size:15px;}
 }
+@media (display-mode: standalone){
+  .header-inner{ padding-top:calc(14px + env(safe-area-inset-top, 0px) + 26px); }
+  .app-main{ padding-bottom:calc(56px + env(safe-area-inset-bottom, 0px) + 24px); }
+}
+@media (display-mode: standalone) and (max-width: 900px){
+  .header-inner{ padding-top:calc(12px + env(safe-area-inset-top, 0px) + 26px); }
+}
 @media (prefers-reduced-motion: reduce){
   *{animation:none!important;transition:none!important;}
 }
@@ -1079,27 +1086,6 @@ if('serviceWorker' in navigator){
     });
   });
 }
-/* PWA 全屏模式（桌面图标打开）：安卓挖孔屏 / 无浏览器地址栏时，顶部额外留白避免被遮挡 */
-(function(){
-  function isStandalone(){
-    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
-      || window.navigator.standalone === true;
-  }
-  if(isStandalone()){
-    var h = document.querySelector('.header-inner');
-    if(h){
-      var cur = getComputedStyle(h).paddingTop;
-      var extra = 14;
-      h.style.paddingTop = 'calc(' + cur + ' + ' + extra + 'px)';
-    }
-    var m = document.querySelector('.app-main');
-    if(m){
-      var cm = getComputedStyle(m).paddingBottom;
-      m.style.paddingBottom = 'calc(' + cm + ' + 20px)';
-    }
-  }
-})();
-
 /* ================= 导出长图 ================= */
 function buildShareCard(){
   var card = document.getElementById('shareCard');
