@@ -1079,6 +1079,26 @@ if('serviceWorker' in navigator){
     });
   });
 }
+/* PWA 全屏模式（桌面图标打开）：安卓挖孔屏 / 无浏览器地址栏时，顶部额外留白避免被遮挡 */
+(function(){
+  function isStandalone(){
+    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+      || window.navigator.standalone === true;
+  }
+  if(isStandalone()){
+    var h = document.querySelector('.header-inner');
+    if(h){
+      var cur = getComputedStyle(h).paddingTop;
+      var extra = 14;
+      h.style.paddingTop = 'calc(' + cur + ' + ' + extra + 'px)';
+    }
+    var m = document.querySelector('.app-main');
+    if(m){
+      var cm = getComputedStyle(m).paddingBottom;
+      m.style.paddingBottom = 'calc(' + cm + ' + 20px)';
+    }
+  }
+})();
 
 /* ================= 导出长图 ================= */
 function buildShareCard(){
