@@ -14,8 +14,11 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;500&display=swap"></noscript>
 <style>
+/* 防止加载时白屏闪光 */
+html{background:#0E1218;}
 /* ===== 设计 token ===== */
 :root{
   --bg:#0E1218;
@@ -1093,7 +1096,7 @@ render();
 /* ===== PWA: 注册 Service Worker（离线可用 / 添加到主屏幕） ===== */
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('sw.js').then(function(reg){
+    navigator.serviceWorker.register('sw.js', {updateViaCache: 'none'}).then(function(reg){
       console.log('ServiceWorker 注册成功，scope:', reg.scope);
     }).catch(function(err){
       console.warn('ServiceWorker 注册失败:', err);
