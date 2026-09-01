@@ -47,6 +47,7 @@ body{
   color:var(--ink);
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:6px;}
@@ -413,7 +414,7 @@ a{color:inherit;}
   .week-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width: 768px){
-  .header-inner{gap:10px;padding:12px 14px;flex-wrap:wrap;}
+  .header-inner{gap:10px;padding:calc(12px + env(safe-area-inset-top)) 14px 12px;flex-wrap:wrap;}
   .brand{flex:1 1 auto;min-width:0;}
   .brand .sub{
     display:inline;
@@ -460,7 +461,7 @@ a{color:inherit;}
   }
   .export-btn .export-label{display:inline;}
   .export-btn svg{width:15px;height:15px;color:#C9D1DC;}
-  .app-main{padding:14px 14px 56px;}
+  .app-main{padding:14px 14px calc(56px + env(safe-area-inset-bottom));}
   .week-grid{grid-template-columns:1fr;}
   .week-day{min-height:0;}
   .month-grid{gap:5px;}
