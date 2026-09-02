@@ -1267,11 +1267,42 @@ if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
     navigator.serviceWorker.register('sw.js', {updateViaCache: 'none'}).then(function(reg){
       console.log('ServiceWorker 注册成功，scope:', reg.scope);
+      // 监听 SW 更新接管 → 自动刷新到最新版
+      navigator.serviceWorker.addEventListener('controllerchange', function(){
+        console.log('SW 已更新，自动刷新页面');
+        window.location.reload();
+      });
     }).catch(function(err){
       console.warn('ServiceWorker 注册失败:', err);
     });
   });
 }
+
+/* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
+(function(){
+  var PAGE_VERSION = '202609020806';   // 部署版本号，随每次更新改变
+  var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
+  if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
+
+  function checkUpdate(){
+    var t = Date.now();
+    fetch(location.pathname + '?v=' + t, {cache: 'no-store', credentials: 'omit'})
+      .then(function(r){ return r.text(); })
+      .then(function(html){
+        var m = html.match(/PAGE_VERSION\s*=\s*'(\d+)'/);
+        if(m && m[1] && m[1] !== PAGE_VERSION){
+          console.log('检测到新版本 ' + m[1] + '，自动刷新');
+          window.location.reload();
+        }
+      })
+      .catch(function(err){ /* 网络异常时静默跳过，下轮再试 */ });
+  }
+  // 页面可见时才检查，避免后台浪费流量
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'visible'){ checkUpdate(); }
+  });
+  setInterval(checkUpdate, CHECK_INTERVAL);
+})();
 /* ================= 导出长图 ================= */
 function buildShareCard(){
   var card = document.getElementById('shareCard');
