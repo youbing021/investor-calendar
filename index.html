@@ -844,7 +844,7 @@ a{color:inherit;}
    覆盖范围：2026-08-31 — 2026-09-28（含交割日）
    cat: cn=国内/政策  gl=海外宏观  ai=AI/科技  ne=新能源/电池
    key: true 为重点事件 */
-var CATS = { cn:'国内/政策', gl:'海外宏观', ai:'AI/科技', ne:'新能源/电池' };
+var CATS = { cn:'国内/政策', gl:'海外宏观', ai:'AI/科技', ne:'新能源/电池', hk:'港股', us:'美股' };
 var EVENTS = {
   /* ---- 第1周 8/31-9/6（本周） ---- */
   '2026-08-31': [
@@ -1116,7 +1116,7 @@ function addWeeks(d,n){ return addDays(d, n*7); }
 function weekdayCN(d){ return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()]; }
 function fmtMD(d){ return (d.getMonth()+1)+'月'+d.getDate()+'日'; }
 function fmtYMD(d){ return d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日'; }
-function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function esc(s){ if(s===undefined||s===null){ return ''; } return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 /* ================= 路由 ================= */
 function route(){
@@ -1135,7 +1135,7 @@ window.addEventListener('hashchange', route);
 
 /* ================= 渲染：周视图 ================= */
 function evCardHTML(ev, dateISO){
-  var badge = ev.key ? '重点' : CATS[ev.cat];
+  var badge = ev.key ? '重点' : (CATS[ev.cat] || '其他');
   return '<button class="ev-card key c-'+ev.cat+'" data-date="'+dateISO+'" data-i="'+ev._i+'">'+
     '<span class="ev-top"><span class="ev-time">'+(ev.time||'全天')+'</span><span class="ev-badge">'+esc(badge)+'</span></span>'+
     '<span class="ev-title">'+esc(ev.title)+'</span>'+
@@ -1318,7 +1318,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609021443';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609021454';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
