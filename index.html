@@ -1080,16 +1080,23 @@ var EVENTS = {
 };
 
 /* ================= 状态 ================= */
-var WEEK_BASE = new Date(2026, 7, 31);   // 8月31日（周一）
+/* ================= 状态 ================= */
+/* 基准周 = 今天所在周的周一（动态计算，不再写死日期）。
+   好处：即使页面从旧缓存加载，打开也始终定位到正确的本周，不会出现"本周丢失"。 */
+function thisMonday(){
+  var now = new Date();
+  var dow = now.getDay();               // 0=周日 ... 6=周六
+  var diff = (dow === 0 ? -6 : 1 - dow); // 本周一的偏移：周一0、周日-6
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate() + diff);
+}
+var WEEK_BASE = thisMonday();
 
 /* 打开页面时：默认定位到“今天”所在周、选中当天，便于第一时间看当日节点 */
 var state = (function(){
   var now = new Date();
   var todayISO = iso(now);
-  // 今天所在周相对基准周的偏移（若早于基准周则归0）
-  var diff = Math.round((now - WEEK_BASE) / 86400000);
-  var off = Math.floor(diff / 7);
-  if(off < 0) off = 0;
+  // 始终从本周（weekOffset=0）开始展示，保证打开即见本周
+  var off = 0;
   var mo = now.getFullYear(), mm = now.getMonth()+1;
   return {
     view: 'week',
@@ -1311,7 +1318,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609021414';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609021443';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -1402,12 +1409,22 @@ async function exportLongImage(){
   // 延迟以确保样式渲染
   setTimeout(async function(){
     if(!window.html2canvas){
-      // 动态加载 html2canvas（仅导出长图时）
+      // 动态加载 html2canvas（本地文件优先，CDN 备用，超时保护）
       await new Promise(function(res, rej){
-        var sc = document.createElement('script');
-        sc.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-        sc.onload = res; sc.onerror = function(){ rej(new Error('html2canvas 加载失败')); };
-        document.head.appendChild(sc);
+        var srcs = [
+          'html2canvas.min.js',
+          'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'
+        ];
+        var tried = 0;
+        function tryLoad(){
+          if(tried >= srcs.length){ rej(new Error('html2canvas 加载失败')); return; }
+          var sc = document.createElement('script');
+          sc.src = srcs[tried++];
+          sc.onload = function(){ res(); };
+          sc.onerror = function(){ tryLoad(); };
+          document.head.appendChild(sc);
+        }
+        tryLoad();
       });
     }
     html2canvas(document.getElementById('shareCard'), {
