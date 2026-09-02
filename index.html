@@ -1176,16 +1176,7 @@ function renderWeek(){
 
   var grid = document.getElementById('weekGrid');
   var html = '';
-  /* 移动端(≤768px)展示"本周"时，从今天开始旋转排序，让当天排在最上面，
-     便于用户第一眼看到当日信息；桌面端与翻页时保持周一开头的标准周序。 */
-  var startIdx = 0;
-  var isMobile = window.matchMedia('(max-width: 768px)').matches;
-  if(isMobile && state.weekOffset === 0){
-    var todayISONow = iso(new Date());
-    for(var t0=0;t0<7;t0++){ if(iso(addDays(monday,t0))===todayISONow){ startIdx = t0; break; } }
-  }
-  for(var k=0;k<7;k++){
-    var i = (startIdx + k) % 7;
+  for(var i=0;i<7;i++){
     var d = addDays(monday, i);
     var diso = iso(d);
     var evs = EVENTS[diso] || [];
@@ -1329,9 +1320,27 @@ document.getElementById('drawerClose').addEventListener('click', function(){ sho
 document.getElementById('scrim').addEventListener('click', function(){ showDrawer(false); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ showDrawer(false); } });
 
+/* 移动端打开页面时：首屏自动定位到"今天"所在列，
+   正常浏览仍按 周一→周日 时间顺序排序（不改变顺序，仅滚动定位）。 */
+function scrollToToday(){
+  try{
+    var isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    if(!isMobile){ return; }
+    if(state.view !== 'week' || state.weekOffset !== 0){ return; }
+    var todayISO = iso(new Date());
+    var el = document.querySelector('.week-day[data-date="'+todayISO+'"]');
+    if(!el){ return; }
+    var header = document.querySelector('.app-header');
+    var hh = header ? header.offsetHeight : 0;
+    var y = el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0) - hh - 10;
+    if(y > 0){ window.scrollTo(0, y); }
+  }catch(e){ /* 忽略定位异常，不影响正常使用 */ }
+}
+
 /* 启动 */
 route();
 render();
+scrollToToday();
 
 /* ===== PWA: 注册 Service Worker（离线可用 / 添加到主屏幕） ===== */
 if('serviceWorker' in navigator){
@@ -1351,7 +1360,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609030735';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609030742';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
