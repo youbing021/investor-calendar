@@ -82,6 +82,8 @@ a{color:inherit;}
   position:sticky;top:0;z-index:20;
   background:linear-gradient(180deg, rgba(14,18,24,0.96), rgba(14,18,24,0.86));
   backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);   /* iOS Safari 兼容，避免 sticky 失效 */
+  will-change:transform;                /* 创建独立渲染层，提高吸顶稳定性 */
   border-bottom:1px solid var(--line);
 }
 .header-inner{
@@ -1320,6 +1322,48 @@ document.getElementById('drawerClose').addEventListener('click', function(){ sho
 document.getElementById('scrim').addEventListener('click', function(){ showDrawer(false); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ showDrawer(false); } });
 
+/* 移动端顶部导航栏吸顶兜底：部分 WebView/PWA 下 sticky 可能失效，
+   滚动时检测到导航栏滚出视口则强制 fixed 吸顶，保证导航栏始终可见。 */
+(function(){
+  var header = null, main = null;
+  function ensure(){
+    try{
+      if(!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches){ return; }
+      if(!header){ header = document.querySelector('.app-header'); }
+      if(!main){ main = document.querySelector('.app-main'); }
+      if(!header){ return; }
+      var rect = header.getBoundingClientRect();
+      if(rect.top < -2){
+        if(header.style.position !== 'fixed'){
+          header.style.position = 'fixed';
+          header.style.top = '0';
+          header.style.left = '0';
+          header.style.right = '0';
+          header.style.zIndex = '100';
+          if(main && main.dataset.padTop === undefined){
+            main.dataset.padTop = main.style.paddingTop || '';
+            main.style.paddingTop = (header.offsetHeight + 12) + 'px';
+          }
+        }
+      } else {
+        if(header.style.position === 'fixed'){
+          header.style.position = '';
+          header.style.top = ''; header.style.left = ''; header.style.right = ''; header.style.zIndex = '';
+          if(main && main.dataset.padTop !== undefined){
+            main.style.paddingTop = main.dataset.padTop;
+            delete main.dataset.padTop;
+          }
+        }
+      }
+    }catch(e){ /* 兜底异常不影响使用 */ }
+  }
+  if(window.matchMedia && window.matchMedia('(max-width: 768px)').matches){
+    window.addEventListener('scroll', ensure, {passive:true});
+    window.addEventListener('resize', ensure);
+    ensure();
+  }
+})();
+
 /* 移动端打开页面时：首屏自动定位到"今天"所在列，
    正常浏览仍按 周一→周日 时间顺序排序（不改变顺序，仅滚动定位）。 */
 function scrollToToday(){
@@ -1360,7 +1404,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609030742';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609030748';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
