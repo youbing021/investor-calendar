@@ -1176,7 +1176,16 @@ function renderWeek(){
 
   var grid = document.getElementById('weekGrid');
   var html = '';
-  for(var i=0;i<7;i++){
+  /* 移动端(≤768px)展示"本周"时，从今天开始旋转排序，让当天排在最上面，
+     便于用户第一眼看到当日信息；桌面端与翻页时保持周一开头的标准周序。 */
+  var startIdx = 0;
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if(isMobile && state.weekOffset === 0){
+    var todayISONow = iso(new Date());
+    for(var t0=0;t0<7;t0++){ if(iso(addDays(monday,t0))===todayISONow){ startIdx = t0; break; } }
+  }
+  for(var k=0;k<7;k++){
+    var i = (startIdx + k) % 7;
     var d = addDays(monday, i);
     var diso = iso(d);
     var evs = EVENTS[diso] || [];
@@ -1342,7 +1351,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609030600';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609030735';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
