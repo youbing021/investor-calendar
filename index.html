@@ -498,7 +498,8 @@ a{color:inherit;}
   }
   .export-btn .export-label{display:inline;}
   .export-btn svg{width:15px;height:15px;color:#C9D1DC;}
-  .app-main{padding:14px 14px calc(56px + env(safe-area-inset-bottom));}
+  .app-header{position:fixed;top:0;left:0;right:0;width:100%;z-index:100;}
+  .app-main{padding:128px 14px calc(56px + env(safe-area-inset-bottom));}
   .week-grid{grid-template-columns:1fr;}
   .week-day{min-height:0;}
   .month-grid{gap:5px;}
@@ -1331,48 +1332,26 @@ document.getElementById('drawerClose').addEventListener('click', function(){ sho
 document.getElementById('scrim').addEventListener('click', function(){ showDrawer(false); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ showDrawer(false); } });
 
-/* 移动端顶部导航栏吸顶兜底：部分 WebView/PWA 下 sticky 可能失效。
-   用页面滚动位置判断：一旦向下滚动即强制 fixed 吸顶并保持（避免反复切换导致闪烁），
-   滚回页面顶部附近才恢复 sticky 布局。 */
+/* 移动端顶部导航栏固定：CSS position:fixed 已固定导航栏，此处动态补偿页面顶部间距，
+   避免固定导航栏遮挡内容。 */
 (function(){
-  var header = null, main = null, isFixed = false;
-  function ensure(){
+  function fit(){
     try{
       if(!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches){ return; }
-      if(!header){ header = document.querySelector('.app-header'); }
-      if(!main){ main = document.querySelector('.app-main'); }
-      if(!header){ return; }
-      var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      if(scrollY > 90){
-        if(!isFixed){
-          header.style.position = 'fixed';
-          header.style.top = '0';
-          header.style.left = '0';
-          header.style.right = '0';
-          header.style.zIndex = '100';
-          if(main && main.dataset.padTop === undefined){
-            main.dataset.padTop = main.style.paddingTop || '';
-            main.style.paddingTop = (header.offsetHeight + 12) + 'px';
-          }
-          isFixed = true;
-        }
-      } else {
-        if(isFixed){
-          header.style.position = '';
-          header.style.top = ''; header.style.left = ''; header.style.right = ''; header.style.zIndex = '';
-          if(main && main.dataset.padTop !== undefined){
-            main.style.paddingTop = main.dataset.padTop;
-            delete main.dataset.padTop;
-          }
-          isFixed = false;
-        }
+      var header = document.querySelector('.app-header');
+      var main = document.querySelector('.app-main');
+      if(header && main){
+        main.style.paddingTop = (header.offsetHeight + 12) + 'px';
       }
-    }catch(e){ /* 兜底异常不影响使用 */ }
+    }catch(e){ /* 忽略 */ }
   }
   if(window.matchMedia && window.matchMedia('(max-width: 768px)').matches){
-    window.addEventListener('scroll', ensure, {passive:true});
-    window.addEventListener('resize', ensure);
-    ensure();
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', fit);
+    } else { fit(); }
+    window.addEventListener('load', fit);
+    window.addEventListener('resize', fit);
+    setTimeout(fit, 100);
   }
 })();
 
@@ -1416,7 +1395,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609030846';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609030850';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
