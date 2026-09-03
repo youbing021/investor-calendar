@@ -1,13 +1,14 @@
 /* ============================================
- * 投资日历 PWA Service Worker v6
+ * 投资日历 PWA Service Worker v7
  * 策略：导航网络优先 + 静态缓存优先
- *   - 页面/document：Network-First（3s超时回退缓存）→ 打开即最新内容
+ *   - 页面/document：Network-First（3s超时回退缓存）
+ *     内部用 cachebust URL 拉取 → 绕过 CDN 边缘缓存，PWA 打开即最新内容
  *   - 静态资源(logo/icon等)：缓存优先 + 后台更新 → 秒开
  *   - 带 ?v= 的轮询请求：直连网络、绝不回退旧缓存 → 保证版本检测准确
  *   - 离线：所有请求回退缓存
  * 版本号：每次 index.html 更新时递增 CACHE_VERSION 触发新 SW。
  * ============================================ */
-var CACHE_VERSION = 'investor-calendar-v6';
+var CACHE_VERSION = 'investor-calendar-v7';
 var CACHE_NAME = CACHE_VERSION;
 var PRECACHE_URLS = [
   './',
@@ -20,7 +21,11 @@ var PRECACHE_URLS = [
   './icon-maskable-512.png',
   './apple-touch-icon.png'
 ];
-/* 安装：预缓存核心资源 */
+/* 带 cachebust 拉取最新 index.html，绕过 CDN 边缘缓存（不同 query = 不同缓存键） */
+function latestIndex(){
+  return fetch('./index.html?sw=' + Date.now(), {cache: 'no-store'});
+}
+/* 安装：预缓存核心资源（激活时会用 cachebust 刷新为最新版） */
 self.addEventListener('install', function(event){
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache){
@@ -30,7 +35,7 @@ self.addEventListener('install', function(event){
     })
   );
 });
-/* 激活：清理旧缓存，并用网络刷新 index.html 缓存（保证回退的一定是最新版） */
+/* 激活：清理旧缓存，并用 cachebust 从网络刷新 index.html 缓存（保证回退的一定是最新版） */
 self.addEventListener('activate', function(event){
   event.waitUntil(
     caches.keys().then(function(keys){
@@ -39,8 +44,7 @@ self.addEventListener('activate', function(event){
             .map(function(k){ return caches.delete(k); })
       );
     }).then(function(){
-      // 激活时主动从网络拉取最新 index.html 写入缓存，避免回退旧版
-      return fetch('./index.html', {cache: 'no-store'}).then(function(resp){
+      return latestIndex().then(function(resp){
         if(resp && resp.status === 200){
           return caches.open(CACHE_NAME).then(function(cache){
             return cache.put('./index.html', resp.clone())
@@ -66,7 +70,7 @@ self.addEventListener('fetch', function(event){
       .catch(function(){ return caches.match('./index.html'); }));
     return;
   }
-  // 页面导航：网络优先（3秒超时回退缓存）→ 打开即最新内容
+  // 页面导航：网络优先（cachebust 拉最新，3秒超时回退缓存）→ 打开即最新内容
   if(req.mode === 'navigate' || req.destination === 'document'){
     event.respondWith(
       new Promise(function(resolve){
@@ -77,7 +81,7 @@ self.addEventListener('fetch', function(event){
           // 超时：回退到缓存中的 index.html（激活时已刷新为最新版）
           caches.match('./index.html').then(resolve);
         }, 3000);
-        fetch(req).then(function(resp){
+        latestIndex().then(function(resp){
           if(settled){ return; }
           settled = true;
           clearTimeout(timer);

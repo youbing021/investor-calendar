@@ -1416,7 +1416,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609030812';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609030846';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -1438,6 +1438,8 @@ if('serviceWorker' in navigator){
     if(document.visibilityState === 'visible'){ checkUpdate(); }
   });
   setInterval(checkUpdate, CHECK_INTERVAL);
+  // 页面加载后立即检查一次，确保 PWA/缓存打开即同步到最新版
+  checkUpdate();
 })();
 /* ================= 导出长图 ================= */
 function buildShareCard(){
