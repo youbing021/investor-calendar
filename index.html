@@ -1335,6 +1335,12 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ showDraw
 /* 启动 */
 route();
 render();
+/* 强制打开页面停在顶部：关闭浏览器滚动位置恢复，避免刷新/重开时停留在内容中间 */
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+try{ window.scrollTo(0, 0); }catch(e){}
+window.addEventListener('load', function(){
+  try{ window.scrollTo(0, 0); }catch(e){}
+});
 
 /* ===== PWA: 注册 Service Worker（离线可用 / 添加到主屏幕） ===== */
 if('serviceWorker' in navigator){
@@ -1354,7 +1360,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609030915';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609030922';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
