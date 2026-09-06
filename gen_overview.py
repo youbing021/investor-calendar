@@ -8,8 +8,8 @@ gen_overview.py —— 从 index.html 的 EVENTS 数据自动重建"近期重大
 
 规则：
   1. 解析 index.html 中 var EVENTS 的数据（键 YYYY-MM-DD -> [{time,title,cat,key,desc}...]）
-  2. 按日期（升序）→ 同日按 time 排序（无 time 的排最后）生成 <li><b>M/D [HH:MM]</b>标题</li>
-  3. 有 key 事件（重磅）在标题前保留原文前缀（如【重磅】【休市】【交割日】已在 title 中，直接沿用）
+  2. 只展示从本周一（含）起的事件：以当天所在自然周的周一为起始日，上周及更早的事件不再展示（每周一自动滚动更新）
+  3. 按日期（升序）→ 同日按 time 排序（无 time 的排最后）生成 <li><b>M/D [HH:MM]</b>标题</li>
   4. 替换 <section class="event-overview"> 内的 <ul>...</ul>，其余区块（h2、intro、foot）保持不动
   5. 保留 ov-intro 与 ov-foot 说明文字
 
@@ -17,7 +17,7 @@ gen_overview.py —— 从 index.html 的 EVENTS 数据自动重建"近期重大
 """
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 
 SRC = sys.argv[1] if len(sys.argv) > 1 else 'index.html'
 OUT = sys.argv[2] if len(sys.argv) > 2 else SRC
@@ -54,10 +54,20 @@ def fmt_date(ymd):
     return f'{d.month}/{d.day}'
 
 
+def week_start_key(today=None):
+    """返回本周一的 YYYY-MM-DD（含）。以今天所在自然周的周一为起始。"""
+    t = today or datetime.now()
+    monday = t - timedelta(days=t.weekday())
+    return monday.strftime('%Y-%m-%d')
+
+
 def build_list(events):
-    """生成 <li> 列表 HTML"""
+    """生成 <li> 列表 HTML，只含本周一（含）及之后的事件"""
+    week_start = week_start_key()
     lis = []
     for date_key in sorted(events.keys()):
+        if date_key < week_start:
+            continue
         items = sorted(events[date_key], key=lambda x: (x['time'] is None, x['time'] or ''))
         for it in items:
             if it['time']:
@@ -71,7 +81,8 @@ def build_list(events):
 def main():
     html = open(SRC, encoding='utf-8').read()
     events = parse_events(html)
-    total = sum(len(v) for v in events.values())
+    shown = [d for d in events if d >= week_start_key()]
+    total = sum(len(events[d]) for d in shown)
     new_ul = '<ul>\n' + build_list(events) + '\n</ul>'
 
     # 只替换 event-overview 区块内的 <ul>...</ul>
@@ -90,7 +101,7 @@ def main():
     html = html[:sec_start] + new_sec + html[sec_end:]
 
     open(OUT, 'w', encoding='utf-8').write(html)
-    print(f'OK: 速览区已重建，共 {total} 条事件（{len(events)} 个日期） → {OUT}')
+    print(f'OK: 速览区已重建，共 {total} 条事件（本周一 {week_start_key()} 起，{len(shown)} 个日期） → {OUT}')
 
 
 if __name__ == '__main__':
