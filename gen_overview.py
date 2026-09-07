@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-gen_overview.py —— 从 index.html 的 EVENTS 数据自动重建两个区块：
-  1. "今日更新"区块（section.today-updates）：只展示当天（今天）日期的事件，含完整 desc 解读，
-     每日自动滚动——过了当天即不再显示，主页只放当天的更新。
+gen_overview.py —— 从 index.html 自动重建两个区块：
+  1. "今日更新"区块（section.today-updates）：展示当天每2小时定时更新时新增的事件（含 desc 解读），
+     按信息更新时间倒序排列（最新在前）；数据源为 TODAY_UPDATES（由 gen_updates.py 维护），
+     只保留当天批次，次日自动重置。
   2. "近期重大市场事件速览"区块（section.event-overview）：只展示从本周一（含）起的事件标题。
 
 用法：
-    python3 gen_overview.py [index.html] [--out index.html]
+    python3 gen_overview.py [index.html] [out]
 
-规则：
-  - 解析 index.html 中 var EVENTS 的数据（键 YYYY-MM-DD -> [{time,title,cat,key,desc}...]）
-  - 今日更新：提取当天事件（按 time 排序，无 time 排最后），生成 <li><b>M/D [HH:MM]</b>标题 + <div class="tu-desc">描述</div></li>
-  - 速览区：只含本周一（含）之后的事件，生成 <li><b>M/D [HH:MM]</b>标题</li>
-  - 两个区块的 h2/intro/foot 说明文字保持不动；今日更新区块不存在时自动在速览区前插入
-
-注意：本脚本只动这两个区块，不影响页面其他任何部分。
+说明：
+  - TODAY_UPDATES 结构：{ "date":"YYYY-MM-DD", "batches":[ {"ts":"HH:MM","items":[{"date","time","title","cat","desc"}...]} ... ] }
+  - 两区块的 h2/intro/foot 说明文字保持不动；今日更新区块不存在时自动在速览区前插入
+  - 只动这两个区块，不影响页面其他任何部分
 """
+import json
 import re
 import sys
 from datetime import datetime, timedelta
@@ -56,8 +55,8 @@ def parse_events(html):
             f_title = re.search(FIELD_RE['title'], raw)
             if not f_title:
                 continue
-            if f_time:
-                t = f_time.group(2) or f_time.group(3) if f_time.group(1) != 'null' else None
+            if f_time and f_time.group(1) != 'null':
+                t = f_time.group(2) or f_time.group(3)
             else:
                 t = None
             f_cat = re.search(FIELD_RE['cat'], raw)
@@ -74,49 +73,86 @@ def parse_events(html):
 
 def fmt_date(ymd):
     """YYYY-MM-DD -> M/D，如 2026-09-07 -> 9/7"""
+    if not ymd:
+        return ''
     d = datetime.strptime(ymd, '%Y-%m-%d')
     return f'{d.month}/{d.day}'
 
 
 def week_start_key(today=None):
-    """返回本周一的 YYYY-MM-DD（含）。以当天所在自然周的周一为起始。"""
     t = today or datetime.now()
     monday = t - timedelta(days=t.weekday())
     return monday.strftime('%Y-%m-%d')
 
 
-def today_key():
-    return datetime.now().strftime('%Y-%m-%d')
-
-
 def esc(s):
-    """HTML 转义，避免 desc 中的特殊字符破坏页面。"""
     if s is None:
         return ''
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
 
-def build_today_list(events):
-    """生成"今日更新"区块 <li> 列表 HTML（只含当天事件，含 desc）"""
-    tk = today_key()
-    lis = []
-    items = sorted(events.get(tk, []), key=lambda x: (x['time'] is None, x['time'] or ''))
-    for it in items:
-        if it['time']:
-            head = f'<b>{fmt_date(tk)} {esc(it["time"])}</b>'
+def parse_today_updates(html):
+    """解析 TODAY_UPDATES -> {'date':..., 'batches':[...]}，缺省返回空结构"""
+    m = re.search(r'const TODAY_UPDATES = (\{.*?\});', html, re.S)
+    if not m:
+        return {'date': None, 'batches': []}
+    try:
+        return json.loads(m.group(1))
+    except Exception:
+        return {'date': None, 'batches': []}
+
+
+def build_today_section(updates):
+    """按 TODAY_UPDATES 渲染"今日更新"区块，批次按 ts 倒序（最新在前）"""
+    date = updates.get('date') or ''
+    batches = sorted(updates.get('batches', []), key=lambda b: b.get('ts', ''), reverse=True)
+    parts = []
+    for b in batches:
+        ts = b.get('ts', '')
+        items = b.get('items', [])
+        if items:
+            lis = []
+            for it in items:
+                d = it.get('date') or date
+                if it.get('time'):
+                    head = f'<b>{fmt_date(d)} {esc(it["time"])}</b>'
+                else:
+                    head = f'<b>{fmt_date(d)}</b>'
+                if it.get('desc'):
+                    lis.append(f'<li>{head}{esc(it["title"])}\n<div class="tu-desc">{esc(it["desc"])}</div></li>')
+                else:
+                    lis.append(f'<li>{head}{esc(it["title"])}</li>')
+            ul = '<ul>\n' + '\n'.join(lis) + '\n</ul>'
         else:
-            head = f'<b>{fmt_date(tk)}</b>'
-        if it.get('desc'):
-            lis.append(f'<li>{head}{esc(it["title"])}\n<div class="tu-desc">{esc(it["desc"])}</div></li>')
-        else:
-            lis.append(f'<li>{head}{esc(it["title"])}</li>')
-    if not lis:
-        lis.append('<li>今日暂无已确认的公开市场事件安排。</li>')
-    return '\n'.join(lis)
+            ul = '<p class="tu-none">本次无新增事件。</p>'
+        parts.append(f'<div class="tu-batch">\n<div class="tu-ts">{esc(ts)} 更新</div>\n{ul}\n</div>')
+    body = '\n'.join(parts)
+    if not body:
+        body = '<p class="tu-none">今日暂无更新记录。</p>'
+    return (
+        '<section class="today-updates" aria-label="更新日志">\n'
+        '<div class="tu-card">\n'
+        f'<h2>更新日志 · {fmt_date(date)}</h2>\n'
+        '<p class="tu-intro">每2小时定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>\n'
+        + body + '\n'
+        '<p class="tu-foot">更新日志 · 仅保留当天定时更新内容，次日自动切换</p>\n'
+        '</div>\n'
+        '</section>'
+    )
+
+
+def replace_section(html, cls, new_inner):
+    sec_start = html.find(f'<section class="{cls}"')
+    if sec_start == -1:
+        return html, False
+    sec_end = html.find('</section>', sec_start)
+    if sec_end == -1:
+        raise SystemExit(f'未找到 {cls} 的 section 结束标签')
+    sec_end += len('</section>')
+    return html[:sec_start] + new_inner + html[sec_end:], True
 
 
 def build_overview_list(events):
-    """生成速览区 <li> 列表 HTML（只含本周一含之后的事件）"""
     week_start = week_start_key()
     lis = []
     for date_key in sorted(events.keys()):
@@ -132,41 +168,18 @@ def build_overview_list(events):
     return '\n'.join(lis)
 
 
-def replace_section(html, cls, new_inner):
-    """按 class 定位 section，替换其内部（整段 section 换成 新 section），返回 (html, 是否找到)"""
-    sec_start = html.find(f'<section class="{cls}"')
-    if sec_start == -1:
-        return html, False
-    sec_end = html.find('</section>', sec_start)
-    if sec_end == -1:
-        raise SystemExit(f'未找到 {cls} 的 section 结束标签')
-    sec_end += len('</section>')
-    return html[:sec_start] + new_inner + html[sec_end:], True
-
-
 def main():
     html = open(SRC, encoding='utf-8').read()
     events = parse_events(html)
-    tk = today_key()
     ws = week_start_key()
     shown = [d for d in events if d >= ws]
     total = sum(len(events[d]) for d in shown)
-    today_n = len(events.get(tk, []))
 
-    # 1) 今日更新区块（整段重建，保证日期/条数最新）
-    tu = (
-        '<section class="today-updates" aria-label="今日更新">\n'
-        '<div class="tu-card">\n'
-        f'<h2>今日更新 · {fmt_date(tk)}</h2>\n'
-        '<p class="tu-intro">只展示今天影响A股、港股、美股的重要市场事件及解读，每日自动滚动更新。</p>\n'
-        '<ul>\n' + build_today_list(events) + '\n</ul>\n'
-        '<p class="tu-foot">今日更新 · 仅保留当天内容，次日自动切换</p>\n'
-        '</div>\n'
-        '</section>'
-    )
+    # 1) 今日更新区块
+    updates = parse_today_updates(html)
+    tu = build_today_section(updates)
     html, found = replace_section(html, 'today-updates', tu)
     if not found:
-        # 不存在则在速览区前插入
         anchor = '<section class="event-overview"'
         idx = html.find(anchor)
         if idx == -1:
@@ -190,7 +203,8 @@ def main():
     html = html[:sec_start] + new_sec + html[sec_end:]
 
     open(OUT, 'w', encoding='utf-8').write(html)
-    print(f'OK: 今日更新 {today_n} 条（{tk}）· 速览区 {total} 条（本周一 {ws} 起，{len(shown)} 个日期） → {OUT}')
+    n_batch = len(updates.get('batches', []))
+    print(f'OK: 今日更新 {n_batch} 批（{updates.get("date") or "未设置"}）· 速览区 {total} 条（本周一 {ws} 起，{len(shown)} 个日期） → {OUT}')
 
 
 if __name__ == '__main__':

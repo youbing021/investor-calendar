@@ -538,6 +538,24 @@ a{color:inherit;}
   .today-updates .tu-card{padding:16px 16px 20px;}
 }
 
+/* ===== 今日更新（每2小时定时更新的新增事件，按更新时间倒序） ===== */
+.today-updates{max-width:1600px;margin:0 auto;padding:8px 18px 10px;}
+.today-updates .tu-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px 26px;}
+.today-updates h2{font-family:var(--serif);font-size:20px;color:var(--amber);margin-bottom:6px;}
+.today-updates .tu-intro{font-size:13px;color:var(--ink-dim);margin-bottom:14px;line-height:1.7;}
+.today-updates .tu-batch{margin:10px 0;padding:10px 12px;background:rgba(0,0,0,.16);border:1px solid var(--line);border-radius:12px;}
+.today-updates .tu-ts{font-size:12px;font-weight:600;color:var(--amber);font-family:var(--mono);margin-bottom:6px;}
+.today-updates ul{list-style:none;}
+.today-updates li{font-size:13px;color:var(--ink);line-height:1.6;padding:6px 0;border-bottom:1px dashed var(--line);}
+.today-updates li:last-child{border-bottom:none;}
+.today-updates li b{color:var(--amber);font-weight:600;margin-right:6px;font-family:var(--mono);}
+.today-updates .tu-desc{font-size:12px;color:var(--ink-dim);margin-top:4px;line-height:1.7;}
+.today-updates .tu-none{font-size:12px;color:var(--ink-faint);padding:2px 0;}
+.today-updates .tu-foot{font-size:12px;color:var(--ink-faint);margin-top:14px;}
+@media (max-width:640px){
+  .today-updates .tu-card{padding:16px 16px 20px;}
+}
+
 /* ===== 近期大事速览（SEO 可读 + 用户可见） ===== */
 .event-overview{max-width:1600px;margin:0 auto;padding:8px 18px 40px;}
 .event-overview .ov-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px 26px;}
@@ -658,41 +676,74 @@ a{color:inherit;}
   </div>
 </footer>
 
-<section class="today-updates" aria-label="今日更新">
+<section class="today-updates" aria-label="更新日志">
 <div class="tu-card">
-<h2>今日更新 · 9/7</h2>
-<p class="tu-intro">只展示今天影响A股、港股、美股的重要市场事件及解读，每日自动滚动更新。</p>
+<h2>更新日志 · 9/7</h2>
+<p class="tu-intro">每2小时定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>
+<div class="tu-batch">
+<div class="tu-ts">19:38 更新</div>
 <ul>
-<li><b>9/7 14:30</b>华为HarmonyOS 7 | Mate XT 2全场景新品发布会
-<div class="tu-desc">华为举行全场景新品发布会，正式发布新一代三折叠旗舰Mate XT 2及鸿蒙HarmonyOS 7操作系统，首发搭载新一代麒麟芯片。作为年度科技重头戏，直接对标苹果秋季发布会，对鸿蒙概念、折叠屏、消费电子产业链形成题材催化，留意相关个股异动。</div></li>
-<li><b>9/7</b>【休市】美股劳动节休市（NYSE/纳斯达克）
-<div class="tu-desc">美国劳动节（Labor Day，每年9月第一个周一），纽约证券交易所、纳斯达克全天休市，9月8日（周二）恢复正常交易。美股休市期间中概股、美股期权及期货均暂停交易，关注节后开盘跳空与流动性变化。</div></li>
-<li><b>9/7</b>中国8月外汇储备
-<div class="tu-desc">央行公布8月官方储备资产（外汇储备），观察跨境资金流动与汇率压力。</div></li>
-<li><b>9/7</b>中国8月进出口贸易数据
-<div class="tu-desc">海关总署惯例本月上旬发布8月外贸数据（预计9/7-9/9），观察出口韧性与贸易顺差变化，具体时点以官方为准。</div></li>
-<li><b>9/7</b>深交所发布创业板芯片指数
-<div class="tu-desc">深圳证券信息公司定于9/4发布创业板芯片指数（代码970096），反映创业板芯片领域上市公司（半导体材料/设备、芯片设计/制造等）股价变化。新指数发布将引导资金关注创业板芯片板块，关注指数权重成分股。</div></li>
-<li><b>9/7</b>小米秋季旗舰新品发布会 · 小米18 Fold正式发布
-<div class="tu-desc">小米于9/7晚在北京举行秋季旗舰新品发布会，首款中折叠旗舰小米18 Fold正式登场（搭载自研玄戒O3芯片），同场发布平板9 Pro Max及小米澎程系列新车。消费电子+自研芯片+汽车多线催化。</div></li>
-<li><b>9/7</b>央行开展5000亿元买断式逆回购操作
-<div class="tu-desc">央行公告将于9/7以固定数量、利率招标、多重价位中标方式开展5000亿元3个月期（89天）买断式逆回购，保持银行体系流动性充裕，到期日12/5。流动性呵护操作，关注债市与银行板块资金面。</div></li>
-<li><b>9/7</b>Anthropic计划公布IPO招股说明书
-<div class="tu-desc">AI大模型公司Anthropic计划在9/7后公布IPO招股说明书，并可能于9月下旬或10月初在美股上市，为全球AI行业标志性上市事件。关注AI算力、大模型产业链及美股科技板块估值联动。</div></li>
-<li><b>9/7</b>财政部拟发行3000亿元特别国债注资8家中央金融企业
-<div class="tu-desc">财政部将于近期发行3000亿元特别国债，支持工行、农行、进出口银行、中国信保、中国人保、中国人寿、中国太平、中国再保等8家中央金融企业补充核心一级资本，其中工行拟募资不超1000亿元、农行拟募资不超1600亿元。银行与保险资本实力增强，关注银行板块估值修复及大盘蓝筹行情。</div></li>
-<li><b>9/7</b>恒生指数系列季度调整生效（纳入华虹宏力·潍柴动力等）
-<div class="tu-desc">恒生指数公司季度检讨结果生效：恒指成分股由93只增至95只，纳入华虹宏力、潍柴动力；恒生科技指数纳入天数智芯、剔除同程旅行；恒生综合指数由534只增至580只，半导体/AI板块大幅扩容。成分股变动将带动指数基金调仓，关注被动资金流入方向。</div></li>
-<li><b>9/7</b>中国首款AI辅助研发原创药艾普司韦获批上市
-<div class="tu-desc">西湖大学、西湖实验室、西湖制药联合研发的盐酸伊司特韦片（艾普司韦）获批上市，系我国首款凭借AI辅助研发获批的原创药。AI制药赛道迎来里程碑催化，关注AI+医药、CRO与创新药板块。</div></li>
+<li><b>9/7</b>新疆印发推动新能源有效投资提升消纳利用若干措施
+<div class="tu-desc">新疆发改委与工信厅、商务厅联合印发《关于推动新疆新能源有效投资和提升新能源利用率的若干措施》，聚焦扩大新能源有效投资、提升消纳利用水平。全国新能源大省出台政策组合拳，关注光伏、风电、储能及特高压外送板块。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">18:05 更新</div>
+<p class="tu-none">本次无新增事件。</p>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">15:52 更新</div>
+<ul>
 <li><b>9/7</b>工信部印发《信息通信行业发展“十五五”规划》
 <div class="tu-desc">工信部印发信息通信行业“十五五”规划，强化高中低轨卫星星座协同，提升高轨宽窄带通信卫星系统容量，增强低轨卫星互联网、卫星通信系统能力。通信与卫星互联网板块迎顶层政策催化，关注运营商、光模块及卫星产业链。</div></li>
 <li><b>9/7</b>六部门印发乡村振兴投入机制实施方案
 <div class="tu-desc">农业农村部等六部门印发《坚持农业农村优先发展 完善乡村振兴投入机制实施方案》，优先保障农业农村领域一般公共预算投入，加大粮食主产区利益补偿，实施省际横向利益补偿。农业投资与粮食安全主线强化，关注种业、农机及农业基建板块。</div></li>
-<li><b>9/7</b>新疆印发推动新能源有效投资提升消纳利用若干措施
-<div class="tu-desc">新疆发改委与工信厅、商务厅联合印发《关于推动新疆新能源有效投资和提升新能源利用率的若干措施》，聚焦扩大新能源有效投资、提升消纳利用水平。全国新能源大省出台政策组合拳，关注光伏、风电、储能及特高压外送板块。</div></li>
 </ul>
-<p class="tu-foot">今日更新 · 仅保留当天内容，次日自动切换</p>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">14:04 更新</div>
+<ul>
+<li><b>9/8</b>加拿大对美200亿美元商品反制关税生效
+<div class="tu-desc">加拿大自9/8起对价值约200亿美元（276亿加元）的700余种美国商品加征报复性关税，税率15%/25%/50%三档，贸易摩擦再度升级。关注跨境贸易、航运及大宗商品相关板块情绪扰动。</div></li>
+<li><b>9/12</b>第十八届金砖国家领导人会晤（新德里）
+<div class="tu-desc">9/12-13第十八届金砖国家领导人会晤在印度新德里举行，主题为“构建韧性、创新、合作与可持续发展”，恰逢金砖合作机制成立20周年。关注新兴市场、人民币国际化及地缘与大宗商品板块动向。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">12:06 更新</div>
+<p class="tu-none">本次无新增事件。</p>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">10:25 更新</div>
+<ul>
+<li><b>9/18</b>富时罗素指数季度调整生效（纳入中微公司·生益科技等）
+<div class="tu-desc">富时罗素全球指数系列季度调整于9/18收盘后生效，纳入中微公司、生益科技等A股科技龙头。作为全球指数基金的跟踪基准，纳入将带动被动资金买入，关注半导体材料与设备板块资金流向。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">08:44 更新</div>
+<ul>
+<li><b>9/5</b>海口出台七条楼市新政
+<div class="tu-desc">海口市住建局发布《关于促进房地产市场平稳健康发展若干措施的通知》，推出落户购房、企业员工购房、多孩家庭增购、“以旧换新”等七条楼市新政，落户之日起即享海南居民同等购房待遇。地方地产政策持续松绑，关注海南本地地产、基建及家居产业链。</div></li>
+<li><b>9/7</b>中国首款AI辅助研发原创药艾普司韦获批上市
+<div class="tu-desc">西湖大学、西湖实验室、西湖制药联合研发的盐酸伊司特韦片（艾普司韦）获批上市，系我国首款凭借AI辅助研发获批的原创药。AI制药赛道迎来里程碑催化，关注AI+医药、CRO与创新药板块。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">06:01 更新</div>
+<ul>
+<li><b>9/9</b>第11届“一带一路”高峰论坛（香港）
+<div class="tu-desc">香港特区政府与香港贸发局合办的第11届“一带一路”高峰论坛9/9-9/10在港举行，聚焦“出海”及新兴市场机遇，深化共建“一带一路”合作。关注港股出海产业链、基建与东盟相关板块。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
+<div class="tu-ts">00:02 更新</div>
+<ul>
+<li><b>9/7</b>恒生指数系列季度调整生效（纳入华虹宏力·潍柴动力等）
+<div class="tu-desc">恒生指数公司季度检讨结果生效：恒指成分股由93只增至95只，纳入华虹宏力、潍柴动力；恒生科技指数纳入天数智芯、剔除同程旅行；恒生综合指数由534只增至580只，半导体/AI板块大幅扩容。成分股变动将带动指数基金调仓，关注被动资金流入方向。</div></li>
+</ul>
+</div>
+<p class="tu-foot">更新日志 · 仅保留当天定时更新内容，次日自动切换</p>
 </div>
 </section>
 
@@ -915,6 +966,125 @@ a{color:inherit;}
    cat: cn=国内/政策  gl=海外宏观  ai=AI/科技  ne=新能源/电池
    key: true 为重点事件 */
 var CATS = { cn:'国内/政策', gl:'海外宏观', ai:'AI/科技', ne:'新能源/电池', hk:'港股', us:'美股' };
+const TODAY_UPDATES = {
+ "date": "2026-09-07",
+ "batches": [
+  {
+   "ts": "00:02",
+   "items": [
+    {
+     "date": "2026-09-07",
+     "time": null,
+     "title": "恒生指数系列季度调整生效（纳入华虹宏力·潍柴动力等）",
+     "cat": "hk",
+     "desc": "恒生指数公司季度检讨结果生效：恒指成分股由93只增至95只，纳入华虹宏力、潍柴动力；恒生科技指数纳入天数智芯、剔除同程旅行；恒生综合指数由534只增至580只，半导体/AI板块大幅扩容。成分股变动将带动指数基金调仓，关注被动资金流入方向。"
+    }
+   ]
+  },
+  {
+   "ts": "06:01",
+   "items": [
+    {
+     "date": "2026-09-09",
+     "time": null,
+     "title": "第11届“一带一路”高峰论坛（香港）",
+     "cat": "hk",
+     "desc": "香港特区政府与香港贸发局合办的第11届“一带一路”高峰论坛9/9-9/10在港举行，聚焦“出海”及新兴市场机遇，深化共建“一带一路”合作。关注港股出海产业链、基建与东盟相关板块。"
+    }
+   ]
+  },
+  {
+   "ts": "08:44",
+   "items": [
+    {
+     "date": "2026-09-05",
+     "time": null,
+     "title": "海口出台七条楼市新政",
+     "cat": "cn",
+     "desc": "海口市住建局发布《关于促进房地产市场平稳健康发展若干措施的通知》，推出落户购房、企业员工购房、多孩家庭增购、“以旧换新”等七条楼市新政，落户之日起即享海南居民同等购房待遇。地方地产政策持续松绑，关注海南本地地产、基建及家居产业链。"
+    },
+    {
+     "date": "2026-09-07",
+     "time": null,
+     "title": "中国首款AI辅助研发原创药艾普司韦获批上市",
+     "cat": "ai",
+     "desc": "西湖大学、西湖实验室、西湖制药联合研发的盐酸伊司特韦片（艾普司韦）获批上市，系我国首款凭借AI辅助研发获批的原创药。AI制药赛道迎来里程碑催化，关注AI+医药、CRO与创新药板块。"
+    }
+   ]
+  },
+  {
+   "ts": "10:25",
+   "items": [
+    {
+     "date": "2026-09-18",
+     "time": null,
+     "title": "富时罗素指数季度调整生效（纳入中微公司·生益科技等）",
+     "cat": "cn",
+     "desc": "富时罗素全球指数系列季度调整于9/18收盘后生效，纳入中微公司、生益科技等A股科技龙头。作为全球指数基金的跟踪基准，纳入将带动被动资金买入，关注半导体材料与设备板块资金流向。"
+    }
+   ]
+  },
+  {
+   "ts": "12:06",
+   "items": []
+  },
+  {
+   "ts": "14:04",
+   "items": [
+    {
+     "date": "2026-09-08",
+     "time": null,
+     "title": "加拿大对美200亿美元商品反制关税生效",
+     "cat": "gl",
+     "desc": "加拿大自9/8起对价值约200亿美元（276亿加元）的700余种美国商品加征报复性关税，税率15%/25%/50%三档，贸易摩擦再度升级。关注跨境贸易、航运及大宗商品相关板块情绪扰动。"
+    },
+    {
+     "date": "2026-09-12",
+     "time": null,
+     "title": "第十八届金砖国家领导人会晤（新德里）",
+     "cat": "gl",
+     "desc": "9/12-13第十八届金砖国家领导人会晤在印度新德里举行，主题为“构建韧性、创新、合作与可持续发展”，恰逢金砖合作机制成立20周年。关注新兴市场、人民币国际化及地缘与大宗商品板块动向。"
+    }
+   ]
+  },
+  {
+   "ts": "15:52",
+   "items": [
+    {
+     "date": "2026-09-07",
+     "time": null,
+     "title": "工信部印发《信息通信行业发展“十五五”规划》",
+     "cat": "cn",
+     "desc": "工信部印发信息通信行业“十五五”规划，强化高中低轨卫星星座协同，提升高轨宽窄带通信卫星系统容量，增强低轨卫星互联网、卫星通信系统能力。通信与卫星互联网板块迎顶层政策催化，关注运营商、光模块及卫星产业链。"
+    },
+    {
+     "date": "2026-09-07",
+     "time": null,
+     "title": "六部门印发乡村振兴投入机制实施方案",
+     "cat": "cn",
+     "desc": "农业农村部等六部门印发《坚持农业农村优先发展 完善乡村振兴投入机制实施方案》，优先保障农业农村领域一般公共预算投入，加大粮食主产区利益补偿，实施省际横向利益补偿。农业投资与粮食安全主线强化，关注种业、农机及农业基建板块。"
+    }
+   ]
+  },
+  {
+   "ts": "18:05",
+   "items": []
+  },
+  {
+   "ts": "19:38",
+   "items": [
+    {
+     "date": "2026-09-07",
+     "time": null,
+     "title": "新疆印发推动新能源有效投资提升消纳利用若干措施",
+     "cat": "ne",
+     "desc": "新疆发改委与工信厅、商务厅联合印发《关于推动新疆新能源有效投资和提升新能源利用率的若干措施》，聚焦扩大新能源有效投资、提升消纳利用水平。全国新能源大省出台政策组合拳，关注光伏、风电、储能及特高压外送板块。"
+    }
+   ]
+  }
+ ]
+};
+
 var EVENTS = {
   /* ---- 第1周 8/31-9/6（本周） ---- */
   '2026-08-31': [
@@ -1528,7 +1698,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609072035';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609072046';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
