@@ -28,6 +28,7 @@ FIELD_RE = {
     'title': r"title:\s*'((?:[^'\\]|\\.)*)'",
     'cat': r"cat:\s*'((?:[^'\\]|\\.)*)'",
     'desc': r"desc:\s*'((?:[^'\\]|\\.)*)'",
+    'source': r"source:\s*'((?:[^'\\]|\\.)*)'",
 }
 
 
@@ -61,11 +62,13 @@ def parse_events(html):
                 t = None
             f_cat = re.search(FIELD_RE['cat'], raw)
             f_desc = re.search(FIELD_RE['desc'], raw)
+            f_src = re.search(FIELD_RE['source'], raw)
             items.append({
                 'time': unquote(t),
                 'title': unquote(f_title.group(1)),
                 'cat': unquote(f_cat.group(1)) if f_cat else None,
                 'desc': unquote(f_desc.group(1)) if f_desc else None,
+                'source': unquote(f_src.group(1)) if f_src else None,
             })
         events[d] = items
     return events
@@ -102,8 +105,8 @@ def parse_today_updates(html):
         return {'date': None, 'batches': []}
 
 
-def build_today_section(updates):
-    """按 TODAY_UPDATES 渲染"今日更新"区块，批次按 ts 倒序（最新在前）"""
+def build_today_section(updates, src_index):
+    """按 TODAY_UPDATES 渲染"今日更新"区块，批次按 ts 倒序（最新在前）；来源从 EVENTS 反查"""
     date = updates.get('date') or ''
     batches = sorted(updates.get('batches', []), key=lambda b: b.get('ts', ''), reverse=True)
     parts = []
@@ -118,10 +121,12 @@ def build_today_section(updates):
                     head = f'<b>{fmt_date(d)} {esc(it["time"])}</b>'
                 else:
                     head = f'<b>{fmt_date(d)}</b>'
+                src = it.get('source') or src_index.get((d, it.get('title'))) or ''
+                src_html = f'<span class="tu-src"> · 来源 · {esc(src)}</span>' if src else ''
                 if it.get('desc'):
-                    lis.append(f'<li>{head}{esc(it["title"])}\n<div class="tu-desc">{esc(it["desc"])}</div></li>')
+                    lis.append(f'<li>{head}{esc(it["title"])}{src_html}\n<div class="tu-desc">{esc(it["desc"])}</div></li>')
                 else:
-                    lis.append(f'<li>{head}{esc(it["title"])}</li>')
+                    lis.append(f'<li>{head}{esc(it["title"])}{src_html}</li>')
             ul = '<ul>\n' + '\n'.join(lis) + '\n</ul>'
         else:
             ul = '<p class="tu-none">本次无新增事件。</p>'
@@ -164,7 +169,8 @@ def build_overview_list(events):
                 head = f'<b>{fmt_date(date_key)} {esc(it["time"])}</b>'
             else:
                 head = f'<b>{fmt_date(date_key)}</b>'
-            lis.append(f'<li>{head}{esc(it["title"])}</li>')
+            src = f'<span class="ov-src"> · {esc(it["source"])}</span>' if it.get('source') else ''
+            lis.append(f'<li>{head}{esc(it["title"])}{src}</li>')
     return '\n'.join(lis)
 
 
@@ -175,9 +181,13 @@ def main():
     shown = [d for d in events if d >= ws]
     total = sum(len(events[d]) for d in shown)
 
-    # 1) 今日更新区块
+    # 1) 今日更新区块（来源从 EVENTS 反查）
     updates = parse_today_updates(html)
-    tu = build_today_section(updates)
+    src_index = {}
+    for dkey, items in events.items():
+        for it in items:
+            src_index[(dkey, it['title'])] = it.get('source') or ''
+    tu = build_today_section(updates, src_index)
     html, found = replace_section(html, 'today-updates', tu)
     if not found:
         anchor = '<section class="event-overview"'

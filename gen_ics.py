@@ -64,6 +64,7 @@ def extract_events(html_src):
             cat = field('cat')
             key = field('key')
             desc = field('desc', '')
+            source = field('source')
             if title is None:
                 continue
             lst.append({
@@ -73,6 +74,7 @@ def extract_events(html_src):
                 'cat': cat or 'gl',
                 'key': (key == 'true'),
                 'desc': htmlmod.unescape(desc),
+                'source': htmlmod.unescape(source) if source else None,
             })
         events[date_key] = lst
     return events
@@ -120,8 +122,11 @@ def build_ics(events, now_dt):
 
             lines.append('SUMMARY:' + esc_text(summary))
             lines.append('CATEGORIES:' + esc_text(cat_label))
-            if ev['desc']:
-                lines.append('DESCRIPTION:' + esc_text(ev['desc']))
+            desc_ics = ev['desc']
+            if ev.get('source'):
+                desc_ics = (desc_ics + '\n' if desc_ics else '') + '来源：' + ev['source']
+            if desc_ics:
+                lines.append('DESCRIPTION:' + esc_text(desc_ics))
             lines.append('END:VEVENT')
     lines.append('END:VCALENDAR')
     return '\r\n'.join(lines) + '\r\n'

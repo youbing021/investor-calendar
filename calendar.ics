@@ -8,1073 +8,1298 @@ X-WR-TIMEZONE:Asia/Shanghai
 X-APPLE-CALENDAR-COLOR:#E8A33D
 BEGIN:VEVENT
 UID:tzr-20260831-1@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260831T093000
 DTEND;TZID=Asia/Shanghai:20260831T103000
 SUMMARY:【重点】中国8月官方制造业PMI发布（49.8%） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国家统计局公布8月制造业PMI为49.8%，比上月回升0.6个百分点，景气水平有所改善但仍处荣枯线下方；非制造业PMI 49.0%与上月持平。国内经济最新体温计，直接关系大宗商品与亚太资产走向。
+DESCRIPTION:国家统计局公布8月制造业PMI为49.8%，比上月回升0.6个百分点，景气水平有所改善但仍处荣枯线下方；非制造业PMI 49.0%与上月持平。国内经济最新体温计，直接关系大宗商品与亚太资产走向。\n来源：国家统计局
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260831-2@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260831
 DTEND;VALUE=DATE:20260901
 SUMMARY:【重点】房地产信贷政策“三箭齐发”落地 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:央行、金融监管总局等密集落地房地产重磅政策：个人住房贷款最长期限由30年延至40年、存量浮动利率房贷可协商调整利率、还款困难可协商调整计划；住建部等部门推行商品房现房销售、交房即交证。政策力度近年罕见，今日地产板块大涨。
+DESCRIPTION:央行、金融监管总局等密集落地房地产重磅政策：个人住房贷款最长期限由30年延至40年、存量浮动利率房贷可协商调整利率、还款困难可协商调整计划；住建部等部门推行商品房现房销售、交房即交证。政策力度近年罕见，今日地产板块大涨。\n来源：中国人民银行
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260831-3@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260831
 DTEND;VALUE=DATE:20260901
 SUMMARY:A股半年报披露截止 · MSCI调整生效 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:A股2026年半年报法定披露截止日，最后一轮业绩排雷；MSCI中国指数新纳入智谱等33只股票，季度指数调整当日收盘后正式生效，尾盘注意异动。
+DESCRIPTION:A股2026年半年报法定披露截止日，最后一轮业绩排雷；MSCI中国指数新纳入智谱等33只股票，季度指数调整当日收盘后正式生效，尾盘注意异动。\n来源：公司财报
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260831-4@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260831
 DTEND;VALUE=DATE:20260901
 SUMMARY:北交所新股申购：百迈科 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:发行价17.10元/股，从事外科手术医疗器械及多肽制药设备研发、生产与销售。
+DESCRIPTION:发行价17.10元/股，从事外科手术医疗器械及多肽制药设备研发、生产与销售。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-5@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:多项新规实施：电池消费税 · 新版基药目录 · 人民币新规 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:锂电池等自9月1日起按2%征收消费税（2027年9月起升至4%），锂电十余年免税历史终结，关注锂电/钠电分化；《国家基本药物目录（2026年版）》施行，共794种药品；禁止非法买卖流通中人民币。
+DESCRIPTION:锂电池等自9月1日起按2%征收消费税（2027年9月起升至4%），锂电十余年免税历史终结，关注锂电/钠电分化；《国家基本药物目录（2026年版）》施行，共794种药品；禁止非法买卖流通中人民币。\n来源：中国人民银行
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-6@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260901T094500
 DTEND;TZID=Asia/Shanghai:20260901T104500
 SUMMARY:中国8月财新制造业PMI · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:财新/标普制造业PMI，观察中小企业景气度。
+DESCRIPTION:财新/标普制造业PMI，观察中小企业景气度。\n来源：财新/标普全球
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-7@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:G20财长与央行行长会议收官 · 上合峰会 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:G20财长会（8/30-9/1）收官；上合组织元首理事会会议举行，全球货币政策协调与地缘经贸看点。
+DESCRIPTION:G20财长会（8/30-9/1）收官；上合组织元首理事会会议举行，全球货币政策协调与地缘经贸看点。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-8@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260901T220000
 DTEND;TZID=Asia/Shanghai:20260901T230000
 SUMMARY:美国8月ISM制造业PMI · 7月JOLTs职位空缺 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:ISM制造业PMI + JOLTs职位空缺，衡量企业招聘意愿与制造业景气，美联储就业监控的关键窗口。
+DESCRIPTION:ISM制造业PMI + JOLTs职位空缺，衡量企业招聘意愿与制造业景气，美联储就业监控的关键窗口。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-9@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260901T170000
 DTEND;TZID=Asia/Shanghai:20260901T180000
 SUMMARY:欧元区8月CPI初值 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:欧盟统计局公布欧元区8月调和消费者物价指数（HICP）初值，直接影响市场对9月10日欧央行议息的降息押注。7月欧元区CPI同比2.9%，能源涨价是主因。
+DESCRIPTION:欧盟统计局公布欧元区8月调和消费者物价指数（HICP）初值，直接影响市场对9月10日欧央行议息的降息押注。7月欧元区CPI同比2.9%，能源涨价是主因。\n来源：欧洲央行
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-10@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:【重点】商务部等7部门：推动商品消费扩容升级实施意见 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:8/31商务部等7部门印发《关于推动商品消费扩容升级的实施意见》，提出20项具体措施，目标到2030年社会消费品零售总额达60万亿元左右，培育绿色消费、智能消费、健康消费等十万亿级市场。大消费板块中长期政策催化，关注汽车、家电、通讯器材、纺织服装等万亿级品类。
+DESCRIPTION:8/31商务部等7部门印发《关于推动商品消费扩容升级的实施意见》，提出20项具体措施，目标到2030年社会消费品零售总额达60万亿元左右，培育绿色消费、智能消费、健康消费等十万亿级市场。大消费板块中长期政策催化，关注汽车、家电、通讯器材、纺织服装等万亿级品类。\n来源：商务部
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-11@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:商务部等3部门：汽车行业境外竞争行为与合规建设指引 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:商务部、工信部、市场监管总局9/1联合发布《汽车行业境外竞争行为与合规建设指引》，规范车企海外定价营销与全链条合规，引导汽车出口秩序、抑制海外价格战。汽车出海产业链政策信号，关注头部整车与零部件出口企业。
+DESCRIPTION:商务部、工信部、市场监管总局9/1联合发布《汽车行业境外竞争行为与合规建设指引》，规范车企海外定价营销与全链条合规，引导汽车出口秩序、抑制海外价格战。汽车出海产业链政策信号，关注头部整车与零部件出口企业。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-12@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:青海发布绿色算力产业“十五五”规划 · 新疆促新能源投资 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:青海省政府印发《青海省绿色算力产业发展“十五五”规划》，锚定绿色算电协同，目标算力总规模超10万P；新疆发改委等联合印发《推动新能源有效投资和提升新能源利用率的若干措施》14条。省级产业政策密集落地，关注绿色算力/AI算力与新能源消纳产业链。
+DESCRIPTION:青海省政府印发《青海省绿色算力产业发展“十五五”规划》，锚定绿色算电协同，目标算力总规模超10万P；新疆发改委等联合印发《推动新能源有效投资和提升新能源利用率的若干措施》14条。省级产业政策密集落地，关注绿色算力/AI算力与新能源消纳产业链。\n来源：国家发展改革委
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-13@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:工信部公布国家算力互联互通区域节点建设名单（17省市） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:工信部9/1公布北京等17个省（自治区、直辖市）入选国家算力互联互通区域节点，要求加快节点建设、尽快投入应用。算力基础设施国家战略布局提速，关注算力调度、IDC、光模块与国产算力链。
+DESCRIPTION:工信部9/1公布北京等17个省（自治区、直辖市）入选国家算力互联互通区域节点，要求加快节点建设、尽快投入应用。算力基础设施国家战略布局提速，关注算力调度、IDC、光模块与国产算力链。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
 UID:tzr-20260901-14@touzirili.com
-DTSTAMP:20260905T075259Z
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260901
 DTEND;VALUE=DATE:20260902
 SUMMARY:希音SHEIN港股上市（首日挂牌） · 市场事件
 CATEGORIES:市场事件
-DESCRIPTION:全球跨境电商巨头希音（SHEIN）9/1正式在港交所主板挂牌，募资规模约132亿港元，为2026年港股市场标志性大型IPO。关注跨境电商、港股新股板块情绪与供应链相关概念。
+DESCRIPTION:全球跨境电商巨头希音（SHEIN）9/1正式在港交所主板挂牌，募资规模约132亿港元，为2026年港股市场标志性大型IPO。关注跨境电商、港股新股板块情绪与供应链相关概念。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-15@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260901-15@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:云南省印发“十五五”城市更新行动规划 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:云南省人民政府印发《云南省“十五五”城市更新行动规划》，部署城市更新重点任务与重大项目，推动城市功能品质提升。关注云南本地基建、市政工程、房地产与城市更新产业链。\n来源：地方政府
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260902-16@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:燧原科技申购 · 焦炭期权上市 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:科创板新股燧原科技（国产GPU四小龙之一，AI云端芯片）开放申购；大商所焦炭期权上市交易，当晚开展夜盘。
+DESCRIPTION:科创板新股燧原科技（国产GPU四小龙之一，AI云端芯片）开放申购；大商所焦炭期权上市交易，当晚开展夜盘。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-16@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-17@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260902T201500
 DTEND;TZID=Asia/Shanghai:20260902T211500
 SUMMARY:美国8月ADP小非农 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美国8月ADP就业人数变动（私人部门就业），非农前哨。
+DESCRIPTION:美国8月ADP就业人数变动（私人部门就业），非农前哨。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-17@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-18@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260902T220000
 DTEND;TZID=Asia/Shanghai:20260902T230000
 SUMMARY:加拿大央行利率决议 · 美国7月工厂订单 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:加拿大央行公布利率决议（市场预期维持隔夜利率2.25%不变）；美国7月工厂订单月率同步公布。
+DESCRIPTION:加拿大央行公布利率决议（市场预期维持隔夜利率2.25%不变）；美国7月工厂订单月率同步公布。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-18@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-19@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:粤港澳大湾区6G产业发展大会 · 广东省信息通信业“十五五”规划发布 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:大湾区6G产业发展大会举行，《广东省信息通信业“十五五”规划》正式发布，锚定6G产业高地建设。6G/卫星互联网/通信设备板块主题催化，关注前沿通信技术商业化节奏。
+DESCRIPTION:大湾区6G产业发展大会举行，《广东省信息通信业“十五五”规划》正式发布，锚定6G产业高地建设。6G/卫星互联网/通信设备板块主题催化，关注前沿通信技术商业化节奏。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-19@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-20@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:工信部：《国家脑机接口产业标准体系建设指南》征求意见 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:工信部科技司8/24发布《国家脑机接口产业标准体系建设指南（2026版）》（征求意见稿），9/23前公开征求意见。提出到2028年制修订脑机接口领域标准40项以上、2030年累计研制80项以上，将产品分为医疗器械/消费电子/个人健康等六大类。脑机接口板块政策催化，关注相关上市公司研发进展。
+DESCRIPTION:工信部科技司8/24发布《国家脑机接口产业标准体系建设指南（2026版）》（征求意见稿），9/23前公开征求意见。提出到2028年制修订脑机接口领域标准40项以上、2030年累计研制80项以上，将产品分为医疗器械/消费电子/个人健康等六大类。脑机接口板块政策催化，关注相关上市公司研发进展。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-20@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-21@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:第二十四届中国国际装备制造业博览会（沈阳） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/1-9/5制博会在沈阳举办，同期第三届沈阳市制造业经贸活动周，集中展示工业机器人、智能制造装备、高端数控机床等。高端制造/工业母机/机器人板块主题催化。
+DESCRIPTION:9/1-9/5制博会在沈阳举办，同期第三届沈阳市制造业经贸活动周，集中展示工业机器人、智能制造装备、高端数控机床等。高端制造/工业母机/机器人板块主题催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-21@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-22@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:第四届网络空间安全（天津）论坛 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/2第四届网络空间安全论坛在天津开幕，以“共建网络安全 共治网络空间”为主题，近800名国内外嘉宾参会。网络安全板块事件催化，后续9/14-20全国网安周将接棒。
+DESCRIPTION:9/2第四届网络空间安全论坛在天津开幕，以“共建网络安全 共治网络空间”为主题，近800名国内外嘉宾参会。网络安全板块事件催化，后续9/14-20全国网安周将接棒。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-22@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-23@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:陕西省政府投资基金重点投资领域清单印发 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/2陕西印发《省政府投资基金重点投资领域清单》，战略性新兴及未来产业布局光子量子、智能网联汽车、商业航天、低空经济、氢能、生物医药、AI及大数据等，优势支柱产业涵盖半导体与集成电路、航空航天、新能源汽车、储能等。省级政府投资基金引导，关注陕西本地相关产业链标的。
+DESCRIPTION:9/2陕西印发《省政府投资基金重点投资领域清单》，战略性新兴及未来产业布局光子量子、智能网联汽车、商业航天、低空经济、氢能、生物医药、AI及大数据等，优势支柱产业涵盖半导体与集成电路、航空航天、新能源汽车、储能等。省级政府投资基金引导，关注陕西本地相关产业链标的。\n来源：地方政府
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-23@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-24@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:上海发布新型工业化“十五五”规划 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/2上海印发《上海市加快推进新型工业化构建现代化产业体系“十五五”规划》，大力发展AI手机、AI电脑、AI服务器等新型智能终端，升级5G-A“双万兆”城市，发展系列化重复使用商业火箭，前瞻布局6G。上海本地科技/算力/终端产业链政策催化。
+DESCRIPTION:9/2上海印发《上海市加快推进新型工业化构建现代化产业体系“十五五”规划》，大力发展AI手机、AI电脑、AI服务器等新型智能终端，升级5G-A“双万兆”城市，发展系列化重复使用商业火箭，前瞻布局6G。上海本地科技/算力/终端产业链政策催化。\n来源：地方政府
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-24@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-25@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:贵州省非常规天然气增储上产三年攻坚行动方案 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/2贵州省政府办公厅印发《贵州省非常规天然气增储上产三年攻坚行动方案（2026—2028年）》，聚焦页岩气、煤层气（煤矿瓦斯）全链条开发，目标2026年非常规天然气产量超9亿立方米、2028年超22亿立方米、天然气自给率超40%。天然气/煤层气/油服板块政策催化。
+DESCRIPTION:9/2贵州省政府办公厅印发《贵州省非常规天然气增储上产三年攻坚行动方案（2026—2028年）》，聚焦页岩气、煤层气（煤矿瓦斯）全链条开发，目标2026年非常规天然气产量超9亿立方米、2028年超22亿立方米、天然气自给率超40%。天然气/煤层气/油服板块政策催化。\n来源：地方政府
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-25@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-26@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:国家能源局部署新型电网建设重大任务 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/2国家能源局召开新型电网建设工作部署会，全面部署“十五五”时期新型电网建设重大任务，提出在新能源占比持续提高背景下加快电网基础设施升级与绿色高质量电能保障。特高压/电网设备/电力投资板块主题催化。
+DESCRIPTION:9/2国家能源局召开新型电网建设工作部署会，全面部署“十五五”时期新型电网建设重大任务，提出在新能源占比持续提高背景下加快电网基础设施升级与绿色高质量电能保障。特高压/电网设备/电力投资板块主题催化。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-26@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-27@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:智能化工大模型3.0 Pro正式发布 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:中科院大连化物所联合科大讯飞、阿里云等发布智能化工大模型3.0 Pro，面向化工研发与生产场景。AI+化工应用落地，关注化工AI/工业软件方向。
+DESCRIPTION:中科院大连化物所联合科大讯飞、阿里云等发布智能化工大模型3.0 Pro，面向化工研发与生产场景。AI+化工应用落地，关注化工AI/工业软件方向。\n来源：公司发布
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-27@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-28@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:青海省城市更新“十五五”规划印发 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:青海省政府印发《青海省城市更新“十五五”规划》（青政〔2026〕58号），部署全省城市更新行动，涉及老旧小区改造、基础设施与地下管网更新。关注西北基建、建材及城市更新相关产业链。
+DESCRIPTION:青海省政府印发《青海省城市更新“十五五”规划》（青政〔2026〕58号），部署全省城市更新行动，涉及老旧小区改造、基础设施与地下管网更新。关注西北基建、建材及城市更新相关产业链。\n来源：地方政府
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260902-28@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260902-29@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260903
 SUMMARY:【重点】8000亿元新型政策性金融工具“开闸” · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国家发改委部署加快推进2026年新型政策性金融工具投放，额度由2025年的5000亿元扩容至8000亿元，国开行9/2完成首批资金投放，预计撬动8-11万亿元总投资，首批资金落地浙江、云南、新疆、四川等地。宏观稳投资重大信号，关注基建、重大工程与民间投资板块。
+DESCRIPTION:国家发改委部署加快推进2026年新型政策性金融工具投放，额度由2025年的5000亿元扩容至8000亿元，国开行9/2完成首批资金投放，预计撬动8-11万亿元总投资，首批资金落地浙江、云南、新疆、四川等地。宏观稳投资重大信号，关注基建、重大工程与民间投资板块。\n来源：国家发展改革委
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-29@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-30@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260903T020000
 DTEND;TZID=Asia/Shanghai:20260903T030000
 SUMMARY:美联储经济状况褐皮书 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美联储发布最新一期经济状况褐皮书，揭示各辖区通胀下降与就业放缓背景下的真实运行状况。
+DESCRIPTION:美联储发布最新一期经济状况褐皮书，揭示各辖区通胀下降与就业放缓背景下的真实运行状况。\n来源：美联储
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-30@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-31@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260903T040500
 DTEND;TZID=Asia/Shanghai:20260903T050500
 SUMMARY:【重点】博通Q3财报（美股盘后） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:博通AVGO公布2026财年Q3业绩，市场关注AI营收（指引约160亿美元）与AI资本开支韧性，能否接棒英伟达，直接牵动AI/算力、CPO、光纤等板块情绪。
+DESCRIPTION:博通AVGO公布2026财年Q3业绩，市场关注AI营收（指引约160亿美元）与AI资本开支韧性，能否接棒英伟达，直接牵动AI/算力、CPO、光纤等板块情绪。\n来源：公司公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-31@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-32@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:特斯拉Cybercab发布会 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:特斯拉在奥斯汀举行Cybercab发布会，无方向盘无人驾驶出租车正式上线。
+DESCRIPTION:特斯拉在奥斯汀举行Cybercab发布会，无方向盘无人驾驶出租车正式上线。\n来源：公司公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-32@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-33@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:2026世界动力电池大会（宜宾） · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:特斯拉、宁德时代、比亚迪等120余家中外龙头企业携前沿产品亮相。
+DESCRIPTION:特斯拉、宁德时代、比亚迪等120余家中外龙头企业携前沿产品亮相。\n来源：公司官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-33@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-34@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:科创板新股申购：信诺维（创新药） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:信诺维是创新药企业，重点布局肿瘤精准治疗、多重耐药菌感染等领域。
+DESCRIPTION:信诺维是创新药企业，重点布局肿瘤精准治疗、多重耐药菌感染等领域。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-34@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-35@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260903T203000
 DTEND;TZID=Asia/Shanghai:20260903T213000
 SUMMARY:初请失业金 · 挑战者裁员 · 沃勒讲话 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:8/29当周初请失业金、8月挑战者企业裁员；美联储理事沃勒就通胀前景发言（转鹰表态值得关注）。
+DESCRIPTION:8/29当周初请失业金、8月挑战者企业裁员；美联储理事沃勒就通胀前景发言（转鹰表态值得关注）。\n来源：美联储
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-35@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-36@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260903T220000
 DTEND;TZID=Asia/Shanghai:20260903T230000
 SUMMARY:美国8月ISM非制造业PMI · 7月贸易帐 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:ISM非制造业PMI、7月贸易帐，检验服务业景气与外部平衡。
+DESCRIPTION:ISM非制造业PMI、7月贸易帐，检验服务业景气与外部平衡。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-36@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-37@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:第21届中国国际中小企业博览会·中博会（广州） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/3-6中博会在广州广交会展馆举办，工信部主办，印尼中小微企业部、联合国工发组织任主宾方，21个APEC成员经济体全部参展。聚焦人工智能赋能中小企业与专精特新，关注政策扶持与数字转型信号。
+DESCRIPTION:9/3-6中博会在广州广交会展馆举办，工信部主办，印尼中小微企业部、联合国工发组织任主宾方，21个APEC成员经济体全部参展。聚焦人工智能赋能中小企业与专精特新，关注政策扶持与数字转型信号。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-37@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-38@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:第三届移动物联网大会（上海） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/3第三届移动物联网大会在上海举办，聚焦5G-A/物联网、车联网、低空经济等场景应用与产业生态。通信/物联网板块事件催化。
+DESCRIPTION:9/3第三届移动物联网大会在上海举办，聚焦5G-A/物联网、车联网、低空经济等场景应用与产业生态。通信/物联网板块事件催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-38@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-39@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:2026中国（太原）国际能源产业博览会 · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:9/3-6太原能源产业博览会在山西潇河国际会议会展中心举办，山西省政府主办，聚焦能源革命、新能源、氢能、储能等低碳产业。山西能源产业链及新能源装备板块催化。
+DESCRIPTION:9/3-6太原能源产业博览会在山西潇河国际会议会展中心举办，山西省政府主办，聚焦能源革命、新能源、氢能、储能等低碳产业。山西能源产业链及新能源装备板块催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-39@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-40@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:2026低空经济发展大会（芜湖） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/3-5低空经济发展大会在安徽芜湖举办，聚焦通用航空产业创新、装备迭代升级与场景落地，展示整机制造、动力系统、配套设备等全产业链。低空经济板块事件催化，关注通航/无人机/空管产业链标的。
+DESCRIPTION:9/3-5低空经济发展大会在安徽芜湖举办，聚焦通用航空产业创新、装备迭代升级与场景落地，展示整机制造、动力系统、配套设备等全产业链。低空经济板块事件催化，关注通航/无人机/空管产业链标的。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-40@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-41@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:国家级零碳工厂建设全面启动 · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:工信部部署“十五五”期间培育建设500家零碳工厂，首批国家级零碳工厂申报启动，福建、河北等省先行落地管理办法与名单，制造业绿色转型进入实战阶段。关注绿电、储能、节能降碳及零碳园区概念。
+DESCRIPTION:工信部部署“十五五”期间培育建设500家零碳工厂，首批国家级零碳工厂申报启动，福建、河北等省先行落地管理办法与名单，制造业绿色转型进入实战阶段。关注绿电、储能、节能降碳及零碳园区概念。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-41@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-42@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:工信部等十部门印发《促进中小企业发展“十五五”规划》 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:工信部会同发改委、科技部、财政部、央行、证监会等十部门联合印发《促进中小企业发展“十五五”规划》，提出到2030年规上中小企业人均营收累计增长15%左右、研发费用年均增长8%以上，并持续培育专精特新企业。国家级政策文件，关注专精特新与中小盘成长方向。
+DESCRIPTION:工信部会同发改委、科技部、财政部、央行、证监会等十部门联合印发《促进中小企业发展“十五五”规划》，提出到2030年规上中小企业人均营收累计增长15%左右、研发费用年均增长8%以上，并持续培育专精特新企业。国家级政策文件，关注专精特新与中小盘成长方向。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-42@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-43@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:山西省“十五五”开发区发展规划印发 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:山西省政府印发《山西省“十五五”开发区发展规划》，布局高端装备制造、现代煤化工、现代能源、新能源汽车、先进材料、生物医药、低空经济等十大新兴产业，推动开发区集聚发展。关注山西新能源、煤化工与低空经济产业链。
+DESCRIPTION:山西省政府印发《山西省“十五五”开发区发展规划》，布局高端装备制造、现代煤化工、现代能源、新能源汽车、先进材料、生物医药、低空经济等十大新兴产业，推动开发区集聚发展。关注山西新能源、煤化工与低空经济产业链。\n来源：地方政府
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-43@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-44@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:全国碳市场配额分配方案印发 · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:生态环境部印发《全国碳排放权交易市场2025、2026年度发电行业以及2026年度钢铁、水泥、铝冶炼行业配额总量和分配方案》，碳市场覆盖行业进一步扩容。国家级碳交易政策，关注碳交易、碳监测及钢铁/水泥/电解铝减排龙头。
+DESCRIPTION:生态环境部印发《全国碳排放权交易市场2025、2026年度发电行业以及2026年度钢铁、水泥、铝冶炼行业配额总量和分配方案》，碳市场覆盖行业进一步扩容。国家级碳交易政策，关注碳交易、碳监测及钢铁/水泥/电解铝减排龙头。\n来源：生态环境部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260903-44@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260903-45@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260903
 DTEND;VALUE=DATE:20260904
 SUMMARY:人工智能中小企业创业支持计划启动 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:工信部宣布启动人工智能中小企业创业支持计划，计划用三年时间在行业应用、数据服务、智能算力等重点领域培育一批AI中小企业。AI产业政策加码，关注算力、行业应用与中小企业数字化服务板块。
+DESCRIPTION:工信部宣布启动人工智能中小企业创业支持计划，计划用三年时间在行业应用、数据服务、智能算力等重点领域培育一批AI中小企业。AI产业政策加码，关注算力、行业应用与中小企业数字化服务板块。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-45@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-46@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260904T030000
 DTEND;TZID=Asia/Shanghai:20260904T040000
 SUMMARY:FOMC票委哈玛克讲话 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:2026年FOMC票委、克利夫兰联储主席哈玛克在“联储社区”活动致开幕词，阐述政策立场，9月议息前重要信号。
+DESCRIPTION:2026年FOMC票委、克利夫兰联储主席哈玛克在“联储社区”活动致开幕词，阐述政策立场，9月议息前重要信号。\n来源：美联储
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-46@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-47@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260904T170000
 DTEND;TZID=Asia/Shanghai:20260904T180000
 SUMMARY:欧元区7月零售销售 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:欧元区7月零售销售月率，观察欧元区消费动能。
+DESCRIPTION:欧元区7月零售销售月率，观察欧元区消费动能。\n来源：公开信息
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-47@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-48@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260904T203000
 DTEND;TZID=Asia/Shanghai:20260904T213000
 SUMMARY:【重点】【重磅】美国8月非农 + 失业率 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:全周核心！北京时间20:30公布美国8月季调后非农就业人口、失业率及平均时薪。这是9月16日凌晨美联储议息前最后一份非农。上月7月非农意外转负（-2.3万，预期+8万），若再度爆冷或触发萨姆规则，9月加息预期将被改写，全球资产剧烈波动。
+DESCRIPTION:全周核心！北京时间20:30公布美国8月季调后非农就业人口、失业率及平均时薪。这是9月16日凌晨美联储议息前最后一份非农。上月7月非农意外转负（-2.3万，预期+8万），若再度爆冷或触发萨姆规则，9月加息预期将被改写，全球资产剧烈波动。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-48@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-49@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260904T093000
 DTEND;TZID=Asia/Shanghai:20260904T103000
 SUMMARY:中国流通领域重要生产资料价格 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国家统计局9/4 9:30发布流通领域重要生产资料市场价格变动情况，反映大宗商品与生产资料价格走势，对周期、资源类板块有指示意义。
+DESCRIPTION:国家统计局9/4 9:30发布流通领域重要生产资料市场价格变动情况，反映大宗商品与生产资料价格走势，对周期、资源类板块有指示意义。\n来源：国家统计局
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-49@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-50@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260905
 SUMMARY:2026中国国际消费电子博览会·电博会（青岛） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/4-6电博会在青岛举办，山东省政府主办，集中展示智能家居家电、人工智能、低空经济、智能网联新能源汽车、新型显示等新赛道。消费电子+AI终端催化相关产业链题材。
+DESCRIPTION:9/4-6电博会在青岛举办，山东省政府主办，集中展示智能家居家电、人工智能、低空经济、智能网联新能源汽车、新型显示等新赛道。消费电子+AI终端催化相关产业链题材。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-50@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-51@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260905
 SUMMARY:小米IFA 2026参展 · 小米18 Fold全球首发 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:小米首次参展德国柏林IFA 2026，首款阔折叠旗舰小米18 Fold全球首发，机器人CyberOne首次海外展出，大家电等产品正式规模化进入欧洲。消费电子出海与折叠屏产业链催化。
+DESCRIPTION:小米首次参展德国柏林IFA 2026，首款阔折叠旗舰小米18 Fold全球首发，机器人CyberOne首次海外展出，大家电等产品正式规模化进入欧洲。消费电子出海与折叠屏产业链催化。\n来源：小米官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-51@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-52@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260905
 SUMMARY:2026太原能源低碳发展论坛 · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:9/4-5太原论坛举办十周年大会，由外交部、国家能源局与山西省政府共同主办，主题“双碳引领能源转型”，聚焦能源革命与绿色低碳转型。能源双碳顶层会议，关注新能源、氢能与碳交易板块催化。
+DESCRIPTION:9/4-5太原论坛举办十周年大会，由外交部、国家能源局与山西省政府共同主办，主题“双碳引领能源转型”，聚焦能源革命与绿色低碳转型。能源双碳顶层会议，关注新能源、氢能与碳交易板块催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-52@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-53@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260905
 SUMMARY:第32次APEC中小企业部长会议（广州） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:亚太经合组织中小企业部长会议在广州举行，聚焦中小企业数字化转型、绿色发展与融资支持等议题，中国多部门参与。关注中小企业政策支持、专精特新与跨境电商/外贸链催化。
+DESCRIPTION:亚太经合组织中小企业部长会议在广州举行，聚焦中小企业数字化转型、绿色发展与融资支持等议题，中国多部门参与。关注中小企业政策支持、专精特新与跨境电商/外贸链催化。\n来源：海关总署
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-53@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-54@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260905
 SUMMARY:证监会就私募基金募集监管办法征求意见 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:中国证监会起草《私募投资基金募集监督管理办法（征求意见稿）》公开征求意见，意见反馈截止10/4，进一步压实募集环节适当性义务、防控募集阶段风险。金融监管政策，关注私募、创投及券商板块。
+DESCRIPTION:中国证监会起草《私募投资基金募集监督管理办法（征求意见稿）》公开征求意见，意见反馈截止10/4，进一步压实募集环节适当性义务、防控募集阶段风险。金融监管政策，关注私募、创投及券商板块。\n来源：中国证监会
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260904-54@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-55@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260905
 SUMMARY:七部门印发《促进数字化绿色化协同转型发展实施方案》 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:中央网信办、发改委、工信部等七部门联合印发《促进数字化绿色化协同转型发展实施方案（2026—2030年）》，扩大人工智能终端、智能可穿戴、绿色家电、绿色建材、新能源汽车等产品供给，持续推进智能工厂与绿色工厂创建，探索算力设施绿色升级。关注AI终端、算力、新能源车及节能环保板块。
+DESCRIPTION:中央网信办、发改委、工信部等七部门联合印发《促进数字化绿色化协同转型发展实施方案（2026—2030年）》，扩大人工智能终端、智能可穿戴、绿色家电、绿色建材、新能源汽车等产品供给，持续推进智能工厂与绿色工厂创建，探索算力设施绿色升级。关注AI终端、算力、新能源车及节能环保板块。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260905-55@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260904-56@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260904
+DTEND;VALUE=DATE:20260905
+SUMMARY:金融监管总局就《银行保险机构信息披露管理办法》征求意见 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:金融监管总局发布《银行保险机构信息披露管理办法（征求意见稿）》公开征求意见，健全银行保险机构法人治理、完善信息披露制度。金融监管规范化推进，关注银行保险板块治理与信披质量。\n来源：交易所公告
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260904-57@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260904
+DTEND;VALUE=DATE:20260905
+SUMMARY:《中华人民共和国保险法（修订草案）》公开征求意见 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:金融监管总局推动的《保险法（修订草案征求意见稿）》9/4起向社会公开征求意见，强化机构监管与穿透式监管、健全风险处置机制、加强消费者保护。保险行业基础性立法大修，关注保险板块监管预期。\n来源：交易所公告
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260905-58@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260905
 DTEND;VALUE=DATE:20260906
 SUMMARY:2026医保国谈启动 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:2026年国家基本医保药品目录谈判竞价及商保创新药目录价格协商工作于9/5在全国人大会议中心启动。医药行业年度大事，创新药降价谈判直接影响相关药企与创新药板块估值预期。
+DESCRIPTION:2026年国家基本医保药品目录谈判竞价及商保创新药目录价格协商工作于9/5在全国人大会议中心启动。医药行业年度大事，创新药降价谈判直接影响相关药企与创新药板块估值预期。\n来源：国家医保局
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260907-56@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260905-59@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260905
+DTEND;VALUE=DATE:20260906
+SUMMARY:发改委就《售电公司管理办法》公开征求意见 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:国家发展改革委发布《售电公司管理办法（公开征求意见稿）》修订版征求意见，加快推进全国统一电力市场建设，规范售电公司经营行为。电力市场化改革深化，关注售电侧、电力交易与综合能源服务板块。\n来源：国家发展改革委
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260905-60@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260905
+DTEND;VALUE=DATE:20260906
+SUMMARY:海口出台七条楼市新政 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:海口市住建局发布《关于促进房地产市场平稳健康发展若干措施的通知》，推出落户购房、企业员工购房、多孩家庭增购、“以旧换新”等七条楼市新政，落户之日起即享海南居民同等购房待遇。地方地产政策持续松绑，关注海南本地地产、基建及家居产业链。\n来源：地方政府
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260906-61@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260906
+DTEND;VALUE=DATE:20260907
+SUMMARY:湖北省委全会审议通过武汉区域科技创新中心建设实施意见 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:中共湖北省委十二届十二次全会审议通过《关于高水平建设武汉区域科技创新中心、加快建成中部地区崛起重要战略支点的实施意见》，聚焦科创平台、产业集群与中部崛起战略布局。关注武汉光谷、半导体、光通信及湖北本地科创概念板块。\n来源：地方政府
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-62@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260907
 DTEND;VALUE=DATE:20260908
 SUMMARY:【重点】【休市】美股劳动节休市（NYSE/纳斯达克） · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美国劳动节（Labor Day，每年9月第一个周一），纽约证券交易所、纳斯达克全天休市，9月8日（周二）恢复正常交易。美股休市期间中概股、美股期权及期货均暂停交易，关注节后开盘跳空与流动性变化。
+DESCRIPTION:美国劳动节（Labor Day，每年9月第一个周一），纽约证券交易所、纳斯达克全天休市，9月8日（周二）恢复正常交易。美股休市期间中概股、美股期权及期货均暂停交易，关注节后开盘跳空与流动性变化。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260907-57@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260907-63@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260907
 DTEND;VALUE=DATE:20260908
 SUMMARY:中国8月外汇储备 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:央行公布8月官方储备资产（外汇储备），观察跨境资金流动与汇率压力。
+DESCRIPTION:央行公布8月官方储备资产（外汇储备），观察跨境资金流动与汇率压力。\n来源：国家外汇管理局
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260907-58@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260907-64@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260907
 DTEND;VALUE=DATE:20260908
 SUMMARY:中国8月进出口贸易数据 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:海关总署惯例本月上旬发布8月外贸数据（预计9/7-9/9），观察出口韧性与贸易顺差变化，具体时点以官方为准。
+DESCRIPTION:海关总署惯例本月上旬发布8月外贸数据（预计9/7-9/9），观察出口韧性与贸易顺差变化，具体时点以官方为准。\n来源：海关总署
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260907-59@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260907-65@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260907T143000
 DTEND;TZID=Asia/Shanghai:20260907T153000
 SUMMARY:【重点】华为HarmonyOS 7 | Mate XT 2全场景新品发布会 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:华为举行全场景新品发布会，正式发布新一代三折叠旗舰Mate XT 2及鸿蒙HarmonyOS 7操作系统，首发搭载新一代麒麟芯片。作为年度科技重头戏，直接对标苹果秋季发布会，对鸿蒙概念、折叠屏、消费电子产业链形成题材催化，留意相关个股异动。
+DESCRIPTION:华为举行全场景新品发布会，正式发布新一代三折叠旗舰Mate XT 2及鸿蒙HarmonyOS 7操作系统，首发搭载新一代麒麟芯片。作为年度科技重头戏，直接对标苹果秋季发布会，对鸿蒙概念、折叠屏、消费电子产业链形成题材催化，留意相关个股异动。\n来源：华为官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260907-60@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260907-66@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260907
 DTEND;VALUE=DATE:20260908
 SUMMARY:深交所发布创业板芯片指数 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:深圳证券信息公司定于9/4发布创业板芯片指数（代码970096），反映创业板芯片领域上市公司（半导体材料/设备、芯片设计/制造等）股价变化。新指数发布将引导资金关注创业板芯片板块，关注指数权重成分股。
+DESCRIPTION:深圳证券信息公司定于9/4发布创业板芯片指数（代码970096），反映创业板芯片领域上市公司（半导体材料/设备、芯片设计/制造等）股价变化。新指数发布将引导资金关注创业板芯片板块，关注指数权重成分股。\n来源：中国证监会
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260907-61@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260907-67@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260907
 DTEND;VALUE=DATE:20260908
 SUMMARY:小米秋季旗舰新品发布会 · 小米18 Fold正式发布 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:小米于9/7晚在北京举行秋季旗舰新品发布会，首款中折叠旗舰小米18 Fold正式登场（搭载自研玄戒O3芯片），同场发布平板9 Pro Max及小米澎程系列新车。消费电子+自研芯片+汽车多线催化。
+DESCRIPTION:小米于9/7晚在北京举行秋季旗舰新品发布会，首款中折叠旗舰小米18 Fold正式登场（搭载自研玄戒O3芯片），同场发布平板9 Pro Max及小米澎程系列新车。消费电子+自研芯片+汽车多线催化。\n来源：小米官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260907-62@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260907-68@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260907
 DTEND;VALUE=DATE:20260908
 SUMMARY:央行开展5000亿元买断式逆回购操作 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:央行公告将于9/7以固定数量、利率招标、多重价位中标方式开展5000亿元3个月期（89天）买断式逆回购，保持银行体系流动性充裕，到期日12/5。流动性呵护操作，关注债市与银行板块资金面。
+DESCRIPTION:央行公告将于9/7以固定数量、利率招标、多重价位中标方式开展5000亿元3个月期（89天）买断式逆回购，保持银行体系流动性充裕，到期日12/5。流动性呵护操作，关注债市与银行板块资金面。\n来源：中国人民银行
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260908-63@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260907-69@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:Anthropic计划公布IPO招股说明书 · AI/科技
+CATEGORIES:AI/科技
+DESCRIPTION:AI大模型公司Anthropic计划在9/7后公布IPO招股说明书，并可能于9月下旬或10月初在美股上市，为全球AI行业标志性上市事件。关注AI算力、大模型产业链及美股科技板块估值联动。\n来源：公司发布
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-70@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:【重点】财政部拟发行3000亿元特别国债注资8家中央金融企业 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:财政部将于近期发行3000亿元特别国债，支持工行、农行、进出口银行、中国信保、中国人保、中国人寿、中国太平、中国再保等8家中央金融企业补充核心一级资本，其中工行拟募资不超1000亿元、农行拟募资不超1600亿元。银行与保险资本实力增强，关注银行板块估值修复及大盘蓝筹行情。\n来源：海关总署
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-71@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:恒生指数系列季度调整生效（纳入华虹宏力·潍柴动力等） · 市场事件
+CATEGORIES:市场事件
+DESCRIPTION:恒生指数公司季度检讨结果生效：恒指成分股由93只增至95只，纳入华虹宏力、潍柴动力；恒生科技指数纳入天数智芯、剔除同程旅行；恒生综合指数由534只增至580只，半导体/AI板块大幅扩容。成分股变动将带动指数基金调仓，关注被动资金流入方向。\n来源：恒生指数公司
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-72@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:中国首款AI辅助研发原创药艾普司韦获批上市 · AI/科技
+CATEGORIES:AI/科技
+DESCRIPTION:西湖大学、西湖实验室、西湖制药联合研发的盐酸伊司特韦片（艾普司韦）获批上市，系我国首款凭借AI辅助研发获批的原创药。AI制药赛道迎来里程碑催化，关注AI+医药、CRO与创新药板块。\n来源：交易所公告
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-73@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:【重点】工信部印发《信息通信行业发展“十五五”规划》 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:工信部印发信息通信行业“十五五”规划，强化高中低轨卫星星座协同，提升高轨宽窄带通信卫星系统容量，增强低轨卫星互联网、卫星通信系统能力。通信与卫星互联网板块迎顶层政策催化，关注运营商、光模块及卫星产业链。\n来源：工业和信息化部
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-74@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:六部门印发乡村振兴投入机制实施方案 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:农业农村部等六部门印发《坚持农业农村优先发展 完善乡村振兴投入机制实施方案》，优先保障农业农村领域一般公共预算投入，加大粮食主产区利益补偿，实施省际横向利益补偿。农业投资与粮食安全主线强化，关注种业、农机及农业基建板块。\n来源：农业农村部
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-75@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:新疆印发推动新能源有效投资提升消纳利用若干措施 · 新能源/电池
+CATEGORIES:新能源/电池
+DESCRIPTION:新疆发改委与工信厅、商务厅联合印发《关于推动新疆新能源有效投资和提升新能源利用率的若干措施》，聚焦扩大新能源有效投资、提升消纳利用水平。全国新能源大省出台政策组合拳，关注光伏、风电、储能及特高压外送板块。\n来源：国家发展改革委
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260907-76@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:最高法发布首部涉人工智能纠纷裁判规则意见 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:最高人民法院发布《关于依法审理涉人工智能纠纷案件的意见》，系首部由国家最高审判机构发布的AI司法裁判规则文件，共5部分24条，明确AI换脸、大数据杀熟、仿冒名人带货、自动驾驶、知识产权等裁判规则。关注AI内容平台、深度合成及数据服务板块合规影响。\n来源：最高人民法院
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260908-77@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260908
 DTEND;VALUE=DATE:20260909
 SUMMARY:第26届中国国际投资贸易洽谈会·投洽会（厦门） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:第二十六届投洽会9/8-11在厦门举行，商务部与福建省政府主办，123个国家和地区代表团参会，聚焦双向投资与产业链合作。作为对外开放与外资政策风向标，关注发布会释放的招商引资、对外开放新信号。
+DESCRIPTION:第二十六届投洽会9/8-11在厦门举行，商务部与福建省政府主办，123个国家和地区代表团参会，聚焦双向投资与产业链合作。作为对外开放与外资政策风向标，关注发布会释放的招商引资、对外开放新信号。\n来源：商务部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260908-64@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260908-78@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260908
 DTEND;VALUE=DATE:20260909
 SUMMARY:第十五届中国知识产权年会（北京） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:第十五届中国知识产权年会9/8-9在北京举行，主题“奋力推动十五五知识产权事业高质量发展”，聚焦AI与知识产权治理前沿议题（大模型训练数据版权、AIGC可版权性等）。关注AI监管、知识产权服务与科技板块。
+DESCRIPTION:第十五届中国知识产权年会9/8-9在北京举行，主题“奋力推动十五五知识产权事业高质量发展”，聚焦AI与知识产权治理前沿议题（大模型训练数据版权、AIGC可版权性等）。关注AI监管、知识产权服务与科技板块。\n来源：公司发布
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260908-65@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260908-79@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260908
 DTEND;VALUE=DATE:20260909
 SUMMARY:2026全球工业互联网大会（沈阳） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/8-10全球工业互联网大会在沈阳举办，聚焦工业互联网、智能制造与数字化转型，汇聚行业头部企业与专家。关注工业软件、工业互联网平台及智能制造板块。
+DESCRIPTION:9/8-10全球工业互联网大会在沈阳举办，聚焦工业互联网、智能制造与数字化转型，汇聚行业头部企业与专家。关注工业软件、工业互联网平台及智能制造板块。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260909-66@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260908-80@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260908
+DTEND;VALUE=DATE:20260909
+SUMMARY:加拿大对美200亿美元商品反制关税生效 · 海外宏观
+CATEGORIES:海外宏观
+DESCRIPTION:加拿大自9/8起对价值约200亿美元（276亿加元）的700余种美国商品加征报复性关税，税率15%/25%/50%三档，贸易摩擦再度升级。关注跨境贸易、航运及大宗商品相关板块情绪扰动。\n来源：美国劳工部
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260908-81@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260908
+DTEND;VALUE=DATE:20260909
+SUMMARY:江波龙港股上市（9/8挂牌） · 市场事件
+CATEGORIES:市场事件
+DESCRIPTION:存储芯片厂商江波龙在港交所挂牌上市，拟发行2607万股H股。A股已有上市主体的港股二次融资，体现存储产业链资本化加速，关注存储芯片板块情绪。\n来源：交易所公告
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260909-82@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260909T093000
 DTEND;TZID=Asia/Shanghai:20260909T103000
 SUMMARY:【重点】中国8月CPI · PPI · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国家统计局公布8月居民消费价格指数与工业生产者价格指数，国内通胀最新读数，PPI走势关系工业企业盈利与周期板块。
+DESCRIPTION:国家统计局公布8月居民消费价格指数与工业生产者价格指数，国内通胀最新读数，PPI走势关系工业企业盈利与周期板块。\n来源：国家统计局
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260909-67@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260909-83@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 SUMMARY:【重点】2026中国国际服务贸易交易会·服贸会（北京） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:2026年服贸会9/9-13在北京首钢园举办，国家主场经贸盛会，首次设立“中国服务”展区和“出海服务”专区，180余项创新成果集中亮相。作为十五五开局年的重要经贸平台，关注服务贸易政策信号与跨境投资动向。
+DESCRIPTION:2026年服贸会9/9-13在北京首钢园举办，国家主场经贸盛会，首次设立“中国服务”展区和“出海服务”专区，180余项创新成果集中亮相。作为十五五开局年的重要经贸平台，关注服务贸易政策信号与跨境投资动向。\n来源：商务部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260909-68@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260909-84@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 SUMMARY:第27届中国光博会CIOE · 深圳国际半导体展 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/9-11深圳国际会展中心三展联动（光博会CIOE+IC创新博览会+深圳国际电子展），规模32万㎡、超5000家参展企业。聚焦AI网络互联、先进封装、AI PCB等半导体核心赛道，关注国产替代与算力链催化。
+DESCRIPTION:9/9-11深圳国际会展中心三展联动（光博会CIOE+IC创新博览会+深圳国际电子展），规模32万㎡、超5000家参展企业。聚焦AI网络互联、先进封装、AI PCB等半导体核心赛道，关注国产替代与算力链催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260909-69@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260909-85@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 SUMMARY:2026外滩大会 Inclusion · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/9-12以“共创AI新经济”为主题的2026外滩大会在上海黄浦世博园区举行，已吸引超5万人报名、50多个国家和地区参与，聚焦AI应用、金融科技与AI新经济生态。AI应用落地与金融科技板块催化。
+DESCRIPTION:9/9-12以“共创AI新经济”为主题的2026外滩大会在上海黄浦世博园区举行，已吸引超5万人报名、50多个国家和地区参与，聚焦AI应用、金融科技与AI新经济生态。AI应用落地与金融科技板块催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260910-70@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260909-86@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:财政部续发50年期超长期特别国债 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:财政部拟于9/9续发50年期超长期特别国债，为年内超长期特别国债发行安排之一，为重大项目建设提供长期资金，关注债市供给与长端利率波动对市场流动性的影响。\n来源：财政部
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260909-87@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:第11届“一带一路”高峰论坛（香港） · 市场事件
+CATEGORIES:市场事件
+DESCRIPTION:香港特区政府与香港贸发局合办的第11届“一带一路”高峰论坛9/9-9/10在港举行，聚焦“出海”及新兴市场机遇，深化共建“一带一路”合作。关注港股出海产业链、基建与东盟相关板块。\n来源：新华社
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260909-88@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:甲骨文发布2027财年Q1财报（美东盘后） · 市场事件
+CATEGORIES:市场事件
+DESCRIPTION:甲骨文于美东9/9盘后（北京时间9/10凌晨）发布财报，市场关注云基础设施与AI算力订单转化情况。作为AI算力链核心标的，财报或影响美股云计算与AI板块情绪。\n来源：公司财报
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260910-89@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260910T010000
 DTEND;TZID=Asia/Shanghai:20260910T020000
 SUMMARY:【重点】苹果2026秋季发布会 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:北京时间9月10日凌晨1点，苹果在Apple Park举行秋季发布会，为继任CEO首场硬件发布会，预计发布iPhone 18 Pro系列及折叠屏机型，产业链催化值得关注。
+DESCRIPTION:北京时间9月10日凌晨1点，苹果在Apple Park举行秋季发布会，为继任CEO首场硬件发布会，预计发布iPhone 18 Pro系列及折叠屏机型，产业链催化值得关注。\n来源：苹果官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260910-71@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260910-90@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260910T201500
 DTEND;TZID=Asia/Shanghai:20260910T211500
 SUMMARY:【重点】欧洲央行利率决议 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:欧洲央行公布9月利率决议，市场普遍预期按兵不动，聚焦决策者对通胀路径的最新评估与政策信号。
+DESCRIPTION:欧洲央行公布9月利率决议，市场普遍预期按兵不动，聚焦决策者对通胀路径的最新评估与政策信号。\n来源：欧洲央行
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260910-72@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260910-91@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260910T203000
 DTEND;TZID=Asia/Shanghai:20260910T213000
 SUMMARY:美国8月PPI · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美国8月生产者价格指数，前瞻核心PCE走势，为美联储9月议息提供通胀参考。
+DESCRIPTION:美国8月生产者价格指数，前瞻核心PCE走势，为美联储9月议息提供通胀参考。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260910-73@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260910-92@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260910
 DTEND;VALUE=DATE:20260911
 SUMMARY:上期所三大商品期权上市（热卷/不锈钢/低硫燃料油） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:上期所热轧卷板、不锈钢、低硫燃料油期权正式挂牌交易，进一步丰富黑色金属与能源板块风险管理工具。关注相关期货产业链及期货公司概念，品种波动或加大。
+DESCRIPTION:上期所热轧卷板、不锈钢、低硫燃料油期权正式挂牌交易，进一步丰富黑色金属与能源板块风险管理工具。关注相关期货产业链及期货公司概念，品种波动或加大。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260910-74@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260910-93@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260910
 DTEND;VALUE=DATE:20260911
 SUMMARY:2026中国国际矿业大会（天津） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/10-12第二十八届中国国际矿业大会在天津梅江会展中心举办，主题“合作共赢，绿色智能”，聚焦矿产勘探开发、绿色矿业与产业链合作。关注有色、贵金属及资源类板块。
+DESCRIPTION:9/10-12第二十八届中国国际矿业大会在天津梅江会展中心举办，主题“合作共赢，绿色智能”，聚焦矿产勘探开发、绿色矿业与产业链合作。关注有色、贵金属及资源类板块。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260911-75@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260911-94@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260911T203000
 DTEND;TZID=Asia/Shanghai:20260911T213000
 SUMMARY:【重点】美国8月CPI · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美联储9月议息前最后一份CPI数据。若通胀再度反弹，9月加息预期将显著升温，直接影响全球风险资产定价。
+DESCRIPTION:美联储9月议息前最后一份CPI数据。若通胀再度反弹，9月加息预期将显著升温，直接影响全球风险资产定价。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260911-76@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260911-95@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260911
 DTEND;VALUE=DATE:20260912
 SUMMARY:2026浦江创新论坛（上海） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/11-14第十九届浦江创新论坛在上海举办，由科技部与上海市政府共同主办，主题“共享创新 共塑未来：新一轮科技革命背景下的创新合作”，聚焦前沿科技与创新生态。关注硬科技、科创板块催化。
+DESCRIPTION:9/11-14第十九届浦江创新论坛在上海举办，由科技部与上海市政府共同主办，主题“共享创新 共塑未来：新一轮科技革命背景下的创新合作”，聚焦前沿科技与创新生态。关注硬科技、科创板块催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260912-77@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260912-96@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260912
 DTEND;VALUE=DATE:20260913
 SUMMARY:中国8月社融 · 新增信贷 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:央行公布8月社会融资规模与新增人民币贷款（本月预计9/12前后），观察宽信用力度与实体融资需求。
+DESCRIPTION:央行公布8月社会融资规模与新增人民币贷款（本月预计9/12前后），观察宽信用力度与实体融资需求。\n来源：中国人民银行
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260914-78@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260912-97@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:第十八届金砖国家领导人会晤（新德里） · 海外宏观
+CATEGORIES:海外宏观
+DESCRIPTION:9/12-13第十八届金砖国家领导人会晤在印度新德里举行，主题为“构建韧性、创新、合作与可持续发展”，恰逢金砖合作机制成立20周年。关注新兴市场、人民币国际化及地缘与大宗商品板块动向。\n来源：中国人民银行
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260914-98@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260914T093000
 DTEND;TZID=Asia/Shanghai:20260914T103000
 SUMMARY:中国流通领域重要生产资料价格 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国家统计局公布流通领域重要生产资料市场价格变动情况，观察大宗商品与中游价格。
+DESCRIPTION:国家统计局公布流通领域重要生产资料市场价格变动情况，观察大宗商品与中游价格。\n来源：国家统计局
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260914-79@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260914-99@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260914
 DTEND;VALUE=DATE:20260915
 SUMMARY:国家网络安全宣传周·网安高峰论坛（济南） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:2026年国家网络安全宣传周9/14-20在全国举行，网络安全技术高峰论坛9/14在山东国际会展中心举办，将发布一系列网络安全领域重磅成果，关注网络安全、数据安全、信创板块催化。
+DESCRIPTION:2026年国家网络安全宣传周9/14-20在全国举行，网络安全技术高峰论坛9/14在山东国际会展中心举办，将发布一系列网络安全领域重磅成果，关注网络安全、数据安全、信创板块催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260915-80@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260915-100@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260915
 DTEND;VALUE=DATE:20260916
 SUMMARY:【重点】中国1-8月经济数据发布 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国新办发布会公布8月规模以上工业增加值、社会消费品零售、固定资产投资、房地产等1-8月累计经济数据，国内经济成色总检阅。
+DESCRIPTION:国新办发布会公布8月规模以上工业增加值、社会消费品零售、固定资产投资、房地产等1-8月累计经济数据，国内经济成色总检阅。\n来源：地方政府
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260915-81@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260915-101@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260915T093000
 DTEND;TZID=Asia/Shanghai:20260915T103000
 SUMMARY:中国70城房价月度报告 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国家统计局公布商品住宅销售价格指数月度报告，观察地产价格与销售端变化。
+DESCRIPTION:国家统计局公布商品住宅销售价格指数月度报告，观察地产价格与销售端变化。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260915-82@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260915-102@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260915
 DTEND;VALUE=DATE:20260916
 SUMMARY:第五届北斗规模应用国际峰会（株洲） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/15-16第五届北斗规模应用国际峰会在湖南株洲举行，由国家发改委、工信部、湖南省政府等联合主办，主题“同世界·共北斗——赋能全球”，将揭牌北斗规模应用国际交流促进中心（永久落户株洲）。北斗导航/卫星应用板块产业催化，关注北斗全产业链与时空信息服务。
+DESCRIPTION:9/15-16第五届北斗规模应用国际峰会在湖南株洲举行，由国家发改委、工信部、湖南省政府等联合主办，主题“同世界·共北斗——赋能全球”，将揭牌北斗规模应用国际交流促进中心（永久落户株洲）。北斗导航/卫星应用板块产业催化，关注北斗全产业链与时空信息服务。\n来源：工业和信息化部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260915-83@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260915-103@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260915
 DTEND;VALUE=DATE:20260916
 SUMMARY:第十三届北京香山论坛 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/15-17第十三届北京香山论坛在北京国际会议中心举行，主题“凝聚稳定共识 同促安全治理”，安排多场全体会议。国际安全对话平台，关注军工、安防及地缘安全主题催化。
+DESCRIPTION:9/15-17第十三届北京香山论坛在北京国际会议中心举行，主题“凝聚稳定共识 同促安全治理”，安排多场全体会议。国际安全对话平台，关注军工、安防及地缘安全主题催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260915-84@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260915-104@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260915
 DTEND;VALUE=DATE:20260916
 SUMMARY:2026中国国际化工展览会（上海） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/15-17第二十三届中国国际化工展览会在上海新国际博览中心举行，设能源与石油化工等十大核心展区，总展出面积约15万㎡。化工龙头新品与绿色化工转型风向标，关注化工、新材料产业链。
+DESCRIPTION:9/15-17第二十三届中国国际化工展览会在上海新国际博览中心举行，设能源与石油化工等十大核心展区，总展出面积约15万㎡。化工龙头新品与绿色化工转型风向标，关注化工、新材料产业链。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260916-85@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260916-105@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260916T020000
 DTEND;TZID=Asia/Shanghai:20260916T030000
 SUMMARY:【重点】【全年最重磅】美联储9月利率决议+点阵图 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:北京时间9/17凌晨02:00（美东9/16 14:00），美联储公布9月利率决议、最新点阵图与经济预测（SEP），随后主席沃什举行新闻发布会。这是年度季度会议（美东9/15-16召开），市场9月加息与否在此定案，全球资产迎来超级波动窗口。
+DESCRIPTION:北京时间9/17凌晨02:00（美东9/16 14:00），美联储公布9月利率决议、最新点阵图与经济预测（SEP），随后主席沃什举行新闻发布会。这是年度季度会议（美东9/15-16召开），市场9月加息与否在此定案，全球资产迎来超级波动窗口。\n来源：美联储
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260916-86@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260916-106@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260916T090000
 DTEND;TZID=Asia/Shanghai:20260916T100000
 SUMMARY:vivo开发者大会 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:vivo举行开发者大会，发布新一代天玑9600机型及端侧AI能力，关注消费电子与AI终端应用方向。
+DESCRIPTION:vivo举行开发者大会，发布新一代天玑9600机型及端侧AI能力，关注消费电子与AI终端应用方向。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260916-87@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260916-107@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260916T203000
 DTEND;TZID=Asia/Shanghai:20260916T213000
 SUMMARY:美国8月零售销售 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美国8月零售销售月率（美东8:30公布），核心零售销售是消费动能的关键指标，直接反映美国内需强弱，为美联储议息后的经济评估提供参考。
+DESCRIPTION:美国8月零售销售月率（美东8:30公布），核心零售销售是消费动能的关键指标，直接反映美国内需强弱，为美联储议息后的经济评估提供参考。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260916-88@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260916-108@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260916
 DTEND;VALUE=DATE:20260917
 SUMMARY:零跑汽车2026年度技术发布会 · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:零跑汽车举行2026年度技术发布会，推出行业第一梯队水平的智能辅助驾驶世界模型，并发布三电领域多项最新技术成果。新能源汽车智能化竞争升级，关注智驾产业链与零跑供应链。
+DESCRIPTION:零跑汽车举行2026年度技术发布会，推出行业第一梯队水平的智能辅助驾驶世界模型，并发布三电领域多项最新技术成果。新能源汽车智能化竞争升级，关注智驾产业链与零跑供应链。\n来源：公司官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260917-89@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260916-109@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260916
+DTEND;VALUE=DATE:20260917
+SUMMARY:香港首个五年发展规划·新施政报告公布 · 市场事件
+CATEGORIES:市场事件
+DESCRIPTION:香港特首将公布香港首个五年发展规划与新一份施政报告，为香港宏观发展谋篇布局，对接国家“十五五”规划。关注港股基建、金融、科创及本地消费板块政策预期。\n来源：交易所公告
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260917-110@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260917T190000
 DTEND;TZID=Asia/Shanghai:20260917T200000
 SUMMARY:英国央行利率决议 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:英国央行公布利率决议与会议纪要，观察英央行对通胀与降息路径的最新立场。
+DESCRIPTION:英国央行公布利率决议与会议纪要，观察英央行对通胀与降息路径的最新立场。\n来源：英国央行
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260917-90@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260917-111@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260917
 DTEND;VALUE=DATE:20260918
 SUMMARY:【重点】华为全联接大会HUAWEI CONNECT 2026（上海） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:第十一届华为全联接大会9/17-19在上海世博展览馆举办，聚焦AI算力基础设施、昇腾超节点等核心产品，是下半年AI算力链最重要的产业催化之一，关注国产算力、AI服务器、光模块等相关产业链。
+DESCRIPTION:第十一届华为全联接大会9/17-19在上海世博展览馆举办，聚焦AI算力基础设施、昇腾超节点等核心产品，是下半年AI算力链最重要的产业催化之一，关注国产算力、AI服务器、光模块等相关产业链。\n来源：华为官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260917-91@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260917-112@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260917
 DTEND;VALUE=DATE:20260918
 SUMMARY:第23届中国—东盟博览会（南宁） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:第23届中国—东盟博览会9/17-21在南宁举行，中国—东盟商务与投资峰会9/17-18同步举办，聚焦RCEP经贸合作，关注跨境贸易与东盟出口链。
+DESCRIPTION:第23届中国—东盟博览会9/17-21在南宁举行，中国—东盟商务与投资峰会9/17-18同步举办，聚焦RCEP经贸合作，关注跨境贸易与东盟出口链。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260917-92@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260917-113@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260917
 DTEND;VALUE=DATE:20260918
 SUMMARY:2026中国汽车产业发展（泰达）国际论坛 · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:9/17-20泰达汽车论坛在天津滨海新区举办，中汽研、中国汽车工程学会等联合主办，年度主题“智绿筑基·生态蓄势·共创共赢”。汽车产业高端智库风向标，关注智能网联、电动化与产业链政策信号。
+DESCRIPTION:9/17-20泰达汽车论坛在天津滨海新区举办，中汽研、中国汽车工程学会等联合主办，年度主题“智绿筑基·生态蓄势·共创共赢”。汽车产业高端智库风向标，关注智能网联、电动化与产业链政策信号。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260917-93@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260917-114@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260917
 DTEND;VALUE=DATE:20260918
 SUMMARY:2026张江药谷大会 · 上海国际生物医药产业周 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:9/17-20上海国际生物医药产业周在张江科学会堂举行，立足上海辐射全球，打造生物医药BD交易与产业创新生态。医药板块政策与创新药管线催化窗口。
+DESCRIPTION:9/17-20上海国际生物医药产业周在张江科学会堂举行，立足上海辐射全球，打造生物医药BD交易与产业创新生态。医药板块政策与创新药管线催化窗口。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260918-94@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260918-115@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260918
 DTEND;VALUE=DATE:20260919
 SUMMARY:【重点】【交割日】中金所股指期货 · 股指期权交割 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:每月第三个星期五，沪深300/上证50/中证500/中证1000股指期货（IF/IH/IC/IM）与股指期权（IO/HO/MO）同步交割。当日权重股尾盘易现异动，注意交割日效应与短线波动。
+DESCRIPTION:每月第三个星期五，沪深300/上证50/中证500/中证1000股指期货（IF/IH/IC/IM）与股指期权（IO/HO/MO）同步交割。当日权重股尾盘易现异动，注意交割日效应与短线波动。\n来源：中国证监会
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260918-95@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260918-116@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260918
 DTEND;VALUE=DATE:20260919
 SUMMARY:【日本央行或加息】日本央行利率决议（9/17-18） · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:日本央行公布利率决议与展望报告，会议9/17-18举行，北京时间9/18公布。市场对9月加息概率定价已升至74%，若如期加息将是年内第二次，日元与亚太资产将剧烈波动，关注行长植田和男发布会措辞。
+DESCRIPTION:日本央行公布利率决议与展望报告，会议9/17-18举行，北京时间9/18公布。市场对9月加息概率定价已升至74%，若如期加息将是年内第二次，日元与亚太资产将剧烈波动，关注行长植田和男发布会措辞。\n来源：日本央行
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260918-96@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260918-117@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260918T211500
 DTEND;TZID=Asia/Shanghai:20260918T221500
 SUMMARY:美国8月工业产出 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美联储公布8月工业产出月率与产能利用率（美东9:15公布），观察美国制造业生产动能与供应链修复情况，是评估美国经济韧性的重要生产端指标。
+DESCRIPTION:美联储公布8月工业产出月率与产能利用率（美东9:15公布），观察美国制造业生产动能与供应链修复情况，是评估美国经济韧性的重要生产端指标。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260920-97@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260918-118@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260918
+DTEND;VALUE=DATE:20260919
+SUMMARY:富时罗素指数季度调整生效（纳入中微公司·生益科技等） · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:富时罗素全球指数系列季度调整于9/18收盘后生效，纳入中微公司、生益科技等A股科技龙头。作为全球指数基金的跟踪基准，纳入将带动被动资金买入，关注半导体材料与设备板块资金流向。\n来源：富时罗素
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260920-119@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260920
 DTEND;VALUE=DATE:20260921
 SUMMARY:2026世界制造业大会（合肥） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:2026世界制造业大会9/20-23在合肥滨湖国际会展中心举办，主题“智造世界·创造美好”，聚焦智能制造与先进制造，关注工业母机、机器人、智能制造装备板块。
+DESCRIPTION:2026世界制造业大会9/20-23在合肥滨湖国际会展中心举办，主题“智造世界·创造美好”，聚焦智能制造与先进制造，关注工业母机、机器人、智能制造装备板块。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260921-98@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260920-120@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260920
+DTEND;VALUE=DATE:20260921
+SUMMARY:《国务院关于修改〈住房公积金管理条例〉的决定》施行 · 国内/政策
+CATEGORIES:国内/政策
+DESCRIPTION:新修订的《住房公积金管理条例》自9/20起施行，共20条，拓宽公积金提取和使用范围、提升管理服务效能、强化风险防控、扩大制度覆盖面。关注房地产、消费与公积金相关服务板块。\n来源：国务院
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260921-121@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260921T090000
 DTEND;TZID=Asia/Shanghai:20260921T100000
 SUMMARY:【重点】中国9月LPR报价 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:全国银行间同业拆借中心公布9月贷款市场报价利率（LPR），1年期与5年期以上LPR是否调整，关系实体经济融资成本与地产按揭利率，是观察货币政策取向的重要窗口。
+DESCRIPTION:全国银行间同业拆借中心公布9月贷款市场报价利率（LPR），1年期与5年期以上LPR是否调整，关系实体经济融资成本与地产按揭利率，是观察货币政策取向的重要窗口。\n来源：中国人民银行
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260921-99@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260921-122@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260921
 DTEND;VALUE=DATE:20260922
 SUMMARY:第二届上海AI应用生态大会 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/21-22第二届上海AI应用生态大会举行，主题“海纳智能·应用领航”，聚焦企业智能体技术实践与应用落地。AI应用、Agent生态板块催化，关注企业级AI落地进展。
+DESCRIPTION:9/21-22第二届上海AI应用生态大会举行，主题“海纳智能·应用领航”，聚焦企业智能体技术实践与应用落地。AI应用、Agent生态板块催化，关注企业级AI落地进展。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260922-100@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260922-123@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260922
 DTEND;VALUE=DATE:20260923
 SUMMARY:【重点】2026云栖大会（杭州） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:阿里云2026云栖大会9/22-24在杭州云栖小镇举办，主题“智以致用”，以Agentic AI为核心，系统呈现AI从底层算力到产业应用的落地，关注阿里AI链、国产大模型、算力与云服务板块。
+DESCRIPTION:阿里云2026云栖大会9/22-24在杭州云栖小镇举办，主题“智以致用”，以Agentic AI为核心，系统呈现AI从底层算力到产业应用的落地，关注阿里AI链、国产大模型、算力与云服务板块。\n来源：公司发布
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260922-101@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260922-124@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260922
 DTEND;VALUE=DATE:20260923
 SUMMARY:【重点】2026世界新能源汽车大会（海口） · 新能源/电池
 CATEGORIES:新能源/电池
-DESCRIPTION:9/22-24世界新能源汽车大会在海口举行，年度主题“转型升级·韧性增长”，由中国科协等主办。全球新能源汽车技术路线与产业链最新风向，关注电池、智能驾驶与出口政策催化。
+DESCRIPTION:9/22-24世界新能源汽车大会在海口举行，年度主题“转型升级·韧性增长”，由中国科协等主办。全球新能源汽车技术路线与产业链最新风向，关注电池、智能驾驶与出口政策催化。\n来源：新华社
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260922-102@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260922-125@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260922
 DTEND;VALUE=DATE:20260923
 SUMMARY:2026北京文化论坛 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:经国务院批准，由中宣部、北京市委、北京市政府共同主办的2026北京文化论坛于9/22-23在京举办。国家级文化领域论坛，关注文化传媒、数字内容及文旅板块政策预期。
+DESCRIPTION:经国务院批准，由中宣部、北京市委、北京市政府共同主办的2026北京文化论坛于9/22-23在京举办。国家级文化领域论坛，关注文化传媒、数字内容及文旅板块政策预期。\n来源：国务院
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260923-103@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260923-126@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260923
 DTEND;VALUE=DATE:20260924
 SUMMARY:【重点】【交割日】ETF期权交割（50/300/500/科创/创业板） · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:每月第四个星期三，上交所/深交所ETF期权（50ETF、300ETF、500ETF、科创50、创业板ETF等）统一到期交割。持有相关ETF及成分股留意到期日波动。
+DESCRIPTION:每月第四个星期三，上交所/深交所ETF期权（50ETF、300ETF、500ETF、科创50、创业板ETF等）统一到期交割。持有相关ETF及成分股留意到期日波动。\n来源：中国证监会
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260923-104@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260923-127@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260923
 DTEND;VALUE=DATE:20260924
 SUMMARY:第五届全球数字贸易博览会（杭州） · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:9/23-27第五届全球数字贸易博览会在杭州大会展中心举办，由浙江省政府与商务部共同主办，年度主题“在数贸会遇见AI未来”，面积超17万平方米、超1600家企业参展。关注数字经济、跨境电商、AI应用及丝路电商板块。
+DESCRIPTION:9/23-27第五届全球数字贸易博览会在杭州大会展中心举办，由浙江省政府与商务部共同主办，年度主题“在数贸会遇见AI未来”，面积超17万平方米、超1600家企业参展。关注数字经济、跨境电商、AI应用及丝路电商板块。\n来源：商务部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260924-105@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260924-128@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260924T190000
 DTEND;TZID=Asia/Shanghai:20260924T200000
 SUMMARY:小米18系列新品发布会 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:小米举行年度旗舰发布会，发布小米18系列新品，搭载玄戒O3芯片，关注小米产业链、芯片与消费电子板块联动。
+DESCRIPTION:小米举行年度旗舰发布会，发布小米18系列新品，搭载玄戒O3芯片，关注小米产业链、芯片与消费电子板块联动。\n来源：小米官方
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260925-106@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260925-129@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260925
 DTEND;VALUE=DATE:20260926
 SUMMARY:【重点】【休市】A股中秋节休市 · 港股通关闭 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:中秋节法定假期（9月25日周五至27日周日），沪深北交易所全天休市，9月28日（周一）起照常开市；港股通同步关闭（9月25-27日不提供服务）。注意：港股本日正常交易。节前最后一个交易日，注意流动性收缩与持仓过节风险。
+DESCRIPTION:中秋节法定假期（9月25日周五至27日周日），沪深北交易所全天休市，9月28日（周一）起照常开市；港股通同步关闭（9月25-27日不提供服务）。注意：港股本日正常交易。节前最后一个交易日，注意流动性收缩与持仓过节风险。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260926-107@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260926-130@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260926
 DTEND;VALUE=DATE:20260927
 SUMMARY:【休市】港股中秋节翌日公众假期 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:香港中秋节翌日（农历八月十六）为公众假期，港股休市。因本日为周六，与正常周末休市重叠；下周一（9月28日）港股正常开市。A股中秋假期持续至9月27日，9月28日同步开市。
+DESCRIPTION:香港中秋节翌日（农历八月十六）为公众假期，港股休市。因本日为周六，与正常周末休市重叠；下周一（9月28日）港股正常开市。A股中秋假期持续至9月27日，9月28日同步开市。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260928-108@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260928-131@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260928
 DTEND;VALUE=DATE:20260929
 SUMMARY:A股 · 港股中秋节后首个交易日 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:中秋节假期结束，沪深北交易所及港股同步恢复正常交易。节前A50交割叠加假期海外市场波动，注意节后开盘跳空与补涨补跌效应。
+DESCRIPTION:中秋节假期结束，沪深北交易所及港股同步恢复正常交易。节前A50交割叠加假期海外市场波动，注意节后开盘跳空与补涨补跌效应。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260928-109@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260928-132@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260928
 DTEND;VALUE=DATE:20260929
 SUMMARY:荣耀Magic9系列新品发布会 · AI/科技
 CATEGORIES:AI/科技
-DESCRIPTION:荣耀定于9月28日发布新一代旗舰Magic9系列，与德国ARRI阿莱联名影像，配备大容量青海湖电池。消费电子新机密集发布期，关注供应链与终端销量预期。
+DESCRIPTION:荣耀定于9月28日发布新一代旗舰Magic9系列，与德国ARRI阿莱联名影像，配备大容量青海湖电池。消费电子新机密集发布期，关注供应链与终端销量预期。\n来源：地方政府
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260930-110@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260929-133@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260929
+DTEND;VALUE=DATE:20260930
+SUMMARY:2026中国互联网基础资源大会（北京） · AI/科技
+CATEGORIES:AI/科技
+DESCRIPTION:2026（第七届）中国互联网基础资源大会9/29在京举办，深化人工智能与互联网融合互促，推动智能体互联网等新兴技术落地。关注AI+互联网、IPv6、域名与互联网基础设施相关板块。\n来源：新华社
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20260930-134@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20260930
 DTEND;VALUE=DATE:20261001
 SUMMARY:【重点】【交割日】富时中国A50股指期货交割 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:新交所富时中国A50指数期货月度交割（每月倒数第二个工作日，2026年9月预计为9/30，以官方公告为准）。A50追踪A股权重龙头，交割日往往扰动A股开盘情绪，叠加月底资金面波动，短线注意权重股异动。
+DESCRIPTION:新交所富时中国A50指数期货月度交割（每月倒数第二个工作日，2026年9月预计为9/30，以官方公告为准）。A50追踪A股权重龙头，交割日往往扰动A股开盘情绪，叠加月底资金面波动，短线注意权重股异动。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260930-111@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260930-135@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260930T020000
 DTEND;TZID=Asia/Shanghai:20260930T030000
 SUMMARY:美联储9月会议纪要公布 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:北京时间凌晨公布美联储9月FOMC会议纪要（美东9/16会议），进一步披露委员们对利率路径、通胀与就业的讨论细节，可捕捉降息/加息节奏的更多线索。
+DESCRIPTION:北京时间凌晨公布美联储9月FOMC会议纪要（美东9/16会议），进一步披露委员们对利率路径、通胀与就业的讨论细节，可捕捉降息/加息节奏的更多线索。\n来源：美联储
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20260930-112@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260930-136@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20260930T203000
 DTEND;TZID=Asia/Shanghai:20260930T213000
 SUMMARY:【重点】美国8月PCE物价指数 · 二季度GDP终值 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:BEA发布8月个人消费支出（PCE）物价指数与个人收入，PCE是美联储最看重的通胀指标，直接左右后续加息节奏；同日公布二季度GDP第三次估计（终值）及企业利润。核心PCE若超预期，9月刚议息完的市场将重新定价12月加息概率。
+DESCRIPTION:BEA发布8月个人消费支出（PCE）物价指数与个人收入，PCE是美联储最看重的通胀指标，直接左右后续加息节奏；同日公布二季度GDP第三次估计（终值）及企业利润。核心PCE若超预期，9月刚议息完的市场将重新定价12月加息概率。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20261001-113@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20260930-137@touzirili.com
+DTSTAMP:20260907T153830Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:南京国际汽车展览会·江苏AI终端产品展（南京） · 新能源/电池
+CATEGORIES:新能源/电池
+DESCRIPTION:2026南京国际汽车展览会暨江苏人工智能终端产品展览会9/30-10/4在南京国际博览中心同期举办，双展联动覆盖新能源整车与AI终端产业链。关注汽车智能化、AI硬件与消费电子板块。\n来源：新华社
+END:VEVENT
+BEGIN:VEVENT
+UID:tzr-20261001-138@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20261001
 DTEND;VALUE=DATE:20261002
 SUMMARY:【重点】【休市】A股国庆节休市 · 港股休市 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:10/1-10/7 A股国庆节休市（含周末），10/8起照常开市；港股10/1国庆日休市。长假期间海外市场波动将在节后集中释放，注意开盘跳空。
+DESCRIPTION:10/1-10/7 A股国庆节休市（含周末），10/8起照常开市；港股10/1国庆日休市。长假期间海外市场波动将在节后集中释放，注意开盘跳空。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20261002-114@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20261002-139@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20261002T203000
 DTEND;TZID=Asia/Shanghai:20261002T213000
 SUMMARY:【重点】【重磅】美国9月非农就业报告 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:北京时间20:30公布美国9月非农就业与失业率（10月首个周五），为10月底美联储会议提供关键就业依据。数据好坏直接影响降息/加息预期与全球风险偏好。
+DESCRIPTION:北京时间20:30公布美国9月非农就业与失业率（10月首个周五），为10月底美联储会议提供关键就业依据。数据好坏直接影响降息/加息预期与全球风险偏好。\n来源：美国劳工部
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20261008-115@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20261008-140@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20261008
 DTEND;VALUE=DATE:20261009
 SUMMARY:A股 · 港股国庆后首个交易日 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国庆长假结束，沪深北交易所及港股恢复交易。假期外围市场（美股、港股）表现将集中映射到A股开盘，关注补涨补跌与量能变化。
+DESCRIPTION:国庆长假结束，沪深北交易所及港股恢复交易。假期外围市场（美股、港股）表现将集中映射到A股开盘，关注补涨补跌与量能变化。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20261014-116@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20261014-141@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;TZID=Asia/Shanghai:20261014T093000
 DTEND;TZID=Asia/Shanghai:20261014T103000
 SUMMARY:【重点】中国9月CPI · PPI数据 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:国家统计局公布9月居民消费价格指数与工业生产者价格指数。物价走势关系货币政策空间与盈利预期，若CPI、PPI延续修复利好周期板块。
+DESCRIPTION:国家统计局公布9月居民消费价格指数与工业生产者价格指数。物价走势关系货币政策空间与盈利预期，若CPI、PPI延续修复利好周期板块。\n来源：国家统计局
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20261015-117@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20261015-142@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20261015
 DTEND;VALUE=DATE:20261016
 SUMMARY:A股三季报业绩预告窗口开启 · 国内/政策
 CATEGORIES:国内/政策
-DESCRIPTION:10月中下旬A股三季报业绩预告与披露进入密集期（预告为自愿披露，非强制），关注业绩超预期/暴雷个股的结构性机会与风险。
+DESCRIPTION:10月中下旬A股三季报业绩预告与披露进入密集期（预告为自愿披露，非强制），关注业绩超预期/暴雷个股的结构性机会与风险。\n来源：公司财报
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20261019-118@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20261019-143@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20261019
 DTEND;VALUE=DATE:20261020
 SUMMARY:【休市】港股重阳节翌日休市 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:香港重阳节翌日（农历九月初十）公众假期，港股休市。
+DESCRIPTION:香港重阳节翌日（农历九月初十）公众假期，港股休市。\n来源：交易所公告
 END:VEVENT
 BEGIN:VEVENT
-UID:tzr-20261028-119@touzirili.com
-DTSTAMP:20260905T075259Z
+UID:tzr-20261028-144@touzirili.com
+DTSTAMP:20260907T153830Z
 DTSTART;VALUE=DATE:20261028
 DTEND;VALUE=DATE:20261029
 SUMMARY:【重点】【重磅】美联储10月利率决议 · 海外宏观
 CATEGORIES:海外宏观
-DESCRIPTION:美东10/28公布利率决议（会议10/27-28），无点阵图，仅利率声明+主席发布会，对应北京时间10/29凌晨02:00。全年倒数第二次议息，为12月收官定调。
+DESCRIPTION:美东10/28公布利率决议（会议10/27-28），无点阵图，仅利率声明+主席发布会，对应北京时间10/29凌晨02:00。全年倒数第二次议息，为12月收官定调。\n来源：美联储
 END:VEVENT
 END:VCALENDAR
