@@ -542,11 +542,8 @@ a{color:inherit;}
 }
 
 /* ===== 来源标注 ===== */
-.ev-src{display:block;font-size:10px;color:var(--ink-faint);margin-top:4px;letter-spacing:.02em;line-height:1.4;}
 .d-src{font-size:11px;color:var(--ink-faint);margin-top:8px;line-height:1.6;}
 .d-src a{color:var(--amber);text-decoration:none;border-bottom:1px dotted currentColor;}
-.share-src{display:block;font-size:9px;color:#8a93a0;margin-top:2px;line-height:1.5;}
-
 /* ===== 今日更新（每2小时定时更新的新增事件，按更新时间倒序） ===== */
 .today-updates{max-width:1600px;margin:0 auto;padding:8px 18px 10px;}
 .today-updates .tu-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px 26px;}
@@ -1570,11 +1567,9 @@ window.addEventListener('hashchange', route);
 /* ================= 渲染：周视图 ================= */
 function evCardHTML(ev, dateISO){
   var badge = ev.key ? '重点' : (CATS[ev.cat] || '其他');
-  var srcHtml = ev.source ? '<span class="ev-src">来源 · '+esc(ev.source)+'</span>' : '';
   return '<button class="ev-card key c-'+ev.cat+'" data-date="'+dateISO+'" data-i="'+ev._i+'">'+
     '<span class="ev-top"><span class="ev-time">'+(ev.time||'全天')+'</span><span class="ev-badge">'+esc(badge)+'</span></span>'+
     '<span class="ev-title">'+esc(ev.title)+'</span>'+
-    srcHtml+
   '</button>';
 }
 
@@ -1657,7 +1652,6 @@ function renderDayList(){
       '<div class="d-title">'+esc(ev.title)+'</div>'+
       '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+CATS[ev.cat]+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
       '<div class="d-desc">'+esc(ev.desc)+'</div>'+
-      srcLine(ev)+
     '</div>';
   }).join('');
   box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+' · 共'+evs.length+'项</div>'+items;
@@ -1775,7 +1769,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609072354';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609072359';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -1839,7 +1833,6 @@ function buildShareCard(){
         html += '<div class="share-ev">'+
           '<span class="tm">'+(ev.time||'全天')+'</span>'+
           '<span class="t">'+esc(ev.title)+'</span>'+badge+
-          (ev.source?'<span class="share-src">来源 · '+esc(ev.source)+'</span>':'')+
         '</div>';
       });
       html += '</div></div>';
