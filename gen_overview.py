@@ -169,8 +169,7 @@ def build_overview_list(events):
                 head = f'<b>{fmt_date(date_key)} {esc(it["time"])}</b>'
             else:
                 head = f'<b>{fmt_date(date_key)}</b>'
-            src = f'<span class="ov-src"> · {esc(it["source"])}</span>' if it.get('source') else ''
-            lis.append(f'<li>{head}{esc(it["title"])}{src}</li>')
+            lis.append(f'<li>{head}{esc(it["title"])}</li>')
     return '\n'.join(lis)
 
 
