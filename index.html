@@ -581,6 +581,13 @@ a{color:inherit;}
 }
 /* 首屏加载动画 */
 @keyframes ldspin{to{transform:rotate(360deg);}}
+
+/* 美股复盘置顶卡片 */
+.tu-pin{border:1px solid #ead9a6;background:linear-gradient(135deg,#fffdf3,#fff6df);border-radius:10px;padding:10px 14px;margin:6px 0 14px;}
+.tu-pin .tu-ts{color:#8a6d1a;font-weight:600;font-size:12.5px;letter-spacing:.3px;}
+.tu-pin-title{font-weight:700;font-size:14.5px;color:#1A1B1C;margin:5px 0 3px;}
+.tu-pin-desc{white-space:pre-line;font-size:13px;color:#3d3d3d;line-height:1.65;}
+@media(max-width:480px){.tu-pin{padding:9px 11px;}.tu-pin-title{font-size:13.5px;}}
 </style>
 </head>
 <body style="background:#0E1218;">
@@ -689,6 +696,19 @@ a{color:inherit;}
 <div class="tu-card">
 <h2>更新日志 · 9/9</h2>
 <p class="tu-intro">每2小时定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>
+<div class="tu-batch tu-pin">
+<div class="tu-ts">📌 美股复盘 · 置顶</div>
+<div class="tu-pin-title">美股复盘 · 9/8 周一收盘：三大指数两连跌，AI链逆市走强</div>
+<div class="tu-desc tu-pin-desc">三大指数连续两日收跌：道指 52786.07 点 -1.17%，标普500 7673.52 点 -0.58%，纳指 26421.41 点 -0.32%。
+
+下跌主因：中东地缘升级（胡塞武装袭击沙特石油设施）推高油价，WTI 原油 +1.69% 报 93.03 美元/桶、布伦特逼近 98 美元，通胀与加息担忧升温，美债收益率上行压制成长估值。
+
+逆市强势：芯片股爆发（费半一度涨超2%，英特尔 +9%、高通 +3%以上、AMD 走强）、光通信大涨（Lumentum +11%、康宁领涨）、AI 算力租赁冲高——GPT-6 Astra 发布后 AI 基建需求预期持续发酵。
+
+领跌个股：特斯拉 -5.9%（NHTSA 就 Cybercab 自我认证合规启动审查+9/3 发布会反响平淡）、奈飞 -5.4%（南非监管调查流媒体定价+增长放缓忧虑）、安进大跌拖累道指，英伟达 -2.0%、苹果跌约1%。
+
+中概整体偏弱，小盘股领跌（索威尔 -70.7%、瑞图生态 -49.4%）。</div>
+</div>
 <div class="tu-batch">
 <div class="tu-ts">06:02 更新</div>
 <ul>
@@ -1001,7 +1021,12 @@ const TODAY_UPDATES = {
     }
    ]
   }
- ]
+ ],
+ "us_review": {
+  "ts": "06:55",
+  "title": "美股复盘 · 9/8 周一收盘：三大指数两连跌，AI链逆市走强",
+  "desc": "三大指数连续两日收跌：道指 52786.07 点 -1.17%，标普500 7673.52 点 -0.58%，纳指 26421.41 点 -0.32%。\n\n下跌主因：中东地缘升级（胡塞武装袭击沙特石油设施）推高油价，WTI 原油 +1.69% 报 93.03 美元/桶、布伦特逼近 98 美元，通胀与加息担忧升温，美债收益率上行压制成长估值。\n\n逆市强势：芯片股爆发（费半一度涨超2%，英特尔 +9%、高通 +3%以上、AMD 走强）、光通信大涨（Lumentum +11%、康宁领涨）、AI 算力租赁冲高——GPT-6 Astra 发布后 AI 基建需求预期持续发酵。\n\n领跌个股：特斯拉 -5.9%（NHTSA 就 Cybercab 自我认证合规启动审查+9/3 发布会反响平淡）、奈飞 -5.4%（南非监管调查流媒体定价+增长放缓忧虑）、安进大跌拖累道指，英伟达 -2.0%、苹果跌约1%。\n\n中概整体偏弱，小盘股领跌（索威尔 -70.7%、瑞图生态 -49.4%）。"
+ }
 };
 
 var EVENTS = {
@@ -1713,7 +1738,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609090602';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609090655';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 

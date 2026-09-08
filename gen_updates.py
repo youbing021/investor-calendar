@@ -23,6 +23,9 @@ OUT = sys.argv[2] if len(sys.argv) > 2 else SRC
 ADDED = None
 if '--added' in sys.argv:
     ADDED = sys.argv[sys.argv.index('--added') + 1]
+US_REVIEW = None
+if '--us-review' in sys.argv:
+    US_REVIEW = sys.argv[sys.argv.index('--us-review') + 1]
 
 
 def main():
@@ -39,9 +42,19 @@ def main():
     else:
         data = {}
 
-    # 次日重置
+    # 次日重置（同时清空美股复盘置顶）
     if data.get('date') != today:
-        data = {'date': today, 'batches': []}
+        data = {'date': today, 'batches': [], 'us_review': None}
+    elif 'us_review' not in data:
+        data['us_review'] = None
+
+    # 美股复盘置顶内容（仅当日有效，6:00 轮写入）
+    if US_REVIEW:
+        try:
+            ur = json.loads(US_REVIEW)
+        except Exception as e:
+            raise SystemExit(f'--us-review JSON 解析失败: {e}')
+        data['us_review'] = {'ts': now_hm, 'title': ur.get('title', ''), 'desc': ur.get('desc', '')}
 
     if ADDED:
         try:

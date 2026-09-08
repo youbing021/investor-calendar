@@ -106,10 +106,20 @@ def parse_today_updates(html):
 
 
 def build_today_section(updates, src_index):
-    """按 TODAY_UPDATES 渲染"今日更新"区块，批次按 ts 倒序（最新在前）；来源从 EVENTS 反查"""
+    """按 TODAY_UPDATES 渲染"今日更新"区块：美股复盘置顶 + 批次按 ts 倒序（最新在前）；来源从 EVENTS 反查"""
     date = updates.get('date') or ''
     batches = sorted(updates.get('batches', []), key=lambda b: b.get('ts', ''), reverse=True)
     parts = []
+    # 美股复盘置顶卡片（TODAY_UPDATES.us_review，仅当日有效）
+    ur = updates.get('us_review') or {}
+    if ur.get('title'):
+        pin = ['<div class="tu-batch tu-pin">',
+               f'<div class="tu-ts">📌 美股复盘 · 置顶</div>',
+               f'<div class="tu-pin-title">{esc(ur["title"])}</div>']
+        if ur.get('desc'):
+            pin.append(f'<div class="tu-desc tu-pin-desc">{esc(ur["desc"])}</div>')
+        pin.append('</div>')
+        parts.append('\n'.join(pin))
     for b in batches:
         ts = b.get('ts', '')
         items = b.get('items', [])
