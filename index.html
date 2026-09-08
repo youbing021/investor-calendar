@@ -690,6 +690,13 @@ a{color:inherit;}
 <h2>更新日志 · 9/8</h2>
 <p class="tu-intro">每2小时定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>
 <div class="tu-batch">
+<div class="tu-ts">12:02 更新</div>
+<ul>
+<li><b>9/8</b>小鹏人形机器人生产线正式启用<span class="tu-src"> · 来源 · 小鹏集团</span>
+<div class="tu-desc">首条高阶通用人形机器人自动化产线启用，从研发跨入产线制造。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
 <div class="tu-ts">10:12 更新</div>
 <ul>
 <li><b>9/3</b>国家能源局：加快输电通道等重大电网工程核准建设<span class="tu-src"> · 来源 · 国家能源局</span>
@@ -794,6 +801,7 @@ a{color:inherit;}
 <li><b>9/8</b>江波龙港股上市（9/8挂牌）</li>
 <li><b>9/8</b>中国8月进出口贸易数据</li>
 <li><b>9/8</b>重庆获批建设国家人工智能产业创新应用先导区</li>
+<li><b>9/8</b>小鹏人形机器人生产线正式启用</li>
 <li><b>9/9 09:30</b>中国8月CPI · PPI</li>
 <li><b>9/9</b>2026中国国际服务贸易交易会·服贸会（北京）</li>
 <li><b>9/9</b>第27届中国光博会CIOE · 深圳国际半导体展</li>
@@ -1182,6 +1190,18 @@ const TODAY_UPDATES = {
      "desc": "“十个工作日”原则，关注石油石化成本端变化。"
     }
    ]
+  },
+  {
+   "ts": "12:02",
+   "items": [
+    {
+     "date": "2026-09-08",
+     "time": null,
+     "title": "小鹏人形机器人生产线正式启用",
+     "cat": "ai",
+     "desc": "首条高阶通用人形机器人自动化产线启用，从研发跨入产线制造。"
+    }
+   ]
   }
  ]
 };
@@ -1399,7 +1419,9 @@ var EVENTS = {
     { time:null, title:'中国8月进出口贸易数据', cat:'cn', key:false, source:'海关总署',
       desc:'海关总署9/8公布8月货物贸易进出口数据，观察出口韧性与贸易顺差变化，或影响外贸与港口航运板块预期。' },
     { time:null, title:'重庆获批建设国家人工智能产业创新应用先导区', cat:'ai', key:false, source:'工业和信息化部',
-      desc:'工信部批复同意重庆建设“国家人工智能产业创新应用先导区”，依托数字重庆底座与制造业场景优势推动AI落地应用。关注重庆本地AI算力与智能制造产业链。' }
+      desc:'工信部批复同意重庆建设“国家人工智能产业创新应用先导区”，依托数字重庆底座与制造业场景优势推动AI落地应用。关注重庆本地AI算力与智能制造产业链。' },
+    { time:null, title:'小鹏人形机器人生产线正式启用', cat:'ai', key:false, source:'小鹏集团',
+      desc:'小鹏集团宣布人形机器人生产线正式启用，全球首位高阶通用人形机器人完成自动化总装并自主走下产线，标志小鹏机器人从研发试制跨入产线制造。关注人形机器人、机器人零部件产业链。' }
   ],
   '2026-09-09': [
     { time:'09:30', title:'中国8月CPI · PPI', cat:'cn', key:true, source:'国家统计局',
@@ -1859,7 +1881,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609081012';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609081202';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
