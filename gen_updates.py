@@ -48,13 +48,13 @@ def main():
     elif 'us_review' not in data:
         data['us_review'] = None
 
-    # 美股复盘置顶内容（仅当日有效，6:00 轮写入）
+    # 市场复盘置顶内容（仅当日有效：6:00 美股复盘 / 16:00 A股复盘，相互覆盖）
     if US_REVIEW:
         try:
             ur = json.loads(US_REVIEW)
         except Exception as e:
             raise SystemExit(f'--us-review JSON 解析失败: {e}')
-        data['us_review'] = {'ts': now_hm, 'title': ur.get('title', ''), 'desc': ur.get('desc', '')}
+        data['us_review'] = {'ts': now_hm, 'label': ur.get('label', '市场复盘'), 'title': ur.get('title', ''), 'desc': ur.get('desc', '')}
 
     if ADDED:
         try:
