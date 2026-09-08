@@ -690,6 +690,13 @@ a{color:inherit;}
 <h2>更新日志 · 9/9</h2>
 <p class="tu-intro">每2小时定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>
 <div class="tu-batch">
+<div class="tu-ts">06:02 更新</div>
+<ul>
+<li><b>9/8</b>OpenAI发布新一代大模型GPT-6 Astra<span class="tu-src"> · 来源 · OpenAI</span>
+<div class="tu-desc">带动存储芯片与AI算力大涨。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
 <div class="tu-ts">00:05 更新</div>
 <ul>
 <li><b>9/8</b>深圳发布“人工智能+”行动计划 2028年AI核心产业规模超3000亿元<span class="tu-src"> · 来源 · 深圳市工业和信息化局</span>
@@ -752,6 +759,7 @@ a{color:inherit;}
 <li><b>9/8</b>阿斯麦新一代High-NA EUV光刻机获台积电、三星使用承诺</li>
 <li><b>9/8</b>华为乾崑智能汽车解决方案三大数据齐破200万</li>
 <li><b>9/8</b>深圳发布“人工智能+”行动计划 2028年AI核心产业规模超3000亿元</li>
+<li><b>9/8</b>OpenAI发布新一代大模型GPT-6 Astra</li>
 <li><b>9/9 09:30</b>中国8月CPI · PPI</li>
 <li><b>9/9</b>2026中国国际服务贸易交易会·服贸会（北京）</li>
 <li><b>9/9</b>第27届中国光博会CIOE · 深圳国际半导体展</li>
@@ -978,6 +986,18 @@ const TODAY_UPDATES = {
      "title": "财政部续发50年期超长期特别国债350亿元",
      "cat": "cn",
      "desc": "关注债市长端利率。"
+    }
+   ]
+  },
+  {
+   "ts": "06:02",
+   "items": [
+    {
+     "date": "2026-09-08",
+     "time": null,
+     "title": "OpenAI发布新一代大模型GPT-6 Astra",
+     "cat": "gl",
+     "desc": "带动存储芯片与AI算力大涨。"
     }
    ]
   }
@@ -1227,7 +1247,9 @@ var EVENTS = {
     { time:null, title:'华为乾崑智能汽车解决方案三大数据齐破200万', cat:'cn', key:false, source:'华为',
       desc:'华为智能汽车解决方案乾崑三大数据齐破200万，规模化落地迎来里程碑，智能驾驶渗透率持续提升。关注智驾产业链、华为汽车生态。' },
     { time:null, title:'深圳发布“人工智能+”行动计划 2028年AI核心产业规模超3000亿元', cat:'cn', key:false, source:'深圳市工业和信息化局',
-      desc:'深圳市工信局、发改委、科创局联合发布“人工智能+”行动计划，提出到2028年AI核心产业规模超3000亿元，加快建设人工智能先锋城市。关注深圳AI算力、应用产业链。' }
+      desc:'深圳市工信局、发改委、科创局联合发布“人工智能+”行动计划，提出到2028年AI核心产业规模超3000亿元，加快建设人工智能先锋城市。关注深圳AI算力、应用产业链。' },
+    { time:null, title:'OpenAI发布新一代大模型GPT-6 Astra', cat:'gl', key:false, source:'OpenAI',
+      desc:'OpenAI发布新一代大模型GPT-6 Astra，带动全球存储芯片与AI算力产业链大涨，亚太市场存储芯片概念股集体走强。关注AI大模型、存储、算力产业链。' }
   ],
   '2026-09-09': [
     { time:'09:30', title:'中国8月CPI · PPI', cat:'cn', key:true, source:'国家统计局',
@@ -1691,7 +1713,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609090005';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609090602';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
