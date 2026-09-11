@@ -8,10 +8,11 @@ gen_updates.py —— 维护 index.html 中的 TODAY_UPDATES（今日更新日�
 
 规则：
   1. TODAY_UPDATES = { "date":"YYYY-MM-DD", "batches":[ {"ts":"HH:MM","items":[...]} ... ] }
-  2. 若记录日期不是今天 → 重置为今天的空批次列表（次日自动清空，主页只放当天的更新）
+  2. 若记录日期不是今天 → 批次列表重置为今天的空批次列表（主页只放当天的更新）；但 us_review 复盘置顶跨日保留（0:00 轮不清空前一天 A股复盘，保证复盘栏 24 小时不断档）
   3. 追加本次批次（ts 取当前时间 HH:MM）；--added 为空数组或不传时也记录批次（渲染为"本次无新增"）
   4. 同批次内按 title 去重
   5. desc 内英文直引号统一使用中文引号
+  6. --us-review 显式写入时覆盖旧复盘（6:00 美股复盘覆盖前一日 A股复盘、16:00 A股复盘覆盖当日美股复盘）；非复盘轮次不清空已保留的复盘
 """
 import json
 import re
@@ -42,9 +43,10 @@ def main():
     else:
         data = {}
 
-    # 次日重置（同时清空美股复盘置顶）
+    # 次日重置（批次清空；复盘置顶跨日保留：0:00 不清空前一日复盘，6:00/16:00 复盘轮写入时覆盖，复盘栏 24 小时不断档）
     if data.get('date') != today:
-        data = {'date': today, 'batches': [], 'us_review': None}
+        us_review = data.get('us_review')  # 保留前一日复盘置顶，跨日继续展示
+        data = {'date': today, 'batches': [], 'us_review': us_review}
     elif 'us_review' not in data:
         data['us_review'] = None
 
