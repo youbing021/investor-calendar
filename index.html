@@ -710,6 +710,10 @@ a{color:inherit;}
 【中概股】纳斯达克中国金龙指数收涨 0.4%；蔚来涨近 3%，好未来、新东方涨超 2%，小鹏汽车涨近 2%，贝壳涨超 1%；阿特斯太阳能跌超 4%。</div>
 </div>
 <div class="tu-batch">
+<div class="tu-ts">12:04 更新</div>
+<p class="tu-none">本次无新增事件。</p>
+</div>
+<div class="tu-batch">
 <div class="tu-ts">10:06 更新</div>
 <p class="tu-none">本次无新增事件。</p>
 </div>
@@ -1069,6 +1073,10 @@ const TODAY_UPDATES = {
   },
   {
    "ts": "10:06",
+   "items": []
+  },
+  {
+   "ts": "12:04",
    "items": []
   }
  ],
@@ -1852,7 +1860,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609131006';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609131204';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
