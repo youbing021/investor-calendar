@@ -706,6 +706,13 @@ a{color:inherit;}
 【中概股】纳斯达克中国金龙指数涨0.36%；理想汽车涨逾3%，霸王茶姬、网易涨逾2%，拼多多、腾讯音乐涨超1%；盛美半导体跌近7%，世纪互联跌超2%。</div>
 </div>
 <div class="tu-batch">
+<div class="tu-ts">07:38 更新</div>
+<ul>
+<li><b>9/16</b>努比亚NaviX Ultra量产旗舰正式发布（搭载豆包手机助手）<span class="tu-src"> · 来源 · 公司官方</span>
+<div class="tu-desc">努比亚9/16正式发布全新量产旗舰努比亚NaviX Ultra，搭载豆包手机助手，AI手机端侧大模型应用加速落地，关注消费电子与AI终端产业链。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
 <div class="tu-ts">06:08 更新</div>
 <ul>
 <li><b>9/15 14:00</b>英国7月三个月ILO失业率 · 8月失业金申请<span class="tu-src"> · 来源 · 英国国家统计局</span>
@@ -764,6 +771,7 @@ a{color:inherit;}
 <li><b>9/16</b>中金公司2026秋季投资策略会</li>
 <li><b>9/16</b>财政部发行30年期超长期特别国债</li>
 <li><b>9/16</b>创业板新股申购：鸿富诚</li>
+<li><b>9/16</b>努比亚NaviX Ultra量产旗舰正式发布（搭载豆包手机助手）</li>
 <li><b>9/17 02:00</b>【全年最重磅】美联储9月利率决议+点阵图</li>
 <li><b>9/17 19:00</b>英国央行利率决议</li>
 <li><b>9/17</b>华为全联接大会HUAWEI CONNECT 2026（上海）</li>
@@ -967,6 +975,18 @@ const TODAY_UPDATES = {
      "title": "英国7月三个月ILO失业率 · 8月失业金申请",
      "cat": "gl",
      "desc": "英国公布7月三个月ILO失业率与8月失业率、失业金申请人数，评估英国就业市场与通胀压力，为9/17英国央行决议提供关键参考，影响英镑与英债走势。"
+    }
+   ]
+  },
+  {
+   "ts": "07:38",
+   "items": [
+    {
+     "date": "2026-09-16",
+     "time": null,
+     "title": "努比亚NaviX Ultra量产旗舰正式发布（搭载豆包手机助手）",
+     "cat": "cn",
+     "desc": "努比亚9/16正式发布全新量产旗舰努比亚NaviX Ultra，搭载豆包手机助手，AI手机端侧大模型应用加速落地，关注消费电子与AI终端产业链。"
     }
    ]
   }
@@ -1386,7 +1406,8 @@ var EVENTS = {
     { time: null, title: '财政部发行30年期超长期特别国债', cat: 'gl', source: '财政部', desc: '财政部按年度发行安排于9月16日进行30年期超长期特别国债发行，年内超长期特别国债发行规模已超过1.1万亿元（发行进度约85%，全年1.3万亿元），关注对债市供给与长端利率的影响。' }
   ,
     { time:null, title:'创业板新股申购：鸿富诚', cat:'cn', key:false, source:'交易所公告', desc:'专注先进热管理材料及EMC（电磁兼容）材料的研发、制造与销售一体化。' },
-    { time:'22:30', title:'美国EIA原油库存（9/11当周）', cat:'gl', key:false, source:'美国能源信息署', desc:'EIA 公布截至 9/11 当周原油库存变动，油价短线波动将传导至能源板块与通胀预期，美联储决议前关注库存数据对市场风险偏好的影响。' }],
+    { time:'22:30', title:'美国EIA原油库存（9/11当周）', cat:'gl', key:false, source:'美国能源信息署', desc:'EIA 公布截至 9/11 当周原油库存变动，油价短线波动将传导至能源板块与通胀预期，美联储决议前关注库存数据对市场风险偏好的影响。' },
+    { time:null, title:'努比亚NaviX Ultra量产旗舰正式发布（搭载豆包手机助手）', cat:'cn', key:false, source:'公司官方', desc:'努比亚9/16正式发布全新量产旗舰努比亚NaviX Ultra，搭载豆包手机助手，AI手机端侧大模型应用加速落地，关注消费电子与AI终端产业链。' }],
   '2026-09-17': [
     { time:'19:00', title:'英国央行利率决议', cat:'gl', key:false, source:'英国央行',
       desc:'英国央行公布利率决议与会议纪要，观察英央行对通胀与降息路径的最新立场。' },
@@ -1775,7 +1796,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609150608';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609150738';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
