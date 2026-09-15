@@ -706,6 +706,13 @@ a{color:inherit;}
 【成交与资金】沪深两市成交额约1.61万亿元（沪7639.83亿+深8487.34亿），较上一交易日小幅缩量，下跌个股近4400只；北向资金实时净买入数据自2024年8月起停止披露，暂无当日净流入数据。</div>
 </div>
 <div class="tu-batch">
+<div class="tu-ts">19:39 更新</div>
+<ul>
+<li><b>9/16</b>2026北京微电子国际研讨会暨IC WORLD大会（9/16-18）<span class="tu-src"> · 来源 · 公开信息</span>
+<div class="tu-desc">北京微电子国际研讨会暨IC WORLD大会于9/16-18在北京举办，聚焦集成电路设计、制造、装备材料及先进封装等环节，叠加工信部电子信息制造业“十五五”规划催化，关注半导体产业链投资情绪。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
 <div class="tu-ts">18:01 更新</div>
 <ul>
 <li><b>9/15</b>燧原科技登陆科创板（AI芯片新股上市）<span class="tu-src"> · 来源 · 交易所公告</span>
@@ -808,6 +815,7 @@ a{color:inherit;}
 <li><b>9/16</b>创业板新股申购：鸿富诚</li>
 <li><b>9/16</b>努比亚NaviX Ultra量产旗舰正式发布（搭载豆包手机助手）</li>
 <li><b>9/16</b>英国8月CPI · PPI</li>
+<li><b>9/16</b>2026北京微电子国际研讨会暨IC WORLD大会（9/16-18）</li>
 <li><b>9/17 02:00</b>【全年最重磅】美联储9月利率决议+点阵图</li>
 <li><b>9/17 19:00</b>英国央行利率决议</li>
 <li><b>9/17</b>华为全联接大会HUAWEI CONNECT 2026（上海）</li>
@@ -1082,6 +1090,18 @@ const TODAY_UPDATES = {
      "title": "燧原科技登陆科创板（AI芯片新股上市）",
      "cat": "cn",
      "desc": "国产AI芯片公司燧原科技正式登陆科创板上市，叠加工信部《电子信息制造业发展“十五五”规划》催化，市场对国产算力链关注度上升，关注AI芯片、算力硬件板块表现。"
+    }
+   ]
+  },
+  {
+   "ts": "19:39",
+   "items": [
+    {
+     "date": "2026-09-16",
+     "time": null,
+     "title": "2026北京微电子国际研讨会暨IC WORLD大会（9/16-18）",
+     "cat": "cn",
+     "desc": "北京微电子国际研讨会暨IC WORLD大会于9/16-18在北京举办，聚焦集成电路设计、制造、装备材料及先进封装等环节，叠加工信部电子信息制造业“十五五”规划催化，关注半导体产业链投资情绪。"
     }
    ]
   }
@@ -1506,7 +1526,8 @@ var EVENTS = {
     { time:null, title:'创业板新股申购：鸿富诚', cat:'cn', key:false, source:'交易所公告', desc:'专注先进热管理材料及EMC（电磁兼容）材料的研发、制造与销售一体化。' },
     { time:'22:30', title:'美国EIA原油库存（9/11当周）', cat:'gl', key:false, source:'美国能源信息署', desc:'EIA 公布截至 9/11 当周原油库存变动，油价短线波动将传导至能源板块与通胀预期，美联储决议前关注库存数据对市场风险偏好的影响。' },
     { time:null, title:'努比亚NaviX Ultra量产旗舰正式发布（搭载豆包手机助手）', cat:'cn', key:false, source:'公司官方', desc:'努比亚9/16正式发布全新量产旗舰努比亚NaviX Ultra，搭载豆包手机助手，AI手机端侧大模型应用加速落地，关注消费电子与AI终端产业链。' },
-    { time:null, title:'英国8月CPI · PPI', cat:'gl', key:false, source:'英国国家统计局', desc:'英国公布8月CPI与PPI，9/17英国央行利率决议前最后一份关键通胀数据，若通胀仍高企将强化加息预期，影响英镑与英债。' }],
+    { time:null, title:'英国8月CPI · PPI', cat:'gl', key:false, source:'英国国家统计局', desc:'英国公布8月CPI与PPI，9/17英国央行利率决议前最后一份关键通胀数据，若通胀仍高企将强化加息预期，影响英镑与英债。' },
+    { time:null, title:'2026北京微电子国际研讨会暨IC WORLD大会（9/16-18）', cat:'cn', key:false, source:'公开信息', desc:'北京微电子国际研讨会暨IC WORLD大会于9/16-18在北京举办，聚焦集成电路设计、制造、装备材料及先进封装等环节，叠加工信部电子信息制造业“十五五”规划催化，关注半导体产业链投资情绪。' }],
   '2026-09-17': [
     { time:'19:00', title:'英国央行利率决议', cat:'gl', key:false, source:'英国央行',
       desc:'英国央行公布利率决议与会议纪要，观察英央行对通胀与降息路径的最新立场。' },
@@ -1896,7 +1917,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609151801';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609151939';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
