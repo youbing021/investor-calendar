@@ -6,7 +6,7 @@
 <meta name="baidu-site-verification" content="codeva-pKMZ4qRmO0" />
 <title>投资日历 - 每日更新A股港股美股重大市场事件</title>
 <meta name="description" content="投资日历（touzirili.com）每日更新影响A股、港股、美股的重大市场事件：央行议息会议、CPI/PPI/非农等经济数据、股指交割日、期权交割、国内外休市安排、行业大会与政策文件，让投资者心中有数、操盘不慌。">
-<meta name="keywords" content="投资日历,投资者日历,A股重大事件,港股美股休市,美联储议息,经济数据发布时间表,股指交割日,期权交割,LPR,CPI,非农,投资大事提醒">
+<meta name="keywords" content="投资日历,A股重大事件,港股美股休市,美联储议息,经济数据发布时间表,股指交割日,期权交割,LPR,CPI,非农,投资大事提醒">
 <meta name="author" content="投资日历">
 <link rel="canonical" href="https://www.touzirili.com/">
 <meta property="og:type" content="website">
@@ -2073,7 +2073,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609161805';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609161817';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -2193,7 +2193,7 @@ async function exportLongImage(){
     }).then(function(canvas){
       var img = document.createElement('img');
       img.src = canvas.toDataURL('image/png');
-      img.alt = '投资者日历长图';
+      img.alt = '投资日历长图';
       img.style.width = '100%';
       wrap.innerHTML = '';
       wrap.appendChild(img);
@@ -2303,7 +2303,7 @@ document.getElementById('subCopy').addEventListener('click', function(){
 document.getElementById('subDl').addEventListener('click', function(){
   var a = document.createElement('a');
   a.href = SUB_URL;
-  a.download = '投资者日历_'+iso(new Date())+'.ics';
+  a.download = '投资日历_'+iso(new Date())+'.ics';
   a.target = '_blank';
   document.body.appendChild(a);
   a.click();
@@ -2314,7 +2314,7 @@ document.getElementById('exportSave').addEventListener('click', function(){
   if(!img){ return; }
   var a = document.createElement('a');
   a.href = img.src;
-  a.download = '投资者日历_'+iso(new Date())+'.png';
+  a.download = '投资日历_'+iso(new Date())+'.png';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
