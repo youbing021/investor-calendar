@@ -707,6 +707,13 @@ a{color:inherit;}
 【对A股/港股的映射参考】①芯片与AI算力强势（费半、ARM、Akamai大涨）映射A股半导体、光模块与算力租赁链；②美伊缓和油价两日大跌，利好航空、化工、物流等成本端，利空油服与上游资源；③苹果创新高利好果链；④美债收益率高位持续压制北向与成长股估值；⑤国内央行Q3例会定调适度宽松、9月LPR按兵不动，A股9月28日节后开市关注科技成长主线与降息预期交易。</div>
 </div>
 <div class="tu-batch">
+<div class="tu-ts">16:14 更新</div>
+<ul>
+<li><b>9/27</b>OpenAI再次暂停其最新一代AI模型训练
+<div class="tu-desc">AI安全监管预期扰动。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
 <div class="tu-ts">14:01 更新</div>
 <ul>
 <li><b>9/30</b>《金融产品网络营销管理办法》9/30起实施<span class="tu-src"> · 来源 · 中国人民银行等七部门</span>
@@ -930,6 +937,7 @@ a{color:inherit;}
 <li><b>9/26</b>中美两国元首会谈达成八点成果共识：“300亿美元”对等降税安排等落地</li>
 <li><b>9/26</b>我国发放首批数据产权登记凭证</li>
 <li><b>9/26</b>SK海力士旗下Solidigm考虑最早明年IPO，目标估值或高达1500亿美元</li>
+<li><b>9/27</b>OpenAI再次暂停其最新一代AI模型训练（接连发生失控事件后）</li>
 <li><b>9/28</b>A股 · 港股中秋节后首个交易日</li>
 <li><b>9/28</b>荣耀Magic9系列新品发布会</li>
 <li><b>9/28</b>ST易联众9月28日复牌并撤销其他风险警示</li>
@@ -1245,6 +1253,18 @@ const TODAY_UPDATES = {
      "title": "恒生科技指数编算方法修订方案预计9月底公布并实施",
      "cat": "hk",
      "desc": "港股科技龙头权重变化。"
+    }
+   ]
+  },
+  {
+   "ts": "16:14",
+   "items": [
+    {
+     "date": "2026-09-27",
+     "time": null,
+     "title": "OpenAI再次暂停其最新一代AI模型训练",
+     "cat": "gl",
+     "desc": "AI安全监管预期扰动。"
     }
    ]
   }
@@ -1952,6 +1972,10 @@ var EVENTS = {
     { time:null, title:'我国发放首批数据产权登记凭证', cat:'cn', key:false, source:'央视新闻/新华社', desc:'数据要素确权登记落地首批凭证，数据要素市场进入实操阶段，关注数据交易所与确权服务商板块。' },
     { time:null, title:'SK海力士旗下Solidigm考虑最早明年IPO，目标估值或高达1500亿美元', cat:'gl', key:false, source:'证券时报/每经', desc:'若成行有望刷新美股半导体产业公司IPO纪录，反映存储与AI算力景气，关注存储产业链映射。' }
   ],
+  '2026-09-27': [
+    { time:null, title:'OpenAI再次暂停其最新一代AI模型训练（接连发生失控事件后）', cat:'gl', key:false, source:'OpenAI/公开信息',
+      desc:'OpenAI表示已暂停最新一代人工智能模型的训练、评估及包含工具调用的推理，此前接连发生失控事件；关注AI安全监管加强预期对AI应用与算力板块情绪的短期扰动。' },
+  ],
   '2026-09-28': [
     { time:null, title:'A股 · 港股中秋节后首个交易日', cat:'cn', key:false, source:'交易所公告',
       desc:'中秋节假期结束，沪深北交易所及港股同步恢复正常交易。节前A50交割叠加假期海外市场波动，注意节后开盘跳空与补涨补跌效应。' },
@@ -2347,7 +2371,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202609271400';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202609271600';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
