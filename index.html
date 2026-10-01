@@ -277,6 +277,8 @@ a{color:inherit;}
 .day-list .dl-head{font-family:var(--serif);font-weight:700;font-size:17px;margin-bottom:12px;color:var(--amber);}
 .day-list .dl-head .dl-date{color:var(--ink);}
 .day-list .dl-empty{font-size:14px;color:var(--ink-faint);line-height:1.6;}
+.day-list .dl-more{font-size:12px;color:var(--ink-faint);margin-top:10px;line-height:1.7;background:rgba(255,255,255,.04);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;}
+.week-day .day-more{font-size:11px;color:var(--ink-faint);line-height:1.5;padding:2px 13px 8px;}
 
 /* ===== 详情抽屉 ===== */
 .scrim{
@@ -2213,6 +2215,20 @@ function route(){
 window.addEventListener('hashchange', route);
 
 /* ================= 渲染：周视图 ================= */
+/* 当日事件按重要程度排序并截断展示：key 重点优先 → 有具体时间次之 → 保持收录顺序；超过 maxN 条时只取前 maxN 条（其他板块展示不受影响） */
+function dayEventsTop(dateISO, maxN){
+  var raw = EVENTS[dateISO] || [];
+  raw.forEach(function(ev,k){ ev._i = k; });
+  var sorted = raw.slice().sort(function(a,b){
+    var ka = a.key?1:0, kb = b.key?1:0;
+    if(ka!==kb){ return kb-ka; }
+    var ta = a.time?1:0, tb = b.time?1:0;
+    if(ta!==tb){ return tb-ta; }
+    return a._i - b._i;
+  });
+  return (maxN>0 && sorted.length>maxN) ? sorted.slice(0,maxN) : sorted;
+}
+
 function evCardHTML(ev, dateISO){
   var badge = ev.key ? '重点' : (CATS[ev.cat] || '其他');
   return '<button class="ev-card key c-'+ev.cat+'" data-date="'+dateISO+'" data-i="'+ev._i+'">'+
@@ -2239,7 +2255,9 @@ function renderWeek(){
     var sel = (diso===state.selDate) ? ' sel' : '';
     var evHtml = '';
     if(evs.length){
-      evs.forEach(function(ev,k){ ev._i = k; evHtml += evCardHTML(ev, diso); });
+      var shown = dayEventsTop(diso, 10);
+      shown.forEach(function(ev){ evHtml += evCardHTML(ev, diso); });
+      if(evs.length>10){ evHtml += '<div class="day-more">当日共 '+evs.length+' 项，日历板块按重要程度仅展示前 10 条</div>'; }
     } else {
       evHtml = '<span class="empty">'+(state.weekOffset===0?'—':'暂无事件数据')+'</span>';
     }
@@ -2289,12 +2307,13 @@ function renderMonth(){
 
 function renderDayList(){
   var d = parseISO(state.monthSel);
-  var evs = EVENTS[state.monthSel] || [];
+  var raw = EVENTS[state.monthSel] || [];
   var box = document.getElementById('dayList');
-  if(!evs.length){
-    box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+'</div><div class="dl-empty">当天暂无重点事件。已收录的事件数据覆盖 8/24 — 9/25，可切换到其他日期查看。</div>';
+  if(!raw.length){
+    box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+'</div><div class="dl-empty">当天暂无重点事件，可切换到其他日期查看。</div>';
     return;
   }
+  var evs = dayEventsTop(state.monthSel, 10);
   var items = evs.map(function(ev,k){
     return '<div class="d-item key c-'+ev.cat+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
@@ -2302,7 +2321,8 @@ function renderDayList(){
       '<div class="d-desc">'+esc(ev.desc)+'</div>'+
     '</div>';
   }).join('');
-  box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+' · 共'+evs.length+'项</div>'+items;
+  var more = raw.length>10 ? '<div class="dl-more">当日共 '+raw.length+' 项，日历板块按重要程度仅展示前 10 条；完整内容见下方「更新日志」与「近期重大市场事件速览」。</div>' : '';
+  box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+' · 共'+raw.length+'项</div>'+items+more;
 }
 
 /* ================= 详情抽屉 ================= */
@@ -2417,7 +2437,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202610012210';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202610012320';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
