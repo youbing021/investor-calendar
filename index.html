@@ -714,6 +714,15 @@ a{color:inherit;}
 【对A股/港股映射参考】非农爆冷+美债收益率回落利好成长股估值，对A股节后（10/8）复市、港股科技与光通信/算力链形成正向映射；但需关注油市扰动（G7宣布释放1亿桶能源储备、沙特计划进攻也门胡塞武装，油价短线承压）与下周五（10/9）美国9月CPI。机构观点普遍认为10月按兵不动概率大增，若兑现则美元与美债压力缓和，利好黄金与新兴市场风险资产。</div>
 </div>
 <div class="tu-batch">
+<div class="tu-ts">07:49 更新</div>
+<ul>
+<li><b>10/5</b>英特尔PC用CPU预计10月5日再度提价约10%<span class="tu-src"> · 来源 · 公开信息</span>
+<div class="tu-desc">叠加此前功率半导体、安森美等涨价潮，PC产业链成本端压力上升，关注国产CPU替代与终端品牌提价传导。</div></li>
+<li><b>10/5</b>芝商所（CME）与Silicon Data推出H100/B200算力租赁指数期货<span class="tu-src"> · 来源 · CME</span>
+<div class="tu-desc">算力资产金融化新工具，为AI算力租赁定价提供基准，反映算力需求景气度。</div></li>
+</ul>
+</div>
+<div class="tu-batch">
 <div class="tu-ts">06:16 更新</div>
 <ul>
 <li><b>10/14</b>2026湾区半导体产业生态博览会（湾芯展）在深圳开幕
@@ -741,6 +750,8 @@ a{color:inherit;}
 <li><b>10/5</b>欧元区8月PPI、法国/德国/欧元区及英国9月服务业与综合PMI终值公布</li>
 <li><b>10/5</b>美国9月ISM非制造业PMI及标普全球服务业/综合PMI终值公布</li>
 <li><b>10/5</b>英国9月服务业与综合PMI终值公布</li>
+<li><b>10/5</b>英特尔PC用CPU预计10月5日再度提价约10%</li>
+<li><b>10/5</b>芝商所（CME）与Silicon Data推出H100/B200算力租赁指数期货</li>
 <li><b>10/6</b>美国8月JOLTs职位空缺</li>
 <li><b>10/6</b>澳洲数据中心运营商Firmus将于10月6日启动50亿美元IPO</li>
 <li><b>10/6</b>美国9月全球供应链压力指数公布</li>
@@ -945,6 +956,25 @@ const TODAY_UPDATES = {
      "title": "第七届中国国际进口博览会11月5-10日在上海举办",
      "cat": "cn",
      "desc": "进博会期间多项贸易与产业政策信号密集释放，关注签约金额、新设展区及进口扩大政策对消费、医药、装备等板块的催化。"
+    }
+   ]
+  },
+  {
+   "ts": "07:49",
+   "items": [
+    {
+     "date": "2026-10-05",
+     "time": null,
+     "title": "英特尔PC用CPU预计10月5日再度提价约10%",
+     "cat": "cn",
+     "desc": "叠加此前功率半导体、安森美等涨价潮，PC产业链成本端压力上升，关注国产CPU替代与终端品牌提价传导。"
+    },
+    {
+     "date": "2026-10-05",
+     "time": null,
+     "title": "芝商所（CME）与Silicon Data推出H100/B200算力租赁指数期货",
+     "cat": "cn",
+     "desc": "算力资产金融化新工具，为AI算力租赁定价提供基准，反映算力需求景气度。"
     }
    ]
   }
@@ -1857,6 +1887,8 @@ var EVENTS = {
       { time:null, title:'欧元区8月PPI、法国/德国/欧元区及英国9月服务业与综合PMI终值公布', cat:'gl', key:false, source:'公开信息', desc:'欧央行9月已降息，PPI与PMI终值影响欧央行10月议息预期，关注欧元与欧股反应。' },
       { time:null, title:'美国9月ISM非制造业PMI及标普全球服务业/综合PMI终值公布', cat:'us', key:false, source:'ISM/标普全球', desc:'非农爆冷后服务业景气数据成美联储10月加息概率关键验证，若PMI走弱将进一步打压加息预期，利好美债与成长股。' },
       { time:null, title:'英国9月服务业与综合PMI终值公布', cat:'gl', key:false, source:'标普全球', desc:'英国央行8月已降息，PMI数据影响后续宽松节奏，关注英镑与英债。' },
+    { time:null, title:'英特尔PC用CPU预计10月5日再度提价约10%', cat:'cn', key:false, source:'公开信息', desc:'英特尔再度上调PC处理器价格约10%，叠加此前功率半导体、安森美等涨价潮，PC产业链成本端压力上升，关注国产CPU替代与终端品牌提价传导。' },
+    { time:null, title:'芝商所（CME）与Silicon Data推出H100/B200算力租赁指数期货', cat:'cn', key:false, source:'CME', desc:'算力资产金融化新工具，为AI算力租赁定价提供基准，反映算力需求景气度，利好算力产业链资产定价透明度。' }
     ],
     '2026-10-06': [
     { time:null, title:'美国8月JOLTs职位空缺', cat:'us', key:false, source:'美国劳工部', desc:'美国劳工部月度职位空缺和劳动力流动调查（JOLTS），7月为727.1万人、低于预期；8月数据将反映就业市场紧俏度变化，是非农报告前的重要劳动力指标。' },
@@ -2235,7 +2267,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202610050600';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202610050800';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
