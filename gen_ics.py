@@ -33,10 +33,28 @@ def esc_param(s):
 
 def extract_events(html_src):
     """从 index.html 源码中提取 var EVENTS = {...}; 并解析为 dict[date][list[ev]]"""
-    m = re.search(r'var EVENTS = (\{.*?\n\});', html_src, re.S)
+    m = re.search(r'var EVENTS = \{', html_src)
     if not m:
         raise RuntimeError('未找到 var EVENTS 定义')
-    block = m.group(1)
+    start = m.end() - 1
+    depth = 0; instr = False; q = None; i = start
+    while i < len(html_src):
+        c = html_src[i]
+        if instr:
+            if c == '\\':
+                i += 2; continue
+            if c == q:
+                instr = False
+        elif c in ('"', "'"):
+            instr = True; q = c
+        elif c == '{':
+            depth += 1
+        elif c == '}':
+            depth -= 1
+            if depth == 0:
+                break
+        i += 1
+    block = html_src[start + 1:i]
 
     events = {}
     # 按日期键切分（用括号配对定位每个键的数组区间，不依赖键在文件中的顺序）
