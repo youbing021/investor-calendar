@@ -39,22 +39,39 @@ def extract_events(html_src):
     block = m.group(1)
 
     events = {}
-    # 按日期键切分
+    # 按日期键切分（用括号配对定位每个键的数组区间，不依赖键在文件中的顺序）
     date_re = re.compile(r"'(\d{4}-\d{2}-\d{2})'\s*:\s*\[")
     pos = 0
-    dates = list(date_re.finditer(block))
-    for i, dm in enumerate(dates):
+    for dm in date_re.finditer(block):
         date_key = dm.group(1)
-        seg_start = dm.end()
-        seg_end = dates[i + 1].start() if i + 1 < len(dates) else block.rfind('};')
-        seg = block[seg_start:seg_end]
+        arr_start = dm.end() - 1  # 指向 '['
+        depth = 0; instr = False; q = None; arr_end = None; i = arr_start
+        while i < len(block):
+            c = block[i]
+            if instr:
+                if c == '\\':
+                    i += 2; continue
+                if c == q:
+                    instr = False
+            elif c in ('"', "'"):
+                instr = True; q = c
+            elif c == '[':
+                depth += 1
+            elif c == ']':
+                depth -= 1
+                if depth == 0:
+                    arr_end = i; break
+            i += 1
+        if arr_end is None:
+            continue
+        seg = block[arr_start+1:arr_end]
         # 解析该日期下的事件对象数组
         objs = re.findall(r"\{([^{}]*?)\}", seg, re.S)
         lst = []
         for o in objs:
             def field(name, default=None):
                 # 字段值统一用单/双引号包裹；time/key 可能为 null/true/false 无引号
-                fm = re.search(r"\b" + name + r"\s*:\s*(?:\'([^\']*?)\'|\"([^\"]*?)\"|([^,\s}]+))", o, re.S)
+                fm = re.search(r"\"?" + name + r"\"?\s*:\s*(?:\'([^\']*?)\'|\"([^\"]*?)\"|([^,\s}]+))", o, re.S)
                 if not fm:
                     return default
                 return (fm.group(1) if fm.group(1) is not None else
@@ -105,7 +122,7 @@ def build_ics(events, now_dt):
             cat_label = CATS.get(ev['cat'], '市场事件')
             summary = title + ' · ' + cat_label
 
-            if ev['time']:
+            if ev['time'] and ':' in ev['time']:
                 # 定时事件：按北京时间 TZID 写入，默认时长1小时
                 hh, mm = ev['time'].split(':')[:2]
                 start = datetime(int(date_key[0:4]), int(date_key[5:7]), int(date_key[8:10]),
