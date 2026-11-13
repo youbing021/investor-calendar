@@ -920,6 +920,17 @@ a{color:inherit;}
    cat: cn=国内/政策  gl=海外宏观  ai=AI/科技  ne=新能源/电池
    key: true 为重点事件 */
 var CATS = { cn:'国内/政策', gl:'海外宏观', ai:'AI/科技', ne:'新能源/电池', hk:'港股', us:'美股' };
+/* 兼容历史数据的非标准 cat 值，避免标签渲染成 undefined */
+var CAT_EXTRA = { med:'医药生物', tech:'科技', policy:'政策', prov:'省级政策', province:'省级政策',
+  gs:'公司事件', hy:'行业', qt:'其他', hg:'大宗', commodity:'大宗', global:'海外宏观', eu:'海外宏观',
+  overseas:'海外宏观', fin:'金融', ma:'并购重组', zc:'政策', undefined:'其他', fund:'资金' };
+function catLabel(c){
+  if(!c){ return '其他'; }
+  if(CATS[c]){ return CATS[c]; }
+  if(CAT_EXTRA[c]){ return CAT_EXTRA[c]; }
+  if(/[\u4e00-\u9fa5]/.test(c)){ return c; }
+  return '其他';
+}
 const TODAY_UPDATES = {
  "date": "2026-11-13",
  "batches": [
@@ -2969,7 +2980,7 @@ function dayEventsTop(dateISO, maxN){
 }
 
 function evCardHTML(ev, dateISO){
-  var badge = ev.key ? '重点' : (CATS[ev.cat] || '其他');
+  var badge = ev.key ? '重点' : catLabel(ev.cat);
   return '<button class="ev-card key c-'+ev.cat+'" data-date="'+dateISO+'" data-i="'+ev._i+'">'+
     '<span class="ev-top"><span class="ev-time">'+(ev.time||'全天')+'</span><span class="ev-badge">'+esc(badge)+'</span></span>'+
     '<span class="ev-title">'+esc(ev.title)+'</span>'+
@@ -3056,7 +3067,7 @@ function renderDayList(){
   var items = evs.map(function(ev,k){
     return '<div class="d-item key c-'+ev.cat+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
-      '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+CATS[ev.cat]+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
+      '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+catLabel(ev.cat)+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
       '<div class="d-desc">'+esc(ev.desc)+'</div>'+
     '</div>';
   }).join('');
@@ -3072,7 +3083,7 @@ function openDrawer(dateISO, evIndex){
   document.getElementById('drawerBody').innerHTML =
     '<div class="d-item key c-'+ev.cat+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
-      '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+CATS[ev.cat]+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
+      '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+catLabel(ev.cat)+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
       '<div class="d-desc">'+esc(ev.desc)+'</div>'+
       srcLine(ev)+
     '</div>';
@@ -3176,7 +3187,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202611130612';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202611131031';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -3236,7 +3247,7 @@ function buildShareCard(){
         '<div class="wd">'+weekdayCN(cur)+(isWeekend?' · 休市':'')+'</div></div>'+
         '<div class="share-events">';
       evs.forEach(function(ev){
-        var badge = ev.key ? '<span class="k ky">重点</span>' : '<span class="k '+ev.cat+'">'+CATS[ev.cat]+'</span>';
+        var badge = ev.key ? '<span class="k ky">重点</span>' : '<span class="k '+ev.cat+'">'+catLabel(ev.cat)+'</span>';
         html += '<div class="share-ev">'+
           '<span class="tm">'+(ev.time||'全天')+'</span>'+
           '<span class="t">'+esc(ev.title)+'</span>'+badge+
