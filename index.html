@@ -535,7 +535,7 @@ a{color:inherit;}
 .today-updates li{font-size:13px;color:var(--ink);line-height:1.6;padding:8px 0;border-bottom:1px dashed var(--line);}
 .today-updates li:last-child{border-bottom:none;}
 .today-updates li b{color:var(--amber);font-weight:600;margin-right:6px;font-family:var(--mono);}
-.today-updates .tu-desc{font-size:12px;color:var(--ink-dim);margin-top:4px;line-height:1.7;}
+.today-updates .tu-desc{font-size:15px;color:#C3CCD8;margin-top:8px;line-height:1.95;letter-spacing:.2px;}
 .today-updates .tu-foot{font-size:12px;color:var(--ink-faint);margin-top:14px;}
 
 .today-updates .tu-src{font-size:11px;color:var(--ink-faint);font-weight:400;font-family:inherit;}
@@ -558,7 +558,7 @@ a{color:inherit;}
 .today-updates li{font-size:13px;color:var(--ink);line-height:1.6;padding:6px 0;border-bottom:1px dashed var(--line);}
 .today-updates li:last-child{border-bottom:none;}
 .today-updates li b{color:var(--amber);font-weight:600;margin-right:6px;font-family:var(--mono);}
-.today-updates .tu-desc{font-size:12px;color:var(--ink-dim);margin-top:4px;line-height:1.7;}
+.today-updates .tu-desc{font-size:15px;color:#C3CCD8;margin-top:8px;line-height:1.95;letter-spacing:.2px;}
 .today-updates .tu-none{font-size:12px;color:var(--ink-faint);padding:2px 0;}
 .today-updates .tu-foot{font-size:12px;color:var(--ink-faint);margin-top:14px;}
 
@@ -593,6 +593,10 @@ a{color:inherit;}
 @media(max-width:480px){.tu-pin{padding:10px 12px;}.tu-pin-title{font-size:15px;}.tu-pin-desc{font-size:12.5px;}}
 /* 性能：底部两大长区块离屏时跳过渲染，降低首屏布局与绘制成本 */
 .today-updates,.event-overview{content-visibility:auto;contain-intrinsic-size:auto 1800px;}
+
+/* 个股高亮：分析正文里的“名称（代码）”自动加亮 */
+.stk{color:#F5C451;font-weight:700;letter-spacing:.2px;}
+.stk-c{color:#8FA6BF;font-family:var(--mono);font-size:.86em;font-weight:500;letter-spacing:.4px;}
 </style>
 </head>
 <body style="background:#0E1218;">
@@ -3107,6 +3111,22 @@ function weekdayCN(d){ return ['周日','周一','周二','周三','周四','周
 function fmtMD(d){ return (d.getMonth()+1)+'月'+d.getDate()+'日'; }
 function fmtYMD(d){ return d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日'; }
 function esc(s){ if(s===undefined||s===null){ return ''; } return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function hlStocks(h){
+  /* 分析正文里的“名称（代码）”自动加亮；只在纯文本上运行，失败则原样返回 */
+  try{
+    var PFX = /^(?:例如|比如|包括|如|含|像)+/;
+    var f = function(m, name, mid, code, tail){
+      var n = name.replace(PFX, '');
+      if(n.length >= 5){ n = n.replace(/^[\u4e0e\u53ca\u548c\u5bf9\u5728\u4e3a\u662f\u7b49\u5171\u4ece\u7531\u5411\u6709\u5219]/,''); }  /* 去掉“与/及/和…”这类连接词，避免误吞真名 */
+      if(n.length < 2){ return m; }
+      return '<span class="stk">' + n + '</span>' + mid + '<span class="stk-c">' + code + '</span>' + (tail || '');
+    };
+    return String(h)
+      .replace(/([\u4e00-\u9fa5A-Za-z\u00b7]{2,8})([\uff08(])((?:[0-9]{6}|[0-9]{3,5}\.HK))([\uff0c,\uff09)])/g, f)
+      .replace(/([\u4e00-\u9fa5\u00b7]{2,8})(\s)((?:00[0-9]{4}|30[0-9]{4}|60[0-9]{4}|68[0-9]{4}|8[0-9]{5}|92[0-9]{4}|43[0-9]{4}|83[0-9]{4}))(?![0-9])/g,
+        function(m, name, sp, code){ return f(m, name, sp, code, ''); });
+  }catch(e){ return h; }
+}
 
 /* ================= 路由 ================= */
 function route(){
@@ -3230,7 +3250,7 @@ function renderDayList(){
     return '<div class="d-item key c-'+ev.cat+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
       '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+catLabel(ev.cat)+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
-      '<div class="d-desc">'+esc(ev.desc)+'</div>'+
+      '<div class="d-desc">'+hlStocks(esc(ev.desc))+'</div>'+
     '</div>';
   }).join('');
   var more = raw.length>10 ? '<div class="dl-more">当日共 '+raw.length+' 项，日历板块按重要程度仅展示前 10 条；完整内容见下方「更新日志」与「近期重大市场事件速览」。</div>' : '';
@@ -3246,7 +3266,7 @@ function openDrawer(dateISO, evIndex){
     '<div class="d-item key c-'+ev.cat+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
       '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+catLabel(ev.cat)+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
-      '<div class="d-desc">'+esc(ev.desc)+'</div>'+
+      '<div class="d-desc">'+hlStocks(esc(ev.desc))+'</div>'+
       srcLine(ev)+
     '</div>';
   showDrawer(true);
@@ -3349,7 +3369,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202611142254';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202611142309';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -3594,6 +3614,10 @@ document.getElementById('exportSave').addEventListener('click', function(){
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+});
+document.querySelectorAll('.tu-desc').forEach(function(el){
+  if(el.querySelector('.stk')){ return; }
+  el.innerHTML = hlStocks(el.innerHTML);
 });
 </script>
 </body>
