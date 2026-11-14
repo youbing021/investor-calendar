@@ -532,9 +532,9 @@ a{color:inherit;}
 .today-updates h2{font-family:var(--serif);font-size:20px;color:var(--amber);margin-bottom:6px;}
 .today-updates .tu-intro{font-size:13px;color:var(--ink-dim);margin-bottom:14px;line-height:1.7;}
 .today-updates ul{list-style:none;}
-.today-updates li{font-size:15.5px;color:#F6C93F;line-height:1.65;font-weight:700;letter-spacing:.2px;padding:8px 0;border-bottom:1px dashed var(--line);}
+.today-updates li{font-size:17px;color:#FF6B6B;line-height:1.6;font-weight:700;letter-spacing:.2px;padding:10px 0;border-bottom:1px dashed var(--line);}
 .today-updates li:last-child{border-bottom:none;}
-.today-updates li b{color:var(--amber);font-weight:600;margin-right:6px;font-family:var(--mono);}
+.today-updates li b{color:#8FA6BF;font-size:12.5px;font-weight:600;margin-right:8px;font-family:var(--mono);vertical-align:1px;}
 .today-updates .tu-desc{font-size:15px;color:#C3CCD8;margin-top:8px;line-height:1.95;letter-spacing:.2px;font-weight:400;}
 .today-updates .tu-foot{font-size:12px;color:var(--ink-faint);margin-top:14px;}
 
@@ -557,9 +557,9 @@ a{color:inherit;}
 .today-updates .tu-ts{letter-spacing:.5px;}
 .today-updates .tu-ts{font-size:12px;font-weight:600;color:var(--amber);font-family:var(--mono);margin-bottom:6px;}
 .today-updates ul{list-style:none;}
-.today-updates li{font-size:15.5px;color:#F6C93F;line-height:1.65;font-weight:700;letter-spacing:.2px;padding:6px 0;border-bottom:1px dashed var(--line);}
+.today-updates li{font-size:17px;color:#FF6B6B;line-height:1.6;font-weight:700;letter-spacing:.2px;padding:8px 0;border-bottom:1px dashed var(--line);}
 .today-updates li:last-child{border-bottom:none;}
-.today-updates li b{color:var(--amber);font-weight:600;margin-right:6px;font-family:var(--mono);}
+.today-updates li b{color:#8FA6BF;font-size:12.5px;font-weight:600;margin-right:8px;font-family:var(--mono);vertical-align:1px;}
 .today-updates .tu-desc{font-size:15px;color:#C3CCD8;margin-top:8px;line-height:1.95;letter-spacing:.2px;font-weight:400;}
 .today-updates .tu-none{font-size:12px;color:var(--ink-faint);padding:2px 0;}
 .today-updates .tu-foot{font-size:12px;color:var(--ink-faint);margin-top:14px;}
@@ -590,9 +590,9 @@ a{color:inherit;}
 /* 美股复盘置顶卡片（深色主题适配） */
 .tu-pin{border:1px solid rgba(234,217,166,.30);background:linear-gradient(135deg,rgba(234,217,166,.12),rgba(234,217,166,.04));border-radius:12px;padding:12px 14px;margin:6px 0 14px;}
 .tu-pin .tu-ts{color:#E8C766;font-weight:700;font-size:13.5px;letter-spacing:.5px;}
-.tu-pin-title{font-weight:700;font-size:16px;color:#F5F0E6;margin:6px 0 4px;line-height:1.45;}
+.tu-pin-title{font-weight:700;font-size:17.5px;color:#FF6B6B;margin:6px 0 4px;line-height:1.5;}
 .tu-pin-desc{white-space:pre-line;font-size:13px;color:var(--ink-dim);line-height:1.7;}
-@media(max-width:480px){.tu-pin{padding:10px 12px;}.tu-pin-title{font-size:15px;}.tu-pin-desc{font-size:12.5px;}}
+@media(max-width:480px){.tu-pin{padding:10px 12px;}.tu-pin-title{font-size:16px;}.tu-pin-desc{font-size:13px;}}
 /* 性能：底部两大长区块离屏时跳过渲染，降低首屏布局与绘制成本 */
 .today-updates,.event-overview{content-visibility:auto;contain-intrinsic-size:auto 1800px;}
 
@@ -3372,7 +3372,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202611142341';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202611142347';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
