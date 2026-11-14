@@ -35,6 +35,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="preload" as="image" href="logo.webp" fetchpriority="high">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;500&display=swap"></noscript>
 <style>
@@ -590,12 +591,14 @@ a{color:inherit;}
 .tu-pin-title{font-weight:700;font-size:16px;color:#F5F0E6;margin:6px 0 4px;line-height:1.45;}
 .tu-pin-desc{white-space:pre-line;font-size:13px;color:var(--ink-dim);line-height:1.7;}
 @media(max-width:480px){.tu-pin{padding:10px 12px;}.tu-pin-title{font-size:15px;}.tu-pin-desc{font-size:12.5px;}}
+/* 性能：底部两大长区块离屏时跳过渲染，降低首屏布局与绘制成本 */
+.today-updates,.event-overview{content-visibility:auto;contain-intrinsic-size:auto 1800px;}
 </style>
 </head>
 <body style="background:#0E1218;">
 <!-- 首屏加载提示：CSS/JS 就绪后由 JS 隐藏，避免白屏焦虑 -->
 <div id="appLoading" style="position:fixed;inset:0;z-index:9999;background:#0E1218;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
-  <img src="logo.webp" alt="投资日历" style="height:56px;width:auto;opacity:.92;" />
+  <img src="logo.webp" alt="投资日历" width="188" height="56" decoding="async" fetchpriority="high" style="height:56px;width:auto;opacity:.92;" />
   <div style="width:26px;height:26px;border:3px solid rgba(255,255,255,.15);border-top-color:#E8A33D;border-radius:50%;animation:ldspin .8s linear infinite;"></div>
 </div>
 
@@ -3306,7 +3309,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202611141538';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202611141908';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
