@@ -3112,19 +3112,20 @@ function fmtMD(d){ return (d.getMonth()+1)+'月'+d.getDate()+'日'; }
 function fmtYMD(d){ return d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日'; }
 function esc(s){ if(s===undefined||s===null){ return ''; } return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function hlStocks(h){
-  /* 分析正文里的“名称（代码）”自动加亮；只在纯文本上运行，失败则原样返回 */
+  /* 分析正文里的个股“名称（代码）”自动加亮：取代码前 2-4 个汉字，避免把“国产龙头”“侧”这类前缀吞进名字 */
   try{
-    var PFX = /^(?:例如|比如|包括|如|含|像)+/;
-    var f = function(m, name, mid, code, tail){
-      var n = name.replace(PFX, '');
-      if(n.length >= 5){ n = n.replace(/^[\u4e0e\u53ca\u548c\u5bf9\u5728\u4e3a\u662f\u7b49\u5171\u4ece\u7531\u5411\u6709\u5219]/,''); }  /* 去掉“与/及/和…”这类连接词，避免误吞真名 */
-      if(n.length < 2){ return m; }
-      return '<span class="stk">' + n + '</span>' + mid + '<span class="stk-c">' + code + '</span>' + (tail || '');
+    var f = function(m, name, mid, code){
+      name = name.replace(/^[\u8e2a\u4fa7\u8ddd\u76ef\u8ddf\u770b\u67e5\u4e70\u5356\u538b\u6258\u80a1]/, '');  /* 去掉“跟踪/侧/股”这类前缀 */
+      if(name.length < 2){ return m; }
+      if(/\u6307\u6570$/.test(name)){ return m; }  /* 指数不算个股 */
+      if(/^[A-Za-z]/.test(name)){ return m; }  /* TCL中环 / C沈鼓 这类英文打头的不做局部高亮，避免只亮一半 */
+      return '<span class="stk">' + name + '</span>' + mid + '<span class="stk-c">' + code + '</span>';
     };
     return String(h)
-      .replace(/([\u4e00-\u9fa5A-Za-z\u00b7]{2,8})([\uff08(])((?:[0-9]{6}|[0-9]{3,5}\.HK))([\uff0c,\uff09)])/g, f)
-      .replace(/([\u4e00-\u9fa5\u00b7]{2,8})(\s)((?:00[0-9]{4}|30[0-9]{4}|60[0-9]{4}|68[0-9]{4}|8[0-9]{5}|92[0-9]{4}|43[0-9]{4}|83[0-9]{4}))(?![0-9])/g,
-        function(m, name, sp, code){ return f(m, name, sp, code, ''); });
+      .replace(/([\u4e00-\u9fa5A-Za-z\u00b7]{2,4})([\uff08(])((?:[0-9]{6}|[0-9]{3,5}\.HK))([\uff0c,\uff09)])/g,
+        function(m, name, mid, code, tail){ return f(m, name, mid, code) + tail; })
+      .replace(/([\u4e00-\u9fa5\u00b7]{2,4})(\s)((?:00[0-9]{4}|30[0-9]{4}|60[0-9]{4}|68[0-9]{4}|8[0-9]{5}|92[0-9]{4}|43[0-9]{4}|83[0-9]{4}))(?![0-9])/g,
+        '<span class="stk">$1</span>$2<span class="stk-c">$3</span>');
   }catch(e){ return h; }
 }
 
@@ -3369,7 +3370,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202611142309';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202611142322';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
