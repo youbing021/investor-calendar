@@ -3372,7 +3372,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202611142347';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION = '202611142400';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -3622,6 +3622,16 @@ document.querySelectorAll('.tu-desc').forEach(function(el){
   if(el.querySelector('.stk')){ return; }
   el.innerHTML = hlStocks(el.innerHTML);
 });
+
+/* 更新日志标题配色：四条主色轮换，同屏不重样；置顶复盘标题固定琥珀金 */
+(function(){
+  var PALETTE = ['#3DDCC4', '#6EC1FF', '#FFC53D', '#FF9A3C'];
+  document.querySelectorAll('.today-updates li').forEach(function(li, i){
+    li.style.color = PALETTE[i % PALETTE.length];
+  });
+  var pin = document.querySelector('.tu-pin-title');
+  if(pin){ pin.style.color = '#FFC53D'; }
+})();
 </script>
 </body>
 </html>
