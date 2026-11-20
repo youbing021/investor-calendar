@@ -593,6 +593,17 @@ a{color:inherit;}
 .tu-pin-title{font-weight:700;font-size:17.5px;color:#FF6B6B;margin:6px 0 4px;line-height:1.5;}
 .tu-pin-desc{white-space:pre-line;font-size:13px;color:var(--ink-dim);line-height:1.7;}
 @media(max-width:480px){.tu-pin{padding:10px 12px;}.tu-pin-title{font-size:16px;}.tu-pin-desc{font-size:13px;}}
+/* 手机端：更新日志/置顶区只显示简约条目，点击展开详情（桌面端不折叠） */
+@media (max-width:768px){
+  .today-updates li{position:relative;padding-right:78px;font-size:15px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+  .today-updates .tu-desc{display:none;}
+  .today-updates li.open .tu-desc{display:block;font-size:14px;line-height:1.85;}
+  .today-updates .tu-more{position:absolute;right:0;top:9px;font-size:11.5px;font-weight:600;color:var(--amber);font-family:inherit;letter-spacing:0;white-space:nowrap;}
+  .today-updates .tu-pin{cursor:pointer;-webkit-tap-highlight-color:transparent;}
+  .today-updates .tu-pin .tu-pin-desc{display:none;}
+  .today-updates .tu-pin.open .tu-pin-desc{display:block;}
+  .today-updates .tu-pin .tu-more{position:static;display:inline-block;margin-top:8px;color:#E8C766;}
+}
 /* 性能：底部两大长区块离屏时跳过渲染，降低首屏布局与绘制成本 */
 .today-updates,.event-overview{content-visibility:auto;contain-intrinsic-size:auto 1800px;}
 
@@ -3849,6 +3860,70 @@ setTimeout(function(){
   try{ window.scrollTo(0, 0); }catch(e){}
 }, 300);
 
+/* ===== 手机端折叠：更新日志/收盘速览置顶只显示简约条目，点击展开详情（桌面端不受影响） ===== */
+(function(){
+  var MQ = window.matchMedia('(max-width: 768px)');
+  var MIN_LEN = 45;                       // 正文短于该长度就不折叠
+  function isMobile(){ return MQ.matches; }
+  function addHint(el, text){
+    if(el.querySelector('.tu-more')) return;
+    var h = document.createElement('span');
+    h.className='tu-more';
+    h.textContent=text;
+    el.appendChild(h);
+  }
+  function setHint(el, text){
+    var h = el.querySelector('.tu-more');
+    if(h) h.textContent = text;
+  }
+  function decorate(){
+    var sec = document.querySelector('.today-updates');
+    if(!sec) return;
+    if(!isMobile()) return;
+    var pins = sec.querySelectorAll('.tu-pin');
+    for(var i=0;i<pins.length;i++){
+      var pd = pins[i].querySelector('.tu-pin-desc');
+      if(pd && pd.textContent.trim().length >= MIN_LEN){
+        addHint(pins[i], '展开全文 ▾');
+        pins[i].setAttribute('data-fold','1');
+      }
+    }
+    var lis = sec.querySelectorAll('li');
+    for(var j=0;j<lis.length;j++){
+      var d = lis[j].querySelector('.tu-desc');
+      if(d && d.textContent.trim().length >= MIN_LEN){
+        addHint(lis[j], '展开 ▾');
+        lis[j].setAttribute('data-fold','1');
+      }
+    }
+    if(sec.getAttribute('data-fold-bound')!=='1'){
+      sec.setAttribute('data-fold-bound','1');
+      sec.addEventListener('click', function(e){
+        var t = e.target;
+        if(!t || !t.closest) return;
+        if(t.closest('.tu-desc') || t.closest('.tu-pin-desc')) return;  // 正文内点击不折叠
+        var pin = t.closest('.tu-pin');
+        if(pin && pin.getAttribute('data-fold')==='1'){
+          var onp = pin.classList.toggle('open');
+          setHint(pin, onp ? '收起 ▴' : '展开全文 ▾');
+          return;
+        }
+        var li = t.closest('li');
+        if(li && li.getAttribute('data-fold')==='1'){
+          var on = li.classList.toggle('open');
+          setHint(li, on ? '收起 ▴' : '展开 ▾');
+        }
+      }, false);
+    }
+  }
+  try{
+    decorate();
+    if(MQ.addEventListener){ MQ.addEventListener('change', decorate); }
+    else if(MQ.addListener){ MQ.addListener(decorate); }
+    window.addEventListener('load', decorate);
+  }catch(e){ /* 不影响主流程 */ }
+})();
+
 /* ===== PWA: 注册 Service Worker（离线可用 / 添加到主屏幕） ===== */
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
@@ -3867,7 +3942,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611201630';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611202110';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
