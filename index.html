@@ -3522,21 +3522,107 @@ function weekdayCN(d){ return ['周日','周一','周二','周三','周四','周
 function fmtMD(d){ return (d.getMonth()+1)+'月'+d.getDate()+'日'; }
 function fmtYMD(d){ return d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日'; }
 function esc(s){ if(s===undefined||s===null){ return ''; } return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function hlStocks(h){
-  /* 分析正文里的个股“名称（代码）”自动加亮：取代码前 2-4 个汉字，避免把“国产龙头”“侧”这类前缀吞进名字 */
+var STOCK_NAME_MAP = null, STOCK_NAME_RE = null;
+var SEED_STOCKS = ['中国银行','交通银行','建设银行','农业银行','邮储银行','兴业银行','浦发银行','民生银行','平安银行','光大银行','中信银行','中国石化','中国神华','中国建筑','中国铁建','中国中铁','中国中车','中国平安','中国人寿','中国太保','中国联通','中国移动','中国核电','中国电建','中国铝业','中国船舶','大秦铁路','京沪高铁','长江电力','三峡能源','紫金矿业','山东黄金','宝钢股份','万华化学','海螺水泥','上汽集团','比亚迪','长城汽车','隆基绿能','通威股份','阳光电源','亿纬锂能','天齐锂业','赣锋锂业','京东方A','中国中免','中国卫通','中国稀土'];
+
+
+/* “名称（代码）”配对：名称必须紧跟在标点/空格/开头之后，避免把“方向”“龙头”这类前缀吞进名字 */
+var PAIR_RE = /(^|[，、。；：！？\s（(【：:"''])([\u4e00-\u9fa5]{2,6})[（(]((?:[0-9]{6}(?:\.(?:SH|SZ|BJ))?)|(?:[0-9]{3,5}\.HK)|(?:[A-Z]{2}[0-9]{6}))([)）])/g;
+var NOT_STOCK = { '指数': 1, '板块': 1, '龙头': 1, '权重': 1, '方向': 1, '概念': 1, '行业': 1, '标的': 1, '个股': 1 };
+/* 名称前的描述词：逐层剥掉，避免“石油链中国石油”“事件主体网易”把名字吞长 */
+var NAME_PREFIX = ['事件主体', '直接映射', '权重龙头', '板块龙头', '石油链', '煤炭链', '有色链', '新能源链', '金链', '油链', '钢铁链', '化工链', '方向', '龙头', '权重', '板块', '概念', '对照', '防御', '平台', '环节', '标的', '个股', '强势端', '弱势端', '事件', '主体', '链', '端'];
+function trimPrefix(n){
+  var changed = true;
+  while(changed){
+    changed = false;
+    for(var i = 0; i < NAME_PREFIX.length; i++){
+      var p = NAME_PREFIX[i];
+      if(n.length > p.length + 1 && n.indexOf(p) === 0){ n = n.slice(p.length); changed = true; break; }
+    }
+  }
+  if(n.length > 4){ n = n.slice(-4); }
+  return n;
+}
+
+/* 从事件库统计个股名称表：只算一次，不写死词表 */
+function stockNameMap(){
+  if(STOCK_NAME_MAP){ return STOCK_NAME_MAP; }
+  var cand = {};
+  function take(t){
+    if(!t || (t.indexOf('（') < 0 && t.indexOf('(') < 0)){ return; }
+    t.replace(PAIR_RE, function(m, pre, name, code){
+      name = trimPrefix(name);
+      if(name.length < 2 || NOT_STOCK[name] || /指数$/.test(name)){ return m; }
+      cand[name] = (cand[name] || 0) + 1;
+      return m;
+    });
+  }
   try{
-    var f = function(m, name, mid, code){
-      name = name.replace(/^[\u8e2a\u4fa7\u8ddd\u76ef\u8ddf\u770b\u67e5\u4e70\u5356\u538b\u6258\u80a1]/, '');  /* 去掉“跟踪/侧/股”这类前缀 */
-      if(name.length < 2){ return m; }
-      if(/\u6307\u6570$/.test(name)){ return m; }  /* 指数不算个股 */
-      if(/^[A-Za-z]/.test(name)){ return m; }  /* TCL中环 / C沈鼓 这类英文打头的不做局部高亮，避免只亮一半 */
-      return '<span class="stk">' + name + '</span>' + mid + '<span class="stk-c">' + code + '</span>';
-    };
-    return String(h)
-      .replace(/([\u4e00-\u9fa5A-Za-z\u00b7]{2,4})([\uff08(])((?:[0-9]{6}|[0-9]{3,5}\.HK))([\uff0c,\uff09)])/g,
-        function(m, name, mid, code, tail){ return f(m, name, mid, code) + tail; })
-      .replace(/([\u4e00-\u9fa5\u00b7]{2,4})(\s)((?:00[0-9]{4}|30[0-9]{4}|60[0-9]{4}|68[0-9]{4}|8[0-9]{5}|92[0-9]{4}|43[0-9]{4}|83[0-9]{4}))(?![0-9])/g,
-        '<span class="stk">$1</span>$2<span class="stk-c">$3</span>');
+    for(var k in EVENTS){
+      var arr = EVENTS[k] || [];
+      for(var i = 0; i < arr.length; i++){
+        var ev = arr[i];
+        if(!ev){ continue; }
+        take(ev.title); take(ev.desc);
+      }
+    }
+    if(typeof TODAY_UPDATES !== 'undefined'){
+      (TODAY_UPDATES.batches || []).forEach(function(b){
+        (b.items || []).forEach(function(it){ if(!it){ return; } take(it.title); take(it.desc); });
+      });
+      var ur = TODAY_UPDATES.us_review;
+      if(ur){ take(ur.title); take(ur.desc); }
+    }
+  }catch(e){}
+
+  /* 后缀过滤：去掉“事件主体网易”“金链山东黄金”这类把描述词吞进来的长名 */
+  var map = {};
+  Object.keys(cand).forEach(function(n){
+    var keep = true;
+    for(var L = 2; L < n.length; L++){
+      var tail = n.slice(n.length - L);
+      if(cand[tail]){ keep = false; break; }
+    }
+    if(keep){ map[n] = 1; }
+  });
+  /* 补一批常被写成裸名的大市值股：语料里没有“名称（代码）”配对，也应当高亮 */
+  SEED_STOCKS.forEach(function(n){ if(!map[n]){ map[n] = 1; } });
+  STOCK_NAME_MAP = map;
+  return map;
+}
+
+function stockNameRegex(){
+  if(STOCK_NAME_RE){ return STOCK_NAME_RE; }
+  var map = stockNameMap();
+  var names = Object.keys(map);
+  if(!names.length){ STOCK_NAME_RE = null; return null; }
+  names.sort(function(a, b){ return b.length - a.length || (a < b ? -1 : 1); });
+  STOCK_NAME_RE = new RegExp('(' + names.join('|') + ')', 'g');
+  return STOCK_NAME_RE;
+}
+
+function hlStocks(h){
+  /* 个股加亮：①“名称（代码）”整块；②只写名称没带代码的，用事件库统计出的名称表兜底 */
+  try{
+    var s = String(h), store = [];
+    function keep(html){ store.push(html); return '\u0001' + (store.length - 1) + '\u0002'; }
+
+    /* ① 名称（代码）：600036 / 600036.SH / SH600036 / 01476.HK */
+    s = s.replace(/(^|[，、。；：！？\s（(【：:"'])([\u4e00-\u9fa5A-Za-z\u00b7]{2,6})[（(]((?:[0-9]{6}(?:\.(?:SH|SZ|BJ))?)|(?:[0-9]{3,5}\.HK)|(?:[A-Z]{2}[0-9]{6}))([，,）)])/g,
+      function(m, pre, name, code, close){
+        name = trimPrefix(name);
+        if(name.length < 2 || NOT_STOCK[name] || /\u6307\u6570$/.test(name)){ return m; }
+        if(/^[A-Za-z]/.test(name)){ return m; }
+        return pre + keep('<span class="stk">' + name + '</span>' + '（' + '<span class="stk-c">' + code + '</span>' + close);
+      });
+
+    /* ② 裸名称兜底 */
+    var re = stockNameRegex();
+    if(re){
+      s = s.replace(re, function(m){ return keep('<span class="stk">' + m + '</span>'); });
+    }
+
+    return s.replace(/\u0001(\d+)\u0002/g, function(_, i){ return store[+i]; });
   }catch(e){ return h; }
 }
 
@@ -3781,7 +3867,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION = '202611201548';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611201630';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
