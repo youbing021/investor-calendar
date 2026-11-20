@@ -595,9 +595,9 @@ a{color:inherit;}
 @media(max-width:480px){.tu-pin{padding:10px 12px;}.tu-pin-title{font-size:16px;}.tu-pin-desc{font-size:13px;}}
 /* 手机端：更新日志/置顶区只显示简约条目，点击展开详情（桌面端不折叠） */
 @media (max-width:768px){
-  .today-updates li{position:relative;padding-right:78px;font-size:15px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+  .today-updates li{position:relative;padding-right:58px;font-size:15px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
   .today-updates .tu-desc{display:none;}
-  .today-updates li.open .tu-desc{display:block;font-size:14px;line-height:1.85;}
+  .today-updates li.open .tu-desc{display:block;font-size:14px;line-height:1.85;margin-right:-58px;}
   .today-updates .tu-more{position:absolute;right:0;top:9px;font-size:11.5px;font-weight:600;color:var(--amber);font-family:inherit;letter-spacing:0;white-space:nowrap;}
   .today-updates .tu-pin{cursor:pointer;-webkit-tap-highlight-color:transparent;}
   .today-updates .tu-pin .tu-pin-desc{display:none;}
@@ -3996,7 +3996,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611202124';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611202128';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
