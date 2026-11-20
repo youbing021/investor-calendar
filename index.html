@@ -608,6 +608,10 @@ a{color:inherit;}
   #dayList .d-item .d-desc{display:none;}
   #dayList .d-item.open .d-desc{display:block;margin-top:4px;}
   #dayList .d-item .d-more{font-size:12px;font-weight:600;color:var(--amber);letter-spacing:.3px;padding:3px 0;}
+  #dayList .dl-more{display:none;}
+}
+@media (min-width:769px){
+  #dayList .d-item.extra{display:none;}
 }
 /* 性能：底部两大长区块离屏时跳过渲染，降低首屏布局与绘制成本 */
 .today-updates,.event-overview{content-visibility:auto;contain-intrinsic-size:auto 1800px;}
@@ -3759,15 +3763,16 @@ function renderDayList(){
     box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+'</div><div class="dl-empty">当天暂无重点事件，可切换到其他日期查看。</div>';
     return;
   }
-  var evs = dayEventsTop(state.monthSel, 10);
+  var evs = dayEventsTop(state.monthSel, 0);   /* 0 = 不过滤，保留当日全部事件 */
   var items = evs.map(function(ev,k){
-    return '<div class="d-item key c-'+ev.cat+'">'+
+    var extraCls = (k>=10) ? ' extra' : '';    /* 第11条起：电脑端隐藏，手机端完整展示 */
+    return '<div class="d-item key c-'+ev.cat+extraCls+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
       '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+catLabel(ev.cat)+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
       '<div class="d-desc">'+hlStocks(esc(ev.desc))+'</div>'+
     '</div>';
   }).join('');
-  var more = raw.length>10 ? '<div class="dl-more">当日共 '+raw.length+' 项，日历板块按重要程度仅展示前 10 条；完整内容见下方「更新日志」与「近期重大市场事件速览」。</div>' : '';
+  var more = raw.length>10 ? '<div class="dl-more">当日共 '+raw.length+' 项，已按重要程度排序；手机端显示全部，电脑端仅展示前 10 条（点条目可展开详情）。</div>' : '';
   box.innerHTML = '<div class="dl-head">'+fmtYMD(d)+' · 共'+raw.length+'项</div>'+items+more;
 }
 
@@ -3991,7 +3996,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611202120';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611202124';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
