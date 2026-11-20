@@ -9,7 +9,7 @@
  *   - index.html 内置版本自检（立即+15分钟+可见性变化自动 reload）负责最终同步
  * 版本号：每次部署递增 CACHE_VERSION 强制浏览器更新 SW。
  * ============================================ */
-var CACHE_VERSION = 'investor-calendar-v10';
+var CACHE_VERSION = 'investor-calendar-v11';
 var CACHE_NAME = CACHE_VERSION;
 var PRECACHE_URLS = [
   './',

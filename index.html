@@ -603,6 +603,11 @@ a{color:inherit;}
   .today-updates .tu-pin .tu-pin-desc{display:none;}
   .today-updates .tu-pin.open .tu-pin-desc{display:block;}
   .today-updates .tu-pin .tu-more{position:static;display:inline-block;margin-top:8px;color:#E8C766;}
+  /* 当日事件（日历当日列表）：只显示标题与标签，正文折叠 */
+  #dayList .d-item{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+  #dayList .d-item .d-desc{display:none;}
+  #dayList .d-item.open .d-desc{display:block;margin-top:4px;}
+  #dayList .d-item .d-more{font-size:12px;font-weight:600;color:var(--amber);letter-spacing:.3px;padding:3px 0;}
 }
 /* 性能：底部两大长区块离屏时跳过渲染，降低首屏布局与绘制成本 */
 .today-updates,.event-overview{content-visibility:auto;contain-intrinsic-size:auto 1800px;}
@@ -3924,6 +3929,50 @@ setTimeout(function(){
   }catch(e){ /* 不影响主流程 */ }
 })();
 
+/* ===== 手机端折叠：当日事件（日历当日列表）同样只显示简约条目，点击展开 ===== */
+(function(){
+  var MQ = window.matchMedia('(max-width: 768px)');
+  var MIN_LEN = 45;
+  function decorateList(){
+    var box = document.getElementById('dayList');
+    if(!box || !MQ.matches) return;
+    var items = box.querySelectorAll('.d-item');
+    for(var i=0;i<items.length;i++){
+      var it = items[i];
+      var d = it.querySelector('.d-desc');
+      if(!d || d.textContent.trim().length < MIN_LEN) continue;
+      it.setAttribute('data-fold','1');
+      if(it.querySelector('.d-more')) continue;
+      var h = document.createElement('span');
+      h.className = 'd-more';
+      h.textContent = '展开 ▾';
+      var meta = it.querySelector('.d-meta');
+      if(meta){ meta.appendChild(h); } else { it.appendChild(h); }
+    }
+    if(box.getAttribute('data-fold-bound')!=='1'){
+      box.setAttribute('data-fold-bound','1');
+      box.addEventListener('click', function(e){
+        var t = e.target;
+        if(!t || !t.closest) return;
+        if(t.closest('.d-desc')) return;              // 读正文时不收起
+        var it = t.closest('.d-item');
+        if(it && it.getAttribute('data-fold')==='1'){
+          var on = it.classList.toggle('open');
+          var h = it.querySelector('.d-more');
+          if(h) h.textContent = on ? '收起 ▴' : '展开 ▾';
+        }
+      }, false);
+    }
+  }
+  try{
+    decorateList();
+    var box = document.getElementById('dayList');
+    if(box && window.MutationObserver){ new MutationObserver(decorateList).observe(box, {childList:true}); }
+    if(MQ.addEventListener){ MQ.addEventListener('change', decorateList); }
+    else if(MQ.addListener){ MQ.addListener(decorateList); }
+  }catch(e){ /* 不影响主流程 */ }
+})();
+
 /* ===== PWA: 注册 Service Worker（离线可用 / 添加到主屏幕） ===== */
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
@@ -3942,7 +3991,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611202110';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611202120';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
