@@ -547,7 +547,7 @@ a{color:inherit;}
 /* ===== 来源标注 ===== */
 .d-src{font-size:11px;color:var(--ink-faint);margin-top:8px;line-height:1.6;}
 .d-src a{color:var(--amber);text-decoration:none;border-bottom:1px dotted currentColor;}
-/* ===== 今日更新（每2小时定时更新的新增事件，按更新时间倒序） ===== */
+/* ===== 今日更新（每日 6/12/16/22 点四次定时更新的新增事件，按更新时间倒序） ===== */
 .today-updates{max-width:1600px;margin:0 auto;padding:8px 18px 10px;}
 .today-updates .tu-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px 26px;}
 .today-updates h2{font-family:var(--serif);font-size:20px;color:var(--amber);margin-bottom:6px;}
@@ -725,7 +725,7 @@ a{color:inherit;}
 <section class="today-updates" aria-label="更新日志">
 <div class="tu-card">
 <h2>更新日志 · 11/23</h2>
-<p class="tu-intro">每2小时定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>
+<p class="tu-intro">每日 6:00、12:00、16:00、22:00 四次定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>
 <div class="tu-batch tu-pin">
 <div class="tu-ts">📌 收盘速览 · 置顶</div>
 <div class="tu-pin-title">今日A股表现：政策托底遇上超跌反攻，机器人＋AI漫剧＋CPO三线齐涨（11/23）</div>
@@ -4114,7 +4114,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611231546';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611231631';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 gen_overview.py —— 从 index.html 自动重建两个区块：
-  1. "今日更新"区块（section.today-updates）：展示当天每2小时定时更新时新增的事件（含 desc 解读），
+  1. "今日更新"区块（section.today-updates）：展示当天每日四次（6:00、12:00、16:00、22:00）定时更新时新增的事件（含 desc 解读），
      按信息更新时间倒序排列（最新在前）；数据源为 TODAY_UPDATES（由 gen_updates.py 维护），
      只保留当天批次，次日自动重置。
   2. "近期重大市场事件速览"区块（section.event-overview）：只展示从本周一（含）起的事件标题。
@@ -149,7 +149,7 @@ def build_today_section(updates, src_index):
         '<section class="today-updates" aria-label="更新日志">\n'
         '<div class="tu-card">\n'
         f'<h2>更新日志 · {fmt_date(date)}</h2>\n'
-        '<p class="tu-intro">每2小时定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>\n'
+        '<p class="tu-intro">每日 6:00、12:00、16:00、22:00 四次定时更新的新增市场事件及解读，按更新时间倒序展示，次日自动清空。</p>\n'
         + body + '\n'
         '<p class="tu-foot">更新日志 · 仅保留当天定时更新内容，次日自动切换</p>\n'
         '</div>\n'

@@ -78,7 +78,7 @@ def main():
     # 仅显式传 --added 时追加批次；仅 --us-review（复盘）不产生空批次
     if '--added' in sys.argv:
         data['batches'].append({'ts': now_hm, 'items': items})
-    # 仅保留最近 12 批（每2小时一天最多12次），防止异常堆积
+    # 仅保留最近 12 批（现为每日 4 次更新，12 为冗余上限），防止异常堆积
     data['batches'] = data['batches'][-12:]
 
     blob = json.dumps(data, ensure_ascii=False, indent=1)
