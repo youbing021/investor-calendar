@@ -7,6 +7,8 @@
 """
 import re
 import sys
+import os
+import json
 import html as htmlmod
 from datetime import datetime, timedelta
 
@@ -115,6 +117,28 @@ def extract_events(html_src):
     return events
 
 
+def merge_descs(events, html_path):
+    """详情已外置到 data/desc/<日期>.json，这里回填 desc（按标题匹配）"""
+    ddir = os.path.join(os.path.dirname(os.path.abspath(html_path)), 'data', 'desc')
+    if not os.path.isdir(ddir):
+        return 0
+    filled = 0
+    for d, lst in events.items():
+        p = os.path.join(ddir, d + '.json')
+        if not os.path.exists(p):
+            continue
+        try:
+            with open(p, encoding='utf-8') as f:
+                mp = json.load(f)
+        except Exception:
+            continue
+        for ev in lst:
+            if not ev.get('desc') and mp.get(ev['title']):
+                ev['desc'] = mp[ev['title']]
+                filled += 1
+    return filled
+
+
 def build_ics(events, now_dt):
     lines = []
     lines.append('BEGIN:VCALENDAR')
@@ -175,11 +199,12 @@ def main():
     with open(html_path, 'r', encoding='utf-8') as f:
         src = f.read()
     events = extract_events(src)
+    filled = merge_descs(events, html_path)
     ics = build_ics(events, datetime.utcnow())
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(ics)
     total = sum(len(v) for v in events.values())
-    print(f'OK: 解析 {len(events)} 个日期, 共 {total} 条事件 → {out_path}')
+    print(f'OK: 解析 {len(events)} 个日期, 共 {total} 条事件（回填详情 {filled} 条） → {out_path}')
 
 
 if __name__ == '__main__':

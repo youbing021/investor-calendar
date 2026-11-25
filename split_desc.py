@@ -144,8 +144,18 @@ def main():
 
     os.makedirs(OUTDIR, exist_ok=True)
     for d, mp in payloads.items():
-        with open(os.path.join(OUTDIR, d + '.json'), 'w', encoding='utf-8') as f:
-            json.dump(mp, f, ensure_ascii=False, separators=(',', ':'))
+        path = os.path.join(OUTDIR, d + '.json')
+        merged = {}
+        # 合并已有详情，避免只新增一条时把该日期原有 desc 覆盖丢失
+        if os.path.exists(path):
+            try:
+                with open(path, encoding='utf-8') as f:
+                    merged = json.load(f)
+            except Exception:
+                merged = {}
+        merged.update(mp)
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(merged, f, ensure_ascii=False, separators=(',', ':'))
     # 只清理“已不在事件库里”的旧日期文件；已有的按天文件不动（幂等，反复跑不会丢数据）
     keep = {d + '.json' for d in before.keys()}
     for fn in os.listdir(OUTDIR):
