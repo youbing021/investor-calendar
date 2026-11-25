@@ -629,6 +629,17 @@ a{color:inherit;}
   <img src="logo.webp" alt="投资日历" width="188" height="56" decoding="async" fetchpriority="high" style="height:56px;width:auto;opacity:.92;" />
   <div style="width:26px;height:26px;border:3px solid rgba(255,255,255,.15);border-top-color:#E8A33D;border-radius:50%;animation:ldspin .8s linear infinite;"></div>
 </div>
+<script>
+/* 兜底：不管后面脚本是否出错，2.5 秒后一定把首屏遮罩撤掉 */
+setTimeout(function(){
+  var el = document.getElementById('appLoading');
+  if(el && el.style.display !== 'none'){
+    el.style.opacity = '0';
+    el.style.pointerEvents = 'none';
+    setTimeout(function(){ el.style.display = 'none'; }, 400);
+  }
+}, 2500);
+</script>
 
 <header class="app-header">
   <div class="header-inner">
@@ -3559,8 +3570,12 @@ document.getElementById('scrim').addEventListener('click', function(){ showDrawe
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ showDrawer(false); } });
 
 /* 启动 */
-route();
-render();
+try{
+  route();
+  render();
+}catch(err){
+  console.error('首屏渲染失败', err);
+}
 /* 渲染完成，隐藏首屏加载提示 */
 try{
   var _ld = document.getElementById('appLoading');
@@ -3700,7 +3715,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611260614';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611260705';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 5 * 60 * 1000; // 5分钟检查一次（只拉几十字节版本文件，开销极小）
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
@@ -3712,8 +3727,15 @@ if('serviceWorker' in navigator){
       .then(function(v){
         v = (v || '').trim();
         if(v && /^\d+$/.test(v) && v !== PAGE_VERSION){
-          console.log('检测到新版本 ' + v + '，自动刷新');
-          window.location.reload();
+          /* 闸门：30 秒内只允许自动刷新一次，防止缓存未更新时反复重载、一直白屏 */
+          var last = +(sessionStorage.getItem('ic_reload_at') || 0);
+          if(Date.now() - last > 30000){
+            sessionStorage.setItem('ic_reload_at', String(Date.now()));
+            console.log('检测到新版本 ' + v + '，自动刷新');
+            window.location.reload();
+          }else{
+            console.log('新版本 ' + v + ' 已就绪，下次打开生效');
+          }
         }
       })
       .catch(function(err){ /* 网络异常或文件缺失时静默跳过，下轮再试 */ });

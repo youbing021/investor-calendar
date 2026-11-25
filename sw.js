@@ -8,7 +8,7 @@
  *   - version.txt：直连网络，不缓存（版本检测只拉几十字节）
  * 版本号：每次部署递增 CACHE_VERSION 强制浏览器更新 SW。
  * ============================================ */
-var CACHE_VERSION = 'investor-calendar-v15';
+var CACHE_VERSION = 'investor-calendar-v16';
 var CACHE_NAME = CACHE_VERSION;
 var PRECACHE_URLS = [
   './',
@@ -104,27 +104,33 @@ self.addEventListener('fetch', function(event){
     return;
   }
 
-  // 页面导航：缓存优先（秒开）+ 后台更新
+  // 页面导航：网络优先（2.5 秒抢不到就用缓存）→ 新版本一打开就是新的，慢网也不至于一直白屏
   if(req.mode === 'navigate' || req.destination === 'document'){
-    event.respondWith(
-      caches.match('./index.html').then(function(cached){
-        if(cached){
-          event.waitUntil(refreshPageCache('./index.html'));
-          return cached;
-        }
-        return fetch(req, {cache: 'no-store'}).then(function(resp){
-          if(resp && resp.status === 200){
-            var copy = resp.clone();
-            var copy2 = resp.clone();
-            caches.open(CACHE_NAME).then(function(cache){
-              cache.put('./index.html', copy);
-              cache.put('./', copy2);
-            });
-          }
-          return resp;
-        }).catch(function(){
-          return new Response('<h1>离线</h1>', {status: 503, headers: {'Content-Type': 'text/html; charset=utf-8'}});
+    var netFetch = fetch(req, {cache: 'no-store'}).then(function(resp){
+      if(resp && resp.status === 200){
+        var copy = resp.clone();
+        var copy2 = resp.clone();
+        caches.open(CACHE_NAME).then(function(cache){
+          cache.put('./index.html', copy);
+          cache.put('./', copy2);
         });
+      }
+      return resp;
+    });
+    var timeout = new Promise(function(resolve){
+      setTimeout(function(){ resolve(null); }, 2500);
+    });
+    event.respondWith(
+      Promise.race([netFetch, timeout]).then(function(resp){
+        if(resp){ return resp; }
+        return caches.match('./index.html').then(function(cached){
+          if(cached){ return cached; }
+          return Promise.race([netFetch, timeout]).then(function(r2){
+            return r2 || new Response('<h1>网络不稳定</h1>', {status: 503, headers: {'Content-Type': 'text/html; charset=utf-8'}});
+          });
+        });
+      }).catch(function(){
+        return caches.match('./index.html');
       })
     );
     return;
