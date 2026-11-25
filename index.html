@@ -4267,22 +4267,23 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611252207';   // 部署版本号，随每次更新改变
-  var CHECK_INTERVAL = 15 * 60 * 1000; // 15分钟检查一次
+  var PAGE_VERSION='202611252330';   // 部署版本号，随每次更新改变
+  var CHECK_INTERVAL = 5 * 60 * 1000; // 5分钟检查一次（只拉几十字节版本文件，开销极小）
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
   function checkUpdate(){
     var t = Date.now();
-    fetch(location.pathname + '?v=' + t, {cache: 'no-store', credentials: 'omit'})
-      .then(function(r){ return r.text(); })
-      .then(function(html){
-        var m = html.match(/PAGE_VERSION\s*=\s*'(\d+)'/);
-        if(m && m[1] && m[1] !== PAGE_VERSION){
-          console.log('检测到新版本 ' + m[1] + '，自动刷新');
+    // 只拉几十字节的 version.txt，不再重复下载整页 HTML
+    fetch('version.txt?v=' + t, {cache: 'no-store', credentials: 'omit'})
+      .then(function(r){ return r.ok ? r.text() : Promise.reject(new Error('no version file')); })
+      .then(function(v){
+        v = (v || '').trim();
+        if(v && /^\d+$/.test(v) && v !== PAGE_VERSION){
+          console.log('检测到新版本 ' + v + '，自动刷新');
           window.location.reload();
         }
       })
-      .catch(function(err){ /* 网络异常时静默跳过，下轮再试 */ });
+      .catch(function(err){ /* 网络异常或文件缺失时静默跳过，下轮再试 */ });
   }
   // 页面可见时才检查，避免后台浪费流量
   document.addEventListener('visibilitychange', function(){

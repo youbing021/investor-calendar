@@ -1,15 +1,14 @@
 /* ============================================
- * 投资日历 PWA Service Worker v8
- * 策略（回归稳定版）：
- *   - 页面/document：网络优先（3s超时回退缓存）→ 打开即最新，最可靠
- *   - 激活时：清理旧缓存 + 用无 query 的 fetch 刷新 index.html 缓存
- *     （不做导航 cachebust，避免 CDN 307 重定向在真实浏览器 SW 下引发导航失败）
+ * 投资日历 PWA Service Worker v14（性能优化版）
+ * 策略：
+ *   - 页面/document：缓存优先 + 后台静默更新（Stale-While-Revalidate）
+ *     → 打开即出内容，不再等待网络；后台拿到新版本后替换缓存
  *   - 静态资源：缓存优先 + 后台更新 → 秒开
- *   - 带 ?v= 的轮询请求：直连网络、绝不回退旧缓存 → 版本检测准确
- *   - index.html 内置版本自检（立即+15分钟+可见性变化自动 reload）负责最终同步
+ *   - ?v= 轮询请求：直连网络；若是页面全文，顺带刷新页面缓存
+ *   - version.txt：直连网络，不缓存（版本检测只拉几十字节）
  * 版本号：每次部署递增 CACHE_VERSION 强制浏览器更新 SW。
  * ============================================ */
-var CACHE_VERSION = 'investor-calendar-v13';
+var CACHE_VERSION = 'investor-calendar-v14';
 var CACHE_NAME = CACHE_VERSION;
 var PRECACHE_URLS = [
   './',
@@ -22,7 +21,7 @@ var PRECACHE_URLS = [
   './icon-maskable-512.png',
   './apple-touch-icon.png'
 ];
-/* 安装：预缓存核心资源 */
+
 self.addEventListener('install', function(event){
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache){
@@ -32,7 +31,7 @@ self.addEventListener('install', function(event){
     })
   );
 });
-/* 激活：清理旧缓存，并用无 query 请求刷新 index.html 缓存为最新版（保证回退的一定是最新版） */
+
 self.addEventListener('activate', function(event){
   event.waitUntil(
     caches.keys().then(function(keys){
@@ -54,54 +53,83 @@ self.addEventListener('activate', function(event){
     })
   );
 });
-/* 请求处理 */
+
+/* 后台刷新页面缓存（不阻塞响应） */
+function refreshPageCache(req){
+  return fetch(req, {cache: 'no-store'}).then(function(resp){
+    if(resp && resp.status === 200){
+      var copy = resp.clone();
+      var copy2 = resp.clone();
+      caches.open(CACHE_NAME).then(function(cache){
+        cache.put('./index.html', copy);
+        cache.put('./', copy2);
+      });
+    }
+  }).catch(function(){});
+}
+
 self.addEventListener('fetch', function(event){
   var req = event.request;
   if(req.method !== 'GET'){ return; }
   var url;
   try { url = new URL(req.url); } catch(e){ return; }
   if(url.origin !== location.origin){ return; }
-  // 带 ?v= 的版本轮询请求：直连网络，不缓存，不回退旧缓存（保证版本检测准确）
-  if(url.search && url.search.indexOf('v=') >= 0){
-    event.respondWith(fetch(req, {cache: 'no-store'})
-      .catch(function(){ return caches.match('./index.html'); }));
+
+  // version.txt：只走网络，绝不缓存（版本检测必须准确）
+  if(url.pathname.indexOf('version.txt') >= 0){
+    event.respondWith(
+      fetch(req, {cache: 'no-store'}).catch(function(){
+        return new Response('', {status: 204, statusText: 'No Content'});
+      })
+    );
     return;
   }
-  // 页面导航：网络优先（3秒超时回退缓存）→ 最可靠，打开即最新
+
+  // 带 ?v= 的版本轮询请求：直连网络；若是页面全文则顺手刷新缓存
+  if(url.search && url.search.indexOf('v=') >= 0){
+    event.respondWith(
+      fetch(req, {cache: 'no-store'}).then(function(resp){
+        if(resp && resp.status === 200 &&
+           (req.destination === 'document' || url.pathname === '/' || url.pathname.indexOf('index.html') >= 0)){
+          var copy = resp.clone();
+          var copy2 = resp.clone();
+          caches.open(CACHE_NAME).then(function(cache){
+            cache.put('./index.html', copy);
+            cache.put('./', copy2);
+          });
+        }
+        return resp;
+      }).catch(function(){ return caches.match('./index.html'); })
+    );
+    return;
+  }
+
+  // 页面导航：缓存优先（秒开）+ 后台更新
   if(req.mode === 'navigate' || req.destination === 'document'){
     event.respondWith(
-      new Promise(function(resolve){
-        var settled = false;
-        var timer = setTimeout(function(){
-          if(settled){ return; }
-          settled = true;
-          caches.match('./index.html').then(resolve);
-        }, 3000);
-        fetch(req, {cache: 'no-store'}).then(function(resp){
-          if(settled){ return; }
-          settled = true;
-          clearTimeout(timer);
+      caches.match('./index.html').then(function(cached){
+        if(cached){
+          event.waitUntil(refreshPageCache('./index.html'));
+          return cached;
+        }
+        return fetch(req, {cache: 'no-store'}).then(function(resp){
           if(resp && resp.status === 200){
             var copy = resp.clone();
+            var copy2 = resp.clone();
             caches.open(CACHE_NAME).then(function(cache){
-              cache.put('./index.html', copy).then(function(){
-                return cache.put('./', resp.clone());
-              });
+              cache.put('./index.html', copy);
+              cache.put('./', copy2);
             });
-            resolve(resp);
-          } else {
-            caches.match('./index.html').then(resolve);
           }
+          return resp;
         }).catch(function(){
-          if(settled){ return; }
-          settled = true;
-          clearTimeout(timer);
-          caches.match('./index.html').then(resolve);
+          return new Response('<h1>离线</h1>', {status: 503, headers: {'Content-Type': 'text/html; charset=utf-8'}});
         });
       })
     );
     return;
   }
+
   // 静态资源（style/script/image/font等）：缓存优先 + 后台更新
   if(req.destination === 'style' || req.destination === 'script' ||
      req.destination === 'image' || req.destination === 'font' ||
