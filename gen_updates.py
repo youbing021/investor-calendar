@@ -15,7 +15,9 @@ gen_updates.py —— 维护 index.html 中的 TODAY_UPDATES（今日更新日�
   6. --us-review 显式写入时覆盖旧复盘（6:00 美股复盘覆盖前一日 A股复盘、16:00 A股复盘覆盖当日美股复盘）；非复盘轮次不清空已保留的复盘
 """
 import json
+import os
 import re
+import subprocess
 import sys
 from datetime import datetime
 
@@ -75,8 +77,8 @@ def main():
     else:
         items = []
 
-    # 仅显式传 --added 时追加批次；仅 --us-review（复盘）不产生空批次
-    if '--added' in sys.argv:
+    # 仅显式传 --added 且有新增时追加批次；空列表或仅 --us-review（复盘）不产生空批次
+    if '--added' in sys.argv and items:
         data['batches'].append({'ts': now_hm, 'items': items})
     # 仅保留最近 12 批（现为每日 4 次更新，12 为冗余上限），防止异常堆积
     data['batches'] = data['batches'][-12:]
@@ -93,6 +95,14 @@ def main():
 
     open(OUT, 'w', encoding='utf-8').write(html)
     print(f'OK: 今日更新已记录批次 {now_hm}（{len(items)} 条新增，累计 {len(data["batches"])} 批，日期 {today}） → {OUT}')
+
+    # 新增事件若在 EVENTS 里带了 desc，顺手外置，避免首页体积反弹（幂等，可反复跑）
+    split = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'split_desc.py')
+    if os.path.exists(split):
+        try:
+            subprocess.run([sys.executable, split, OUT], check=True)
+        except Exception as e:
+            print(f'WARN: desc 外置失败（不影响本次更新）：{e}')
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 /* ============================================
- * 投资日历 PWA Service Worker v14（性能优化版）
+ * 投资日历 PWA Service Worker v15（详情外置版）
  * 策略：
  *   - 页面/document：缓存优先 + 后台静默更新（Stale-While-Revalidate）
  *     → 打开即出内容，不再等待网络；后台拿到新版本后替换缓存
@@ -8,7 +8,7 @@
  *   - version.txt：直连网络，不缓存（版本检测只拉几十字节）
  * 版本号：每次部署递增 CACHE_VERSION 强制浏览器更新 SW。
  * ============================================ */
-var CACHE_VERSION = 'investor-calendar-v14';
+var CACHE_VERSION = 'investor-calendar-v15';
 var CACHE_NAME = CACHE_VERSION;
 var PRECACHE_URLS = [
   './',
@@ -124,6 +124,26 @@ self.addEventListener('fetch', function(event){
           return resp;
         }).catch(function(){
           return new Response('<h1>离线</h1>', {status: 503, headers: {'Content-Type': 'text/html; charset=utf-8'}});
+        });
+      })
+    );
+    return;
+  }
+
+  // 事件详情 data/desc/*.json：缓存优先 + 后台更新（详情点开才用得到，命中缓存即秒出）
+  if(url.pathname.indexOf('/data/desc/') >= 0){
+    event.respondWith(
+      caches.match(req).then(function(cached){
+        var networkPromise = fetch(req).then(function(resp){
+          if(resp && resp.status === 200){
+            var copy = resp.clone();
+            caches.open(CACHE_NAME).then(function(cache){ cache.put(req, copy); });
+          }
+          return resp;
+        }).catch(function(){ return undefined; });
+        if(cached){ return cached; }
+        return networkPromise.then(function(resp){
+          return resp || new Response('{}', {status: 200, headers: {'Content-Type': 'application/json; charset=utf-8'}});
         });
       })
     );
