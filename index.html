@@ -321,6 +321,7 @@ a{color:inherit;}
 .d-item.key .d-chip.k{background:rgba(232,163,61,0.16);color:var(--amber);border-color:rgba(232,163,61,0.3);}
 .d-item .d-desc{font-size:14.5px;color:var(--ink-dim);line-height:1.85;}
 .d-item .d-desc.lazy{color:#a8a296;font-style:italic;font-size:13.5px;}
+.d-item .d-desc.empty{display:none;}
 
 /* ===== 关注引导 ===== */
 .brand-cta{
@@ -3736,13 +3737,14 @@ function renderDayList(){
     return;
   }
   var evs = dayEventsTop(dateISO, 0);   /* 0 = 不过滤，保留当日全部事件 */
+  var pendingAll = !DESC_CACHE[dateISO];
   var items = evs.map(function(ev,k){
     var extraCls = (k>=10) ? ' extra' : '';    /* 第11条起：电脑端隐藏，手机端完整展示 */
     var body = descOf(dateISO, ev);
     return '<div class="d-item key c-'+ev.cat+extraCls+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
       '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+catLabel(ev.cat)+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
-      '<div class="d-desc'+(body?'':' lazy')+'">'+(body?hlStocks(esc(body)):'正在载入详情…')+'</div>'+
+      '<div class="d-desc'+(body?'':(pendingAll?' lazy':' empty'))+'">'+(body?hlStocks(esc(body)):(pendingAll?'正在载入详情…':''))+'</div>'+
     '</div>';
   }).join('');
   var more = raw.length>10 ? '<div class="dl-more">当日共 '+raw.length+' 项，已按重要程度排序；手机端显示全部，电脑端仅展示前 10 条（点条目可展开详情）。</div>' : '';
@@ -3775,12 +3777,13 @@ function paintDrawer(){
   if(!ev){ return; }
   var d = parseISO(dateISO);
   var body = descOf(dateISO, ev);
+  var pending = !DESC_CACHE[dateISO];
   document.getElementById('drawerTitle').textContent = fmtYMD(d)+' · '+weekdayCN(d);
   document.getElementById('drawerBody').innerHTML =
     '<div class="d-item key c-'+ev.cat+'">'+
       '<div class="d-title">'+esc(ev.title)+'</div>'+
       '<div class="d-meta"><span class="d-chip">'+(ev.time||'全天')+'</span><span class="d-chip">'+catLabel(ev.cat)+'</span>'+(ev.key?'<span class="d-chip k">重点</span>':'')+'</div>'+
-      '<div class="d-desc'+(body?'':' lazy')+'">'+(body?hlStocks(esc(body)):'正在载入详情…')+'</div>'+
+      '<div class="d-desc'+(body?'':(pending?' lazy':' empty'))+'">'+(body?hlStocks(esc(body)):(pending?'正在载入详情…':''))+'</div>'+
       srcLine(ev)+
     '</div>';
 }
@@ -3991,7 +3994,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611252350';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611252355';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 5 * 60 * 1000; // 5分钟检查一次（只拉几十字节版本文件，开销极小）
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
