@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资日历 · 手机自检</title>
+<style>
+body{background:#0e1218;color:#e6edf7;font:15px/1.6 -apple-system,"PingFang SC",sans-serif;padding:16px}
+h1{font-size:18px;margin-bottom:6px}
+.meta{font-size:12px;color:#7f8ea3;word-break:break-all;margin-bottom:14px}
+.row{padding:10px 0;border-bottom:1px solid #1c2531}
+.row .k{font-size:13px;color:#9fb2c9}
+.row .v{font-size:15px;margin-top:2px}
+.ok{color:#4ade80}.bad{color:#ff6b5e}.wait{color:#f5c451}
+#verdict{margin-top:18px;padding:12px;border-radius:8px;background:#15202e;font-size:14px}
+a{color:#8fb4ff}
+</style></head><body>
+<h1>手机自检</h1>
+<div class="meta" id="meta">读取中…</div>
+<div id="rows"></div>
+<div id="verdict">正在检测…</div>
+<a href="./lite.html">→ 手机简版</a> ｜ <a href="./">→ 完整版</a>
+<script>
+var rows=document.getElementById('rows'), verdict=document.getElementById('verdict');
+var results={};
+function add(id,label){var d=document.createElement('div');d.className='row';d.id='r_'+id;
+ d.innerHTML='<div class="k">'+label+'</div><div class="v wait">检测中…</div>';rows.appendChild(d);}
+function set(id,text,ok){var d=document.getElementById('r_'+id);if(!d)return;
+ d.querySelector('.v').className='v '+(ok===true?'ok':ok===false?'bad':'');
+ d.querySelector('.v').textContent=text;}
+var t0=performance.now();
+var conn=navigator.connection||{};
+document.getElementById('meta').textContent=
+ 'UA: '+navigator.userAgent+'\n网络: '+(conn.effectiveType||'未知')+' / 下行估计 '+(conn.downlink||'?')+'Mbps / RTT '+(conn.rtt||'?')+'ms\n页面到达时间: 稍后显示';
+add('shell','1. 页面框架（这一屏已经出来了，说明 HTML 能到达手机）');
+set('shell','成功，用时 '+Math.round(performance.now())+'ms',true);
+
+function probe(id,label,url,opt){
+ add(id,label);
+ var st=Date.now();
+ return fetch(url+'?probe='+st, opt||{cache:'no-store'}).then(function(r){
+   return r.arrayBuffer().then(function(b){
+     var ms=Date.now()-st;
+     results[id]={ms:ms,bytes:b.byteLength,status:r.status};
+     set(id,'HTTP '+r.status+' · '+(b.byteLength/1024).toFixed(1)+'KB · '+ms+'ms', r.status===200);
+     return b.byteLength;
+   });
+ }).catch(function(e){
+   results[id]={err:String(e)};
+   set(id,'失败：'+e, false);
+   results[id].fail=true;
+ });
+}
+
+var chain=Promise.resolve();
+chain=chain.then(function(){return probe('ver','2. version.txt（13 字节）','version.txt');});
+chain=chain.then(function(){return probe('desc','3. 某日事件详情 JSON（约 10KB）','data/desc/2026-11-26.json');});
+chain=chain.then(function(){return probe('lite','4. 手机简版页面（约 11KB）','lite.html');});
+chain=chain.then(function(){return probe('full','5. 完整版首页（约 476KB，重点看字节数是否完整）','./');});
+chain=chain.then(function(){
+  var v=results.ver||{},d=results.desc||{},l=results.lite||{},f=results.full||{};
+  var msg=[];
+  if(v.fail||d.fail){ msg.push('❌ 连小文件都拿不到：问题在<b>网络/线路</b>（Cloudflare 海外节点到你手机这段不通或极慢）。'); }
+  else if(v.ms>3000){ msg.push('⚠️ 13 字节的文件要 '+v.ms+'ms：线路延迟异常，问题在<b>网络</b>。'); }
+  else { msg.push('✅ 小文件很快（'+v.ms+'ms），线路基本正常。'); }
+  if(f.bytes && f.bytes < 400*1024){ msg.push('❌ 首页只收到 '+(f.bytes/1024).toFixed(0)+'KB（应约 476KB）：<b>下载被中断/截断</b>，页面脚本不完整，所以永远转圈。'); }
+  else if(f.bytes){ msg.push('✅ 首页完整收到 '+ (f.bytes/1024).toFixed(0) +'KB，用时 '+f.ms+'ms。'); }
+  if(l.bytes && l.ms){ msg.push('简版页 '+l.ms+'ms / '+(l.bytes/1024).toFixed(0)+'KB。'); }
+  verdict.innerHTML=msg.join('<br>')+'<br><br><span style="color:#7f8ea3">截图这一屏发我，就能定位到底卡在哪一步。</span>';
+  document.getElementById('meta').textContent=document.getElementById('meta').textContent.replace('稍后显示',Math.round(performance.now())+'ms');
+});
+</script>
+</body></html>
