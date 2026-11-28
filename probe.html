@@ -12,15 +12,17 @@ h1{font-size:18px;margin-bottom:6px}
 .row .v{font-size:15px;margin-top:2px}
 .ok{color:#4ade80}.bad{color:#ff6b5e}.wait{color:#f5c451}
 #verdict{margin-top:18px;padding:12px;border-radius:8px;background:#15202e;font-size:14px}
+#verdict2{margin-top:10px;padding:12px;border-radius:8px;background:#15202e;font-size:13px;white-space:pre-wrap}
 a{color:#8fb4ff}
 </style></head><body>
 <h1>手机自检</h1>
 <div class="meta" id="meta">读取中…</div>
 <div id="rows"></div>
 <div id="verdict">正在检测…</div>
-<a href="./lite.html">→ 手机简版</a> ｜ <a href="./">→ 完整版</a>
+<div id="verdict2"></div>
+<a href="./lite">→ 手机简版</a> ｜ <a href="./">→ 完整版</a>
 <script>
-var rows=document.getElementById('rows'), verdict=document.getElementById('verdict');
+var rows=document.getElementById('rows'), verdict=document.getElementById('verdict'), verdict2=document.getElementById('verdict2');
 var results={};
 function add(id,label){var d=document.createElement('div');d.className='row';d.id='r_'+id;
  d.innerHTML='<div class="k">'+label+'</div><div class="v wait">检测中…</div>';rows.appendChild(d);}
@@ -30,14 +32,14 @@ function set(id,text,ok){var d=document.getElementById('r_'+id);if(!d)return;
 var t0=performance.now();
 var conn=navigator.connection||{};
 document.getElementById('meta').textContent=
- 'UA: '+navigator.userAgent+'\n网络: '+(conn.effectiveType||'未知')+' / 下行估计 '+(conn.downlink||'?')+'Mbps / RTT '+(conn.rtt||'?')+'ms\n页面到达时间: 稍后显示';
+ 'UA: '+navigator.userAgent+'\n网络: '+(conn.effectiveType||'未知')+' / 下行估计 '+(conn.downlink||'?')+'Mbps / RTT '+(conn.rtt||'?')+'ms';
 add('shell','1. 页面框架（这一屏已经出来了，说明 HTML 能到达手机）');
 set('shell','成功，用时 '+Math.round(performance.now())+'ms',true);
 
-function probe(id,label,url,opt){
+function probe(id,label,url){
  add(id,label);
  var st=Date.now();
- return fetch(url+'?probe='+st, opt||{cache:'no-store'}).then(function(r){
+ return fetch(url+'?probe='+st, {cache:'no-store'}).then(function(r){
    return r.arrayBuffer().then(function(b){
      var ms=Date.now()-st;
      results[id]={ms:ms,bytes:b.byteLength,status:r.status};
@@ -54,19 +56,44 @@ function probe(id,label,url,opt){
 var chain=Promise.resolve();
 chain=chain.then(function(){return probe('ver','2. version.txt（13 字节）','version.txt');});
 chain=chain.then(function(){return probe('desc','3. 某日事件详情 JSON（约 10KB）','data/desc/2026-11-26.json');});
-chain=chain.then(function(){return probe('lite','4. 手机简版页面（约 11KB）','lite.html');});
-chain=chain.then(function(){return probe('full','5. 完整版首页（约 476KB，重点看字节数是否完整）','./');});
+chain=chain.then(function(){return probe('lite','4. 手机简版页面（约 11KB）','lite');});
+chain=chain.then(function(){return probe('full','5. 完整版首页（看字节数是否完整）','./');});
+
 chain=chain.then(function(){
   var v=results.ver||{},d=results.desc||{},l=results.lite||{},f=results.full||{};
   var msg=[];
-  if(v.fail||d.fail){ msg.push('❌ 连小文件都拿不到：问题在<b>网络/线路</b>（Cloudflare 海外节点到你手机这段不通或极慢）。'); }
-  else if(v.ms>3000){ msg.push('⚠️ 13 字节的文件要 '+v.ms+'ms：线路延迟异常，问题在<b>网络</b>。'); }
+  if(v.fail||d.fail){ msg.push('❌ 连小文件都拿不到：问题在<b>网络/线路</b>。'); }
+  else if(v.ms>3000){ msg.push('⚠️ 13 字节文件要 '+v.ms+'ms：线路延迟异常。'); }
   else { msg.push('✅ 小文件很快（'+v.ms+'ms），线路基本正常。'); }
-  if(f.bytes && f.bytes < 400*1024){ msg.push('❌ 首页只收到 '+(f.bytes/1024).toFixed(0)+'KB（应约 476KB）：<b>下载被中断/截断</b>，页面脚本不完整，所以永远转圈。'); }
-  else if(f.bytes){ msg.push('✅ 首页完整收到 '+ (f.bytes/1024).toFixed(0) +'KB，用时 '+f.ms+'ms。'); }
-  if(l.bytes && l.ms){ msg.push('简版页 '+l.ms+'ms / '+(l.bytes/1024).toFixed(0)+'KB。'); }
-  verdict.innerHTML=msg.join('<br>')+'<br><br><span style="color:#7f8ea3">截图这一屏发我，就能定位到底卡在哪一步。</span>';
-  document.getElementById('meta').textContent=document.getElementById('meta').textContent.replace('稍后显示',Math.round(performance.now())+'ms');
+  if(f.bytes && f.bytes < 400*1024){ msg.push('❌ 首页只收到 '+(f.bytes/1024).toFixed(0)+'KB：<b>下载被截断</b>。'); }
+  else if(f.bytes){ msg.push('✅ 首页完整收到 '+(f.bytes/1024).toFixed(0)+'KB，用时 '+f.ms+'ms。'); }
+  verdict.innerHTML=msg.join('<br>');
+
+  /* 6. 内嵌完整版：看脚本到底有没有把内容渲染出来 */
+  var ifr=document.createElement('iframe');
+  ifr.style.cssText='position:fixed;left:-9999px;width:390px;height:700px;border:0;';
+  document.body.appendChild(ifr);
+  var stamp=Date.now();
+  ifr.src='./?probe_iframe='+stamp;
+  setTimeout(function(){
+    try{
+      var w=ifr.contentWindow, d=w.document;
+      var cards=d.querySelectorAll('.ev-card').length;
+      var items=d.querySelectorAll('.d-item').length;
+      var cells=d.querySelectorAll('.m-cell').length;
+      var ld=d.getElementById('appLoading');
+      var ldDisp=ld?getComputedStyle(ld).display:'?';
+      var diag=((w.__diag)||[]).join('\n');
+      var note='卡片 '+cards+' · 条目 '+items+' · 日期格 '+cells+' · 遮罩 '+ldDisp;
+      var lines=['【内嵌完整版状态】',note];
+      if(cards+items>0){ lines.push('✅ 脚本已把内容渲染出来。'); }
+      else{ lines.push('❌ 脚本没渲染出任何内容（白屏），看下面报错。'); }
+      if(diag){ lines.push('—— 页面报错 ——'); lines.push(diag); }
+      verdict2.textContent=lines.join('\n');
+    }catch(e){
+      verdict2.textContent='内嵌检测读取失败：'+e;
+    }
+  }, 9000);
 });
 </script>
 </body></html>
