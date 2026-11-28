@@ -69,40 +69,40 @@ chain=chain.then(function(){
   else if(f.bytes){ msg.push('✅ 首页完整收到 '+(f.bytes/1024).toFixed(0)+'KB，用时 '+f.ms+'ms。'); }
   verdict.innerHTML=msg.join('<br>');
 
-  /* 6. 内嵌完整版：看脚本到底有没有把内容渲染出来 */
+  /* 6. 内嵌完整版：每秒轮询，看脚本到底有没有跑完、内容有没有出来 */
   add('fullIframe','6. 内嵌完整版（390 宽）：看是否渲染出内容');
-  set('fullIframe','加载中…（约 9 秒）',null);
+  set('fullIframe','加载中…',null);
   var ifr=document.createElement('iframe');
   ifr.style.cssText='position:fixed;left:-9999px;width:390px;height:700px;border:0;';
-  ifr.onload=function(){ set('fullIframe','iframe 已加载完成，等待渲染…',null); };
+  var loaded=false;
+  ifr.onload=function(){ loaded=true; };
   ifr.onerror=function(){ set('fullIframe','iframe 加载失败',false); };
   document.body.appendChild(ifr);
   ifr.src='./?probe_iframe='+Date.now();
-  setTimeout(function(){
+
+  var polls=0;
+  var timer=setInterval(function(){
+    polls++;
     try{
       var w=ifr.contentWindow, d=w.document;
       var cards=d.querySelectorAll('.ev-card').length;
       var items=d.querySelectorAll('.d-item').length;
       var cells=d.querySelectorAll('.m-cell').length;
-      var ld=d.getElementById('appLoading');
-      var ldDisp=ld?getComputedStyle(ld).display:'?';
-      var ldOp=ld?getComputedStyle(ld).opacity:'?';
-      var wt=(d.getElementById('weekTitle')||{}).textContent||'';
-      var mt=(d.getElementById('monthTitle')||{}).textContent||'';
-      var diag=((w.__diag)||[]).join('\n');
-      var lines=['【内嵌完整版状态】',
-        'readyState='+d.readyState+' · 正文字数='+(d.body?d.body.innerText.length:0),
-        '卡片 '+cards+' · 条目 '+items+' · 日期格 '+cells,
-        '遮罩 display='+ldDisp+' opacity='+ldOp,
-        '周标题“'+wt+'” / 月标题“'+mt+'”'];
-      if(cards+items>0){ lines.push('✅ 脚本已把内容渲染出来。'); }
-      else{ lines.push('❌ 脚本没渲染出任何内容（白屏），看下面报错。'); }
-      if(diag){ lines.push('—— 页面报错 ——'); lines.push(diag); }
+      var ready=(w.__ready===1);
+      var renderAt=w.__renderAt||'-';
+      var bodyLen=d.body?d.body.innerText.length:0;
+      var diag=((w.__diag)||[]).join(' | ');
+      var lines=['【内嵌完整版状态 · 第'+polls+'次刷新】',
+        'readyState='+d.readyState+' · 脚本完成='+ready+' · 渲染耗时='+renderAt+'ms · 正文字数='+bodyLen,
+        '卡片 '+cards+' · 条目 '+items+' · 日期格 '+cells];
+      if(diag){ lines.push('报错: '+diag); }
       verdict2.textContent=lines.join('\n');
+      set('fullIframe', ready?('脚本已完成：卡片 '+cards+' / 条目 '+items):'等待渲染…', ready);
+      if((cards+items>0 || ready) || polls>=12){ clearInterval(timer); }
     }catch(e){
-      verdict2.textContent='内嵌检测读取失败：'+e;
+      verdict2.textContent='读取失败：'+e;
     }
-  }, 9000);
+  }, 1000);
 });
 </script>
 </body></html>

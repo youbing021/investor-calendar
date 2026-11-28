@@ -3827,6 +3827,8 @@ try{
 }catch(err){
   console.error('首屏渲染失败', err);
 }
+/* 自检标记：脚本跑到这里即视为执行完成；探针页据此判断脚本是否中断 */
+try{ window.__ready=1; window.__renderAt=Math.round(performance.now()); }catch(e){}
 /* 渲染完成，隐藏首屏加载提示 */
 try{
   var _ld = document.getElementById('appLoading');
@@ -3969,7 +3971,7 @@ if('serviceWorker' in navigator){
 
 /* ===== 后台自动更新：定时检查线上版本，发现新内容自动刷新 ===== */
 (function(){
-  var PAGE_VERSION='202611281212';   // 部署版本号，随每次更新改变
+  var PAGE_VERSION='202611281412';   // 部署版本号，随每次更新改变
   var CHECK_INTERVAL = 5 * 60 * 1000; // 5分钟检查一次（只拉几十字节版本文件，开销极小）
   if(location.protocol !== 'http:' && location.protocol !== 'https:'){ return; } // 本地file://跳过
 
